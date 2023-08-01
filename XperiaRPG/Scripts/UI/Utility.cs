@@ -102,7 +102,7 @@ namespace XperiaRPG.Scripts.UI
             {
                 Console.WriteLine(
                     "+-------------------------------+\n" +
-                    "| Prázdný jak kostelní lavice   |\n" +
+                    "|      Empty like my soul       |\n" +
                     "+-----------INVENTORY-----------+"
                 );
                 return;

@@ -56,10 +56,10 @@ namespace XperiaRPG.Scripts.Characters.Inventory
             Console.WriteLine(item.Name + " Unequipped!");
         }
 
-        private static void AddBonus(bool AddRemove, Item item, StatList statList, SkillList skillList)
+        private static void AddBonus(bool addRemove, Item item, StatList statList, SkillList skillList)
         {
             var i = 1;
-            if (AddRemove == false) i = -1;
+            if (addRemove == false) i = -1;
 
             if (item.AttributeBonusList == null) return;
 
@@ -94,7 +94,7 @@ namespace XperiaRPG.Scripts.Characters.Inventory
         // skillList and statList for shortName of skill/stat
         public void Print(SkillList skillList, StatList statList)
         {
-            Console.WriteLine("+---SLOTS----+--------------------------------+");
+            Console.WriteLine("+---SLOTS----+-----------------------------+-----------------------------------------+");
 
             // armor
             foreach (GearSlot slot in Enum.GetValues(typeof(GearSlot)))
@@ -103,25 +103,27 @@ namespace XperiaRPG.Scripts.Characters.Inventory
                 Console.Write($"| {slot,-10} | ");
                 if (_gear.TryGetValue(slot, out var item))
                 {
-                    Console.Write($"{item?.Name,-31}");
-                    foreach (var bonus in item.AttributeBonusList)
-                    {
-                        string shortName = null;
-                        if (skillList.Lookup(bonus.Name) != null) shortName = skillList.Lookup(bonus.Name).ShortName;
-                        if (statList.Lookup(bonus.Name) != null) shortName = statList.Lookup(bonus.Name).ShortName;
-                        var skill = skillList.Lookup(bonus.Name);
-                        var stat = skillList.Lookup(bonus.Name);
-                        Console.Write($"{shortName}: {bonus.Amount}{bonus.Unit} ");
-                    }
+                    Console.Write($"{item?.Name,-28}| ");
+                    if (item != null)
+                        foreach (var bonus in item.AttributeBonusList)
+                        {
+                            var shortName = bonus.Name;
+                            if (skillList.Lookup(bonus.Name) != null) shortName = skillList.Lookup(bonus.Name).ShortName;
+                            if (statList.Lookup(bonus.Name) != null) shortName = statList.Lookup(bonus.Name).ShortName;
+                            Console.Write(bonus.Unit == "points"
+                                ? $"{shortName + ": " + bonus.Amount} "
+                                : $"{shortName + ": " + bonus.Amount + bonus.Unit} ");
+                        }
+
                     Console.Write("\n");
                 }
                 else
                 {
-                    Console.Write($"{"",-31}|\n");
+                    Console.Write($"{"",-28}|\n");
                 }
             }
 
-            Console.WriteLine("+------------+--------------------------------+");
+            Console.WriteLine("+------------+-----------------------------+-----------------------------------------+");
         }
     }
 
