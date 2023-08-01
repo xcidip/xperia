@@ -7,15 +7,14 @@ namespace XperiaRPG.Scripts.Attributes
 {
     public class Skill : Attribute
     {
-        public double Level { get; set; }
-        public int PercentBonus { get; set; }
+        public new double Level { get; set; }
         
-        public Skill(string name, double value, int percentBonus) : base(name, value)
+        public Skill(string name, string shortName, int xp, int percentBonus) : base(name, shortName, percentBonus)
         {
-            PercentBonus = percentBonus;
-            if (value >= 40)
+            Xp = xp;
+            if (xp >= 40)
             {
-                Level = Math.Floor(Math.Sqrt(value) / 2) - 3;
+                Level = Math.Floor(Math.Sqrt(xp) / 2) - 3;
             }
         }
     } 
@@ -28,19 +27,19 @@ namespace XperiaRPG.Scripts.Attributes
         {
             List = new List<Skill>
             {
-                new Skill("Fishing", 0, 0),
-                new Skill("Alchemy", 0, 0),
-                new Skill("Herbalism", 0,0),
-                new Skill("Cooking", 0, 0),
-                new Skill("Mining", 0, 0),
-                new Skill("Lthrworking", 0, 0),
-                new Skill("Slayer", 0, 0),
-                new Skill("Smithing",0 , 0),
-                new Skill("Tailoring", 0, 0),
+                new Skill("Fishing","Fsh", 0, 0),
+                new Skill("Alchemy","Alc", 0, 0),
+                new Skill("Herbalism","Hrb", 0,0),
+                new Skill("Cooking","Coo", 0, 0),
+                new Skill("Mining","Mng", 0, 0),
+                new Skill("Lthrworking","Lth", 0, 0),
+                new Skill("Slayer","Slr", 0, 0),
+                new Skill("Smithing","Smt",0 , 0),
+                new Skill("Tailoring","Tlr", 0, 0),
                 
-                new Skill("Bartering", 0, 0),
-                new Skill("Seduction", 0, 0),
-                new Skill("Traveling", 0, 0),
+                new Skill("Bartering","Brt", 0, 0),
+                new Skill("Seduction","Sdc", 0, 0),
+                new Skill("Traveling","Trv", 0, 0),
             };
         }
 
@@ -51,7 +50,7 @@ namespace XperiaRPG.Scripts.Attributes
 
         public void AddXp(string name, int amount)
         {
-            Lookup(name).Value += amount;
+            Lookup(name).Xp += amount;
         }
         public void AddPercentBonus(string name, int amount)
         {

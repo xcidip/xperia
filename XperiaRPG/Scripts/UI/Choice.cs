@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace XperiaRPG.Scripts.UI
 {
@@ -30,6 +31,44 @@ namespace XperiaRPG.Scripts.UI
             return userInput;
         }
 
+        public static string NameValidation()
+        {
+            Console.Write("\n");
+
+            while (true)
+            {
+                Console.Write($"Please enter your character's name: ");
+                var input = Console.ReadLine();
+
+                var tooLong = input.Length > 40;
+                var hasNumbers = ContainsNumbers(input);
+
+                if (tooLong)
+                {
+                    Console.WriteLine("Dont troll the length of your name xD");
+                }
+                else if (hasNumbers)
+                {
+                    Console.WriteLine("Your name can't contain any numbers!");
+                }
+                else
+                {
+                    return input;
+                }
+
+
+            }
+            
+        }
+
+        private static bool ContainsNumbers(string input)
+        {
+            // Regular expression pattern to match any digit (0-9) in the input string.
+            const string pattern = @"\d";
+            // Use Regex.IsMatch to check if the pattern is found in the input string.
+            return Regex.IsMatch(input, pattern);
+        }
+        
         public static char YesNoValidation()
         {
             char userInput;

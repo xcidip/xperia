@@ -4,27 +4,31 @@ namespace XperiaRPG.Scripts.Attributes
 {
     public abstract class Attribute
     {
+        public string ShortName { get; }
         public string Name { get; }
-        public double Value { get; set; }
+        public int Points { get; set; }
+        public int Xp{ get; set; }
         public int Level { get; }
+        public int PercentBonus { get; set; }
 
-        protected Attribute(string name, double value)
+        protected Attribute(string name, string shortName, int percentBonus)
         {
+            ShortName = shortName;
+            PercentBonus = percentBonus;
             Name = name;
-            Value = value;
         }
     }
     
     public class AttributeBonus
     {
-        public string Skill { get; set; }
+        public string Name { get; set; }
         public int Amount { get; set; }
         public string Unit { get; set; }
 
-        public AttributeBonus(string skill, int amount,string unit)
+        public AttributeBonus(string name, int amount,string unit)
         {
             Unit = unit;   
-            Skill = skill;
+            Name = name;
             Amount = amount;
         }
 
@@ -32,7 +36,7 @@ namespace XperiaRPG.Scripts.Attributes
         {
             var symbol = "+";
             if (Amount < 0) symbol = "";
-            var text = symbol + Amount + " " + Unit + " to " + Skill;
+            var text = symbol + Amount + " " + Unit + " to " + Name;
             //Console.Write($"{symbol + Amount + " " + Unit + " to " + Skill,-27}");
             return text;
         }

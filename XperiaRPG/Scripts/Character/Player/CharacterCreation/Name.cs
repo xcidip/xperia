@@ -31,8 +31,8 @@ namespace XperiaRPG.Scripts.CharacterCreation
                 new Suffix("the Turek", "Always has to sleep", new AttributeBonus("Intellect", -1,"points")),
                 new Suffix("the Hated", "Nobody likes you!", new AttributeBonus("Defense", 3, "points")),
                 new Suffix("the Luffy", "I ate the Gum-Gum fruit", new AttributeBonus("Agility", 5, "points")),
-                new Suffix("of the Fire", "You like looking at fire. Arsonist...", new AttributeBonus("FireRes", 10,"points")),
-                new Suffix("of the Earth", "You know how things work", new AttributeBonus("FireRes", 10,"points")),
+                new Suffix("the Pyromancer", "You like looking at fire. You Arsonist!", new AttributeBonus("FireRes", 10,"points")),
+                new Suffix("of the Earth", "groot, GROOT, gROoT", new AttributeBonus("FireRes", 10,"points")),
                 new Suffix("the Frozone", "Honey, where's my super suit?", new AttributeBonus("FrostRes", 10,"points")),
                 new Suffix("the Lich", "Master of dark and forbidden", new AttributeBonus("Intellect", 3,"points")),
                 new Suffix("the Swords-master", "Chop chop, cut cut", new AttributeBonus("Strength", 4,"points")),
@@ -43,7 +43,7 @@ namespace XperiaRPG.Scripts.CharacterCreation
                 new Suffix("the Cook", "You know how to make your belly full", new AttributeBonus("Cooking", 30,"%")),
                 new Suffix("the Brutal", "Crush skulls!!!", new AttributeBonus("Slayer", 30,"%")),
                 new Suffix("the Havířov Miner", "Banik py*o", new AttributeBonus("Mining", 30,"%")),
-                new Suffix("of Elite of TOS", "Master of the Industrial ", new AttributeBonus("Smithing", 31,"%")),
+                new Suffix("the Elite of TOS", "Master of the Industrial craft", new AttributeBonus("Smithing", 31,"%")),
                 new Suffix("the Herbalist", "You know nature too good", new AttributeBonus("Herbalism", 30,"%")),
                 
                 // bonus

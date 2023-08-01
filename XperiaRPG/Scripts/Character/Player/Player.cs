@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.CharacterCreation;
+using XperiaRPG.Scripts.Characters.Inventory;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Character.Player
@@ -15,9 +16,8 @@ namespace XperiaRPG.Scripts.Character.Player
         public int Level { get; set; }
         public PlayerSetting[] CharacterInfo { get; set; }
         public SkillList SkillList { get; set; }
-        
-        // todo Item inventory
-        // todo Gear Inventory
+        public Inventory Inventory { get; set; }
+        public Gear Gear { get; set; }
         
 
         
@@ -35,15 +35,14 @@ namespace XperiaRPG.Scripts.Character.Player
             var listOfOptions = new ProfessionList();
             return Utility.PrintCharacterCreationSetting(listOfOptions," {0,-7} {1,-27} Wears: {2,-17} Uses: {4}");
         }
-        private static PlayerSetting _ChooseDifficulty()
+        private static PlayerSetting ChooseDifficulty()
         {
             var listOfOptions = new DifficultyList();
             return Utility.PrintCharacterCreationSetting(listOfOptions," {0,-7} scaling: {3,-6} {4}");
         }
         private static PlayerSetting _ChooseName()
         {
-            Console.Write("Your name: ");
-            return new Name(Console.ReadLine());
+            return new Name(Choice.NameValidation());
         }
         private static PlayerSetting _ChooseSuffix()
         {
@@ -87,7 +86,7 @@ namespace XperiaRPG.Scripts.Character.Player
                         characterInfo[1] = _ChooseProfession();
                         break;
                     case 3:
-                        characterInfo[2] = _ChooseDifficulty();
+                        characterInfo[2] = ChooseDifficulty();
                         break;
                     case 4:
                         characterInfo[3] = _ChooseName();
@@ -116,16 +115,65 @@ namespace XperiaRPG.Scripts.Character.Player
         }
 
         #endregion
-        
-        // todo character creation bonuses
 
-        public Player(Dictionary<string, PlayerSetting> characterInfo)
+        private static void CharacterCreationBonuses(PlayerSetting[] characterInfo, StatList statList, SkillList skillList)
         {
+            var whatOptionsHaveBonuses = new List<int>
+        {
+            0,1,4,5
+        };
+
+            foreach (var i in whatOptionsHaveBonuses)
+            {
+                var bonus = characterInfo[i]?.AttributeBonus;
+                var name = bonus.Name;
+                var amount = bonus.Amount;
+                var unit = bonus.Unit;
+
+                if (skillList.Lookup(name) != null)
+                {
+                    if (unit == "%")
+                    {
+                        skillList.AddPercentBonus(name, amount);
+                        return;
+                    }
+                    skillList.AddXp(name, amount);
+                    return;
+                }
+
+                if (statList.Lookup(name) == null) return;
+                if (unit == "%")
+                {
+                    statList.AddPercentBonus(name, amount);
+                    return;
+                }
+                statList.AddPoints(name, amount);
+
+            }
+
+        }
+
+        public Player(PlayerSetting[] characterInfo)
+        {
+            CharacterInfo = characterInfo;
+
+            // Stats
             StatList = new StatList(5, 5, 0, 0, 0, 5, 5, 5, 1);
+
+            // Skills
             SkillList = new SkillList();
+
+            // creation bonuses
+            if (characterInfo[2].Name != "Pure")
+            {
+                CharacterCreationBonuses(characterInfo, StatList, SkillList);
+            }
             
-            // todo Inventory = new Inventory();
-            // todo Gear = new Gear();
+            // Inventory
+            Inventory = new Inventory();
+
+            // Weapons and Armor Inventory
+            Gear = new Gear();
         }
     }
     
