@@ -104,22 +104,30 @@ namespace XperiaRPG.Scripts.Characters.Inventory
                 if (_gear.TryGetValue(slot, out var item))
                 {
                     Console.Write($"{item?.Name,-28}| ");
+                    string bonuses = null;
                     if (item != null)
                         foreach (var bonus in item.AttributeBonusList)
                         {
                             var shortName = bonus.Name;
                             if (skillList.Lookup(bonus.Name) != null) shortName = skillList.Lookup(bonus.Name).ShortName;
                             if (statList.Lookup(bonus.Name) != null) shortName = statList.Lookup(bonus.Name).ShortName;
-                            Console.Write(bonus.Unit == "points"
-                                ? $"{shortName + ": " + bonus.Amount} "
-                                : $"{shortName + ": " + bonus.Amount + bonus.Unit} ");
+
+                            if (bonus.Unit == "points")
+                            {
+                                bonuses += $"{shortName + ": " + bonus.Amount} ";
+                            }
+                            else
+                            { 
+                                bonuses += $"{shortName + ": " + bonus.Amount + bonus.Unit} ";
+                            }
                         }
 
+                    Console.Write($"{bonuses,-40}|");
                     Console.Write("\n");
                 }
                 else
                 {
-                    Console.Write($"{"",-28}|\n");
+                    Console.Write($"{"",-28}| {"",40}|\n");
                 }
             }
 

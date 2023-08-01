@@ -8,8 +8,8 @@ namespace XperiaRPG.Scripts.Attributes
         public string Name { get; }
         public int Points { get; set; }
         public int Xp{ get; set; }
-        public int Level { get; }
         public int PercentBonus { get; set; }
+        public double Value{ get; set; }
 
         protected Attribute(string name, string shortName, int percentBonus)
         {

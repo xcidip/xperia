@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.CharacterCreation;
@@ -12,7 +13,7 @@ namespace XperiaRPG.Scripts.UI
 {
     public static class Utility
     {
-        private static void PrintBorder(int columns, int lengthOfColumn)
+        public static void PrintBorder(int columns, int lengthOfColumn)
         {
             for (var i = 0; i < columns; i++)
             {
@@ -21,6 +22,13 @@ namespace XperiaRPG.Scripts.UI
             }
 
             Console.Write("+\n");
+        }
+
+        public static int CalculateLevelFromXp(int xp)
+        {
+            var number = Math.Floor(Math.Sqrt(xp) / 2) - 3;
+            if (number < 0) return 1;
+            return (int)number;
         }
 
         public static void PrintAttributes(IEnumerable<Attribute> list, int columns, int lengthOfColumn, string format)
@@ -33,7 +41,7 @@ namespace XperiaRPG.Scripts.UI
 
             foreach (var attribute in attributes)
             {
-                Console.Write(format, attribute.Name, attribute.Level, attribute.Xp, attribute.Points);
+                Console.Write(format, attribute.Name, CalculateLevelFromXp(attribute.Xp), attribute.Xp, attribute.Points);
 
                 i++;
                 if (i % columns != 0 && i != numOfItems) continue;
@@ -92,7 +100,10 @@ namespace XperiaRPG.Scripts.UI
             return null;
         }
 
+    }
 
+    public static class InventoryUtils
+    {
         public static void PrintInventory(IEnumerable<Item> list, int columns, int lengthOfColumn, string format)
         {
             var itemList = list.ToList();
@@ -108,12 +119,12 @@ namespace XperiaRPG.Scripts.UI
                 return;
             }
 
-            PrintBorder(columns, lengthOfColumn);
+            Utility.PrintBorder(columns, lengthOfColumn);
             var i = 0;
 
             foreach (var item in itemList)
             {
-                Console.Write($"{"| (" + (i+1) + ")",-4}");
+                Console.Write($"{"| (" + (i + 1) + ")",-4}");
                 Console.Write(format,
                     item.Name + " " + item.Quantity + "x"); //0
 
@@ -132,12 +143,8 @@ namespace XperiaRPG.Scripts.UI
                 Console.WriteLine("|");
             }
 
-            PrintBorder(columns, lengthOfColumn);
+            Utility.PrintBorder(columns, lengthOfColumn);
         }
-    }
-
-    public static class InventoryUtils
-    {
         public static void InventoryAction(int columns, Player player)
         {
             var inventory = player.Inventory;

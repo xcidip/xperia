@@ -12,6 +12,8 @@ namespace XperiaRPG
         public static void Main()
         { 
             Console.WriteLine($"Hey, {Environment.UserName}");
+            var columns = 3;
+
             //var characterInfo = Player.WhatToChange();
 
             // Test Character for easy of use
@@ -37,7 +39,7 @@ namespace XperiaRPG
             player.Inventory.AddItem(droppedArmor1);
             
             // Inventory menu
-            InventoryUtils.InventoryAction(2, player);
+            InventoryUtils.InventoryAction(columns, player);
 
             Console.ReadLine();
         }
