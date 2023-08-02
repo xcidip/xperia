@@ -195,9 +195,7 @@ namespace XperiaRPG.Scripts.UI
                                 gear.Equip(itemObj, player);
                                 break;
                             case 2:
-                                Console.WriteLine(
-                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
-                                // todo display armor bonuses
+                                itemObj.Examine();
                                 Choice.PressEnter();
                                 break;
                             case 3:
@@ -224,9 +222,7 @@ namespace XperiaRPG.Scripts.UI
                                 itemObj.Use();
                                 break;
                             case 2:
-                                Console.WriteLine(
-                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
-                                // todo display what that potion does
+                                itemObj.Examine();
                                 Choice.PressEnter();
                                 break;
                             case 3:
@@ -253,9 +249,7 @@ namespace XperiaRPG.Scripts.UI
                                 gear.Equip(itemObj,player);
                                 break;
                             case 2:
-                                Console.WriteLine(
-                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
-                                // todo display armor bonuses
+                                itemObj.Examine();
                                 Choice.PressEnter();
                                 break;
                             case 3:
@@ -270,7 +264,7 @@ namespace XperiaRPG.Scripts.UI
                     }
                     case Equipable itemObj:
                     {
-                        Console.WriteLine("What do you want to do with this tool?");
+                        Console.WriteLine("What do you want to do with this item?");
                         Console.WriteLine("(1) Equip\n" +
                                           "(2) Examine\n" +
                                           "(3) Remove from inventory\n" +
@@ -282,9 +276,7 @@ namespace XperiaRPG.Scripts.UI
                                 gear.Equip(itemObj, player);
                                 break;
                             case 2:
-                                Console.WriteLine(
-                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
-                                // todo display armor bonuses
+                                itemObj.Examine();
                                 Choice.PressEnter();
                                 break;
                             case 3:

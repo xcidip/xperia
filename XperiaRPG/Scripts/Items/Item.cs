@@ -34,6 +34,8 @@ namespace XperiaRPG.Scripts.Items
         {
             Quantity--;
         }
+
+        public abstract void Examine();
     }
 
     public abstract class Database

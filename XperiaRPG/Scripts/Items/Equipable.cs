@@ -23,6 +23,23 @@ namespace XperiaRPG.Scripts.Items
         {
             // special effect
         }
+        public override void Examine()
+        {
+            Console.Write($"Name: {Name}\n" +
+                              $"Description: {Description}\n" +
+                              $"Quantity: {Quantity}x\n" +
+                              $"Required level to equip: {RequiredLevel}\n" +
+                              $"It goes in {GearSlot} slot\n" +
+                              $"It sells for: {Price}gp\n" +
+                              $"Bonuses: ");
+            foreach (var attributeBonus in AttributeBonusList)
+            {
+                Console.Write($"{attributeBonus.Bonus()}, ");
+            }
+
+            Console.WriteLine();
+            
+        }
     }
 
 

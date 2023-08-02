@@ -1,17 +1,41 @@
-﻿namespace XperiaRPG.Scripts.Items
+﻿using System;
+
+namespace XperiaRPG.Scripts.Items
 {
     public abstract class Potion : Item
 {
     public int Potency { get; set; }
     public string Effect { get; set; }
 
-    protected Potion(int id, int quantity, string name, int price, string description, int potency, string effect) : base(quantity,
+    protected Potion(int quantity, string name, int price, string description, int potency, string effect) : base(quantity,
         name, description, price)
     {
         Effect = effect;
+        Potency = potency;
     }
 
     public abstract override void Use();
+
+    public override void Examine()
+    {
+        Console.Write($"Name: {Name}\n" +
+                      $"Description: {Description}\n" +
+                      $"Quantity: {Quantity}x\n" +
+                      $"Required level to equip: {RequiredLevel}\n" +
+                      $"Effect: {Effect}\n" +
+                      $"Potency: {Potency}" +
+                      $"It goes in {GearSlot} slot and only {Profession} profession can equip it\n" +
+                      $"It sells for: {Price}gp\n" +
+                      $"Bonuses: ");
+            foreach (var attributeBonus in AttributeBonusList)
+        {
+            Console.Write($"{attributeBonus.Bonus()}, ");
+        }
+
+        Console.WriteLine();
+
+    }
+}
 }
 /*
 public class HealingPotion : Potion
@@ -82,4 +106,3 @@ public class ResistPotion : Potion
     }
 }
 */
-}

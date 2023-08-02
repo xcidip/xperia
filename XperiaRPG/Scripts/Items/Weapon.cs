@@ -34,6 +34,24 @@ namespace XperiaRPG.Scripts.Items
         {
             // armor special effect
         }
+        public override void Examine()
+        {
+            Console.Write($"Name: {Name}\n" +
+                          $"Description: {Description}\n" +
+                          $"Quantity: {Quantity}x\n" +
+                          $"Required level to equip: {RequiredLevel}\n" +
+                          $"Weapon Type: {WeaponType}\n" +
+                          $"It goes in {GearSlot} slot and only {Profession} profession can equip it\n" +
+                          $"It sells for: {Price}gp\n" +
+                          $"Bonuses: ");
+            foreach (var attributeBonus in AttributeBonusList)
+            {
+                Console.Write($"{attributeBonus.Bonus()}, ");
+            }
+
+            Console.WriteLine();
+
+        }
     }
 
     public class WeaponDatabase : Database
