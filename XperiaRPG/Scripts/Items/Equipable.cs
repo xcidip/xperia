@@ -43,9 +43,9 @@ namespace XperiaRPG.Scripts.Items
     }
 
 
-    public class ToolDatabase : Database
+    public class ToolListOfItems : ListOfItems
     {
-        public ToolDatabase()
+        public ToolListOfItems()
         {
             List = new List<Item>
             {

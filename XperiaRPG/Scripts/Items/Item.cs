@@ -38,11 +38,11 @@ namespace XperiaRPG.Scripts.Items
         public abstract void Examine();
     }
 
-    public abstract class Database
+    public abstract class ListOfItems
     {
         protected List<Item> List { get; set; } = new List<Item>();
 
-        protected Database()
+        protected ListOfItems()
         {
         }
 

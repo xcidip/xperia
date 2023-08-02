@@ -54,11 +54,11 @@ namespace XperiaRPG.Scripts.Items
         }
     }
 
-    public class WeaponDatabase : Database
+    public class WeaponListOfItems : ListOfItems
     {
 
 
-        public WeaponDatabase()
+        public WeaponListOfItems()
         {
             List = new List<Item>
             {

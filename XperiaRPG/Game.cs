@@ -3,6 +3,7 @@ using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Skills;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG
@@ -35,7 +36,8 @@ namespace XperiaRPG
 
 
             // Inventory test
-            var armorDatabase = new ArmorDatabase();
+            /*
+            var armorDatabase = new ArmorListOfItems();
             var droppedArmor = armorDatabase.Lookup("Arnold's Helmut");
             var droppedArmor1 = armorDatabase.Lookup("Arnold's test");
             player.Inventory.AddItem(droppedArmor);
@@ -43,8 +45,8 @@ namespace XperiaRPG
             player.Inventory.AddItem(droppedArmor1);
             
 
-            var weaponDatabase = new WeaponDatabase();
-            var toolDatabase = new ToolDatabase();
+            var weaponDatabase = new WeaponListOfItems();
+            var toolDatabase = new ToolListOfItems();
             var droppedItem = weaponDatabase.Lookup("Arnold's Sword");
             var droppedItem1 = weaponDatabase.Lookup("Arnold's Iron Shield");
             var droppedItem2 = weaponDatabase.Lookup("Arnold's Staff");
@@ -63,6 +65,9 @@ namespace XperiaRPG
 
             // Inventory menu
             InventoryUtils.InventoryAction(columns, player);
+            */
+
+            Fishing.Print();
 
             Console.ReadLine();
         }
