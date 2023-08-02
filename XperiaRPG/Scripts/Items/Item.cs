@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Characters.Inventory;
 
@@ -16,6 +17,7 @@ namespace XperiaRPG.Scripts.Items
         public int Price { get; set; }
         public GearSlot GearSlot { get; set; } // mount, pickaxe, head slot...
         public List<AttributeBonus> AttributeBonusList { get; set; }
+        public string Profession { get; set; }
         
         // protected = cannot be called outside of this class
         protected Item(int quantity, string name, string description, int price)

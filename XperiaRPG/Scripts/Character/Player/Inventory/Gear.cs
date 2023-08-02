@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Character.Player.Inventory
 {
@@ -27,17 +28,40 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
             _gear = new Dictionary<GearSlot, Item>();
         }
 
-        public void Equip(Item item, Characters.Inventory.Inventory itemInventory, StatList stats, SkillList skillList)
+        public void Equip(Item item, Player player)
         {
+            var statList = player.StatList;
+            var skillList = player.SkillList;
+            var characterInfo = player.CharacterInfo;
+            var inventory = player.Inventory;
+
+            if (player.Level < item.RequiredLevel)
+            {
+                Console.WriteLine("Player level is too low. You need level {0} to equip this!", item.RequiredLevel);
+                Choice.PressEnter();
+                return;
+            }
+
+            if (item.Profession != "all")
+            {
+                if (characterInfo[1].Name != item.Profession)
+                {
+                    Console.WriteLine("This item is not for your profession. It is for a different one specifically: {0}", item.Profession);
+                    Choice.PressEnter();
+                    return;
+                }
+            }
+            
+
+
             const bool addRemove = true;
-            if (item == null) return;
-            UnequipArmor(item, itemInventory, stats, skillList);
+            UnequipArmor(item, player);
             _gear[item.GearSlot] = item;
-            AddBonus(addRemove, item, stats, skillList);
+            AddBonus(addRemove, item, statList, skillList);
             Console.WriteLine(item.Name + " Equipped!");
             if (item.Quantity == 1)
             {
-                itemInventory.RemoveItem(item); // Remove the armor from ItemInventory
+                inventory.RemoveItem(item); // Remove the armor from ItemInventory
             }
             else
             {
@@ -45,8 +69,11 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
             }
         }
 
-        private void UnequipArmor(Item item, Characters.Inventory.Inventory inventory, StatList statList, SkillList skillList)
+        private void UnequipArmor(Item item, Player player)
         {
+            var inventory = player.Inventory;
+            var statList = player.StatList;
+            var skillList = player.SkillList;
             const bool addRemove = false;
             if (!_gear.TryGetValue(item.GearSlot, out var armorItem)) return; // if not present return;
             if (armorItem != null) inventory.AddItem(armorItem); // if present put back to inventory

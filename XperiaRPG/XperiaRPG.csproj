@@ -58,6 +58,7 @@
     <Compile Include="Scripts\Character\Player\Inventory\Inventory.cs" />
     <Compile Include="Scripts\Character\Player\Player.cs" />
     <Compile Include="Scripts\Items\Armor.cs" />
+    <Compile Include="Scripts\Items\Equipable.cs" />
     <Compile Include="Scripts\Items\Item.cs" />
     <Compile Include="Scripts\Items\Potion.cs" />
     <Compile Include="Scripts\Items\Weapon.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Scripts\UI\MainMenu.cs" />
     <Compile Include="Scripts\UI\Utility.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.

@@ -98,7 +98,7 @@ namespace XperiaRPG.Scripts.UI
         public static void PressEnter()
         {
             Console.Write("\nPress ENTER to continue:");
-            Console.Read();
+            Console.ReadLine();
         }
     }
 }

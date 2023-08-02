@@ -42,7 +42,13 @@ namespace XperiaRPG.Scripts.UI
 
             foreach (var attribute in attributes)
             {
-                Console.Write(format, attribute.Name, CalculateLevelFromXp(attribute.Xp), attribute.Xp, attribute.Points);
+                Console.Write(format, 
+                    attribute.Name, //0
+                    CalculateLevelFromXp(attribute.Xp),//1
+                    attribute.Xp,//2
+                    attribute.Points, //3
+                    "+" + attribute.PercentBonus + "%"//4
+                    );
 
                 i++;
                 if (i % columns != 0 && i != numOfItems) continue;
@@ -159,14 +165,11 @@ namespace XperiaRPG.Scripts.UI
                 var statColumns = 2;
                 if (columns >= 2) statColumns = 5;
                 // length of skills
-                var skillColumns = 1;
-                if (columns >= 2) skillColumns = 2;
-                if (columns >= 3) skillColumns = 4;
 
 
                 gear.Print(skillList,statList);
                 statList.Print(statColumns);
-                skillList.Print(skillColumns);
+                skillList.Print(columns);
                 inventory.Print(columns);
 
                 var itemCount = inventory.List.Count;
@@ -178,7 +181,7 @@ namespace XperiaRPG.Scripts.UI
 
                 switch (item)
                 {
-                    case Armor armor:
+                    case Armor itemObj:
                     {
                         Console.WriteLine("What do you want to do with this armor piece?");
                         Console.WriteLine("(1) Equip\n" +
@@ -189,17 +192,17 @@ namespace XperiaRPG.Scripts.UI
                         switch (whatToDo)
                         {
                             case 1:
-                                gear.Equip(armor, inventory, statList, skillList);
+                                gear.Equip(itemObj, player);
                                 break;
                             case 2:
                                 Console.WriteLine(
-                                    $"\nName: {armor.Name}\nDescription: {armor.Description}\nQuantity: {armor.Quantity}x");
+                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
                                 // todo display armor bonuses
                                 Choice.PressEnter();
                                 break;
                             case 3:
                                 inventory.List.RemoveAt(index);
-                                Console.WriteLine(item.Name + "removed from inventory");
+                                Console.WriteLine(itemObj.Name + "removed from inventory");
                                 break;
                             case 4:
                                 break;
@@ -207,7 +210,7 @@ namespace XperiaRPG.Scripts.UI
 
                         break;
                     }
-                    case Potion potion:
+                    case Potion itemObj:
                     {
                         Console.WriteLine("What do you want to do with this Potion?");
                         Console.WriteLine("(1) Use\n" +
@@ -218,17 +221,17 @@ namespace XperiaRPG.Scripts.UI
                         switch (whatToDo)
                         {
                             case 1:
-                                potion.Use();
+                                itemObj.Use();
                                 break;
                             case 2:
                                 Console.WriteLine(
-                                    $"\nName: {potion.Name}\nDescription: {potion.Description}\nQuantity: {potion.Quantity}x");
+                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
                                 // todo display what that potion does
                                 Choice.PressEnter();
                                 break;
                             case 3:
                                 inventory.List.RemoveAt(index);
-                                Console.WriteLine(item.Name + "removed from inventory");
+                                Console.WriteLine(itemObj.Name + "removed from inventory");
                                 break;
                             case 4:
                                 break;
@@ -236,7 +239,7 @@ namespace XperiaRPG.Scripts.UI
 
                         break;
                     }
-                    case Weapon weapon:
+                    case Weapon itemObj:
                     {
                         Console.WriteLine("What do you want to do with this weapon?");
                         Console.WriteLine("(1) Equip\n" +
@@ -247,17 +250,46 @@ namespace XperiaRPG.Scripts.UI
                         switch (whatToDo)
                         {
                             case 1:
-                                gear.Equip(weapon, inventory, statList, skillList);
+                                gear.Equip(itemObj,player);
                                 break;
                             case 2:
                                 Console.WriteLine(
-                                    $"\nName: {weapon.Name}\nDescription: {weapon.Description}\nQuantity: {weapon.Quantity}x");
+                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
                                 // todo display armor bonuses
                                 Choice.PressEnter();
                                 break;
                             case 3:
                                 inventory.List.RemoveAt(index);
-                                Console.WriteLine(item.Name + "removed from inventory");
+                                Console.WriteLine(itemObj.Name + "removed from inventory");
+                                break;
+                            case 4:
+                                break;
+                        }
+
+                        break;
+                    }
+                    case Equipable itemObj:
+                    {
+                        Console.WriteLine("What do you want to do with this tool?");
+                        Console.WriteLine("(1) Equip\n" +
+                                          "(2) Examine\n" +
+                                          "(3) Remove from inventory\n" +
+                                          "(4) Leave this menu");
+                        var whatToDo = Choice.NumberRangeValidation(1, 4);
+                        switch (whatToDo)
+                        {
+                            case 1:
+                                gear.Equip(itemObj, player);
+                                break;
+                            case 2:
+                                Console.WriteLine(
+                                    $"\nName: {itemObj.Name}\nDescription: {itemObj.Description}\nQuantity: {itemObj.Quantity}x");
+                                // todo display armor bonuses
+                                Choice.PressEnter();
+                                break;
+                            case 3:
+                                inventory.List.RemoveAt(index);
+                                Console.WriteLine(itemObj.Name + "removed from inventory");
                                 break;
                             case 4:
                                 break;

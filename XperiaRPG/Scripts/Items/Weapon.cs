@@ -7,18 +7,27 @@ using XperiaRPG.Scripts.Characters.Inventory;
 
 namespace XperiaRPG.Scripts.Items
 {
-    public class Weapon : Item
+    public class Weapon : Equipable
     {
         public string WeaponType { get; set; } // Melee,Ranged,Magic,Tool
 
         public Weapon(int quantity, int requiredLevel, GearSlot gearSlot, string weaponType, string name,int price,
             string description, List<AttributeBonus> attributeBonusList)
-            : base(quantity, name, description, price)
+            : base(quantity,requiredLevel, gearSlot, name, price,description, attributeBonusList)
         {
-            RequiredLevel = requiredLevel;
-            GearSlot = gearSlot;
             WeaponType = weaponType;
-            AttributeBonusList = attributeBonusList;
+            switch (weaponType)
+            {
+                case "Melee":
+                    Profession = "Warrior";
+                    break;
+                case "Magic":
+                    Profession = "Mage";
+                    break;
+                case "Ranged":
+                    Profession = "Hunter";
+                    break;
+            }
         }
 
         public override void Use()
@@ -26,7 +35,7 @@ namespace XperiaRPG.Scripts.Items
             // armor special effect
         }
     }
-    
+
     public class WeaponDatabase : Database
     {
 
@@ -57,16 +66,6 @@ namespace XperiaRPG.Scripts.Items
                     new List<AttributeBonus>()
                     {
                         new AttributeBonus("Intellect", 5, "points"),
-                    }),
-                new Weapon(1, 0, GearSlot.Pickaxe, "Tool", "Arnold's Pickaxe",150, "Best of the Pickaxes",
-                    new List<AttributeBonus>()
-                    {
-                        new AttributeBonus("Mining", 5, "%"),
-                    }),
-                new Weapon(1, 0, GearSlot.FishingRod, "Tool", "Arnold's FishingRod",100, "Best of the FishingRods",
-                    new List<AttributeBonus>()
-                    {
-                        new AttributeBonus("Fishing", 5, "%"),
                     }),
             };
         }

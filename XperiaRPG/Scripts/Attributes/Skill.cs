@@ -28,6 +28,7 @@ namespace XperiaRPG.Scripts.Attributes
         {
             List = new List<Skill>
             {
+                new Skill("PLAYER","PLR", 0, 0),
                 new Skill("Fishing","Fsh", 0, 0),
                 new Skill("Alchemy","Alc", 0, 0),
                 new Skill("Herbalism","Hrb", 0,0),
@@ -62,7 +63,7 @@ namespace XperiaRPG.Scripts.Attributes
         {
             var attributeList = List.Cast<Attribute>().ToList();
 
-            Utility.PrintAttributes(attributeList, columns,33,"| {0,-11} LVL: {1,-2}  XP: {2,-7}");
+            Utility.PrintAttributes(attributeList, columns,42, "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-7} ");
         }
     }
 }
