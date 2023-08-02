@@ -63,7 +63,7 @@ namespace XperiaRPG.Scripts.Attributes
         {
             var attributeList = List.Cast<Attribute>().ToList();
 
-            Utility.PrintAttributes(attributeList, columns,42, "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-7} ");
+            Utility.PrintAttributes(attributeList, columns,42,"SKILLS", "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-7} ");
         }
     }
 }

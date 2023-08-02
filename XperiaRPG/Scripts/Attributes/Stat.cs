@@ -53,7 +53,7 @@ namespace XperiaRPG.Scripts.Attributes
         {
             var attributeList = List.Cast<Attribute>().ToList();
 
-            Utility.PrintAttributes(attributeList, columns,16,"| {0,-9}: {3,-4}");
+            Utility.PrintAttributes(attributeList, columns,16,"STATS","| {0,-9}: {3,-4}");
         }
     }
 }
