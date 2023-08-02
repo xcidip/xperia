@@ -7,7 +7,7 @@ namespace XperiaRPG.Scripts.Attributes
     public class Stat : Attribute
     {
         
-        public Stat(string name, string shortName, int points, int percentBonus) : base(name, shortName, percentBonus)
+        public Stat(string name, string shortName, int points) : base(name, shortName)
         {
             
             Points = points;
@@ -22,15 +22,20 @@ namespace XperiaRPG.Scripts.Attributes
         {
             List = new List<Stat>
             {
-                new Stat("Stamina","Stm", stamina, 0),
-                new Stat("Defense","Def", defense, 0),
-                new Stat("Strength","Str", strength, 0),
-                new Stat("Intellect","Int", intellect, 0),
-                new Stat("Agility","Agi", agility, 0),
-                new Stat("NatureRes","NaR", natureRes, 0),
-                new Stat("FrostRes","FrR", frostRes, 0),
-                new Stat("FireRes","FiR", fireRes, 0),
-                new Stat("Luck","Lck", luck, 0),
+                //offense
+                new Stat("Strength","Str", strength),
+                new Stat("Intellect","Int", intellect),
+                new Stat("Agility","Agi", agility),
+
+                //defense
+                new Stat("Stamina","Stm", stamina),
+                new Stat("Defense","Def", defense),
+                new Stat("NatureRes","NaR", natureRes),
+                new Stat("FrostRes","FrR", frostRes),
+                new Stat("FireRes","FiR", fireRes),
+                
+                //both
+                new Stat("Luck","Lck", luck),
             };
         }
 
@@ -39,11 +44,6 @@ namespace XperiaRPG.Scripts.Attributes
             return List.Find(a => a?.Name == name);
         }
         
-        public void AddPercentBonus(string name, int amount)
-        {
-            Lookup(name).PercentBonus += amount;
-        }
-
         public void AddPoints(string name, int amount)
         {
             Lookup(name).Points += amount;

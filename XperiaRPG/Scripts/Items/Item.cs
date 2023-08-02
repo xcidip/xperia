@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Characters.Inventory;
 
 namespace XperiaRPG.Scripts.Items
@@ -33,8 +36,16 @@ namespace XperiaRPG.Scripts.Items
 
     public abstract class Database
     {
+        protected List<Item> List { get; set; } = new List<Item>();
+
         protected Database()
         {
+        }
+
+        public Item Lookup(string name)
+        {
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            return List.FirstOrDefault(a => a?.Name == name);
         }
     }
 }

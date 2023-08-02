@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
+using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.Characters.Inventory;
 using XperiaRPG.Scripts.UI;
@@ -16,7 +17,7 @@ namespace XperiaRPG.Scripts.Character.Player
         public int Level { get; set; }
         public PlayerSetting[] CharacterInfo { get; set; }
         public SkillList SkillList { get; set; }
-        public Inventory Inventory { get; set; }
+        public Characters.Inventory.Inventory Inventory { get; set; }
         public Gear Gear { get; set; }
         
 
@@ -126,6 +127,8 @@ namespace XperiaRPG.Scripts.Character.Player
             foreach (var i in whatOptionsHaveBonuses)
             {
                 var bonus = characterInfo[i]?.AttributeBonus;
+                
+                if (bonus == null) return;
                 var name = bonus.Name;
                 var amount = bonus.Amount;
                 var unit = bonus.Unit;
@@ -142,11 +145,6 @@ namespace XperiaRPG.Scripts.Character.Player
                 }
 
                 if (statList.Lookup(name) == null) return;
-                if (unit == "%")
-                {
-                    statList.AddPercentBonus(name, amount);
-                    return;
-                }
                 statList.AddPoints(name, amount);
 
             }
@@ -158,7 +156,7 @@ namespace XperiaRPG.Scripts.Character.Player
             CharacterInfo = characterInfo;
 
             // Stats
-            StatList = new StatList(5, 5, 0, 0, 0, 5, 5, 5, 1);
+            StatList = new StatList(50, 5, 0, 0, 0, 5, 5, 5, 1);
 
             // Skills
             SkillList = new SkillList();
@@ -170,7 +168,7 @@ namespace XperiaRPG.Scripts.Character.Player
             }
             
             // Inventory
-            Inventory = new Inventory();
+            Inventory = new Characters.Inventory.Inventory();
 
             // Weapons and Armor Inventory
             Gear = new Gear();

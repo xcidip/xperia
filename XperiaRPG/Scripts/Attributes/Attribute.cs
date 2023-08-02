@@ -11,10 +11,9 @@ namespace XperiaRPG.Scripts.Attributes
         public int PercentBonus { get; set; }
         public double Value{ get; set; }
 
-        protected Attribute(string name, string shortName, int percentBonus)
+        protected Attribute(string name, string shortName)
         {
             ShortName = shortName;
-            PercentBonus = percentBonus;
             Name = name;
         }
     }

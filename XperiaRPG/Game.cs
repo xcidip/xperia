@@ -12,7 +12,10 @@ namespace XperiaRPG
         public static void Main()
         { 
             Console.WriteLine($"Hey, {Environment.UserName}");
+            Console.WriteLine("Make the game fullscreen please");
             var columns = 3;
+
+            Console.ReadLine();
 
             //var characterInfo = Player.WhatToChange();
 
@@ -38,6 +41,22 @@ namespace XperiaRPG
             player.Inventory.AddItem(droppedArmor1);
             player.Inventory.AddItem(droppedArmor1);
             
+
+            var weaponDatabase = new WeaponDatabase();
+            var droppedItem = weaponDatabase.Lookup("Arnold's Sword");
+            var droppedItem1 = weaponDatabase.Lookup("Arnold's Iron Shield");
+            var droppedItem2 = weaponDatabase.Lookup("Arnold's Staff");
+            var droppedItem3 = weaponDatabase.Lookup("Arnold's Tome");
+            var droppedItem4 = weaponDatabase.Lookup("Arnold's Pickaxe");
+            var droppedItem5 = weaponDatabase.Lookup("Arnold's FishingRod");
+
+            player.Inventory.AddItem(droppedItem);
+            player.Inventory.AddItem(droppedItem1);
+            player.Inventory.AddItem(droppedItem2);
+            player.Inventory.AddItem(droppedItem3);
+            player.Inventory.AddItem(droppedItem4);
+            player.Inventory.AddItem(droppedItem5);
+
             // Inventory menu
             InventoryUtils.InventoryAction(columns, player);
 

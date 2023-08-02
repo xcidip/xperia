@@ -47,12 +47,6 @@ public class ProfessionList : ChoiceList
                 "\nat your disposal, including guns, bows, and crossbows." +
                 "\nYour primary stat is Agility, which enhances your damage, and ability to dodge")
         };
+        }
     }
-    public Profession Lookup(string name)
-    {
-        if (name == null) throw new ArgumentNullException(nameof(name));
-        return (Profession)List.FirstOrDefault(a => a?.Name == name);
-            
-    }
-}
 }

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using XperiaRPG.Scripts.CharacterCreation;
 
-namespace XperiaRPG.Scripts.CharacterCreation
+namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
 {
     public class Difficulty : PlayerSetting
     {
@@ -28,13 +27,6 @@ namespace XperiaRPG.Scripts.CharacterCreation
                 new Difficulty("Pure", 1.3, "For the real experience (no race, suffix & profession bonus, Hardcore)")
             };
 
-        }
-    
-        public Difficulty Lookup(string name)
-        {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            return (Difficulty)List.FirstOrDefault(a => a?.Name == name);
-            
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Characters;
 
 namespace XperiaRPG.Scripts.CharacterCreation
@@ -32,13 +33,6 @@ namespace XperiaRPG.Scripts.CharacterCreation
                 new Race("Troll", "Mystic troll", new AttributeBonus("NatureRes",4, "points"),
                     "Lore about trolls")
             };
-        }
-    
-        public Race Lookup(string name)
-        {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            return (Race)List.FirstOrDefault(a => a?.Name == name);
-            
         }
     }
 }

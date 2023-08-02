@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Player;
+using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.Characters.Inventory;
 using XperiaRPG.Scripts.Items;
@@ -223,6 +224,35 @@ namespace XperiaRPG.Scripts.UI
                                 Console.WriteLine(
                                     $"\nName: {potion.Name}\nDescription: {potion.Description}\nQuantity: {potion.Quantity}x");
                                 // todo display what that potion does
+                                Choice.PressEnter();
+                                break;
+                            case 3:
+                                inventory.List.RemoveAt(index);
+                                Console.WriteLine(item.Name + "removed from inventory");
+                                break;
+                            case 4:
+                                break;
+                        }
+
+                        break;
+                    }
+                    case Weapon weapon:
+                    {
+                        Console.WriteLine("What do you want to do with this weapon?");
+                        Console.WriteLine("(1) Equip\n" +
+                                          "(2) Examine\n" +
+                                          "(3) Remove from inventory\n" +
+                                          "(4) Leave this menu");
+                        var whatToDo = Choice.NumberRangeValidation(1, 4);
+                        switch (whatToDo)
+                        {
+                            case 1:
+                                gear.Equip(weapon, inventory, statList, skillList);
+                                break;
+                            case 2:
+                                Console.WriteLine(
+                                    $"\nName: {weapon.Name}\nDescription: {weapon.Description}\nQuantity: {weapon.Quantity}x");
+                                // todo display armor bonuses
                                 Choice.PressEnter();
                                 break;
                             case 3:

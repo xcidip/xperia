@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Items;
 
-namespace XperiaRPG.Scripts.Characters.Inventory
+namespace XperiaRPG.Scripts.Character.Player.Inventory
 {
     public enum GearSlot
     {
@@ -28,7 +27,7 @@ namespace XperiaRPG.Scripts.Characters.Inventory
             _gear = new Dictionary<GearSlot, Item>();
         }
 
-        public void Equip(Item item, Inventory itemInventory, StatList stats, SkillList skillList)
+        public void Equip(Item item, Characters.Inventory.Inventory itemInventory, StatList stats, SkillList skillList)
         {
             const bool addRemove = true;
             if (item == null) return;
@@ -46,7 +45,7 @@ namespace XperiaRPG.Scripts.Characters.Inventory
             }
         }
 
-        private void UnequipArmor(Item item, Inventory inventory, StatList statList, SkillList skillList)
+        private void UnequipArmor(Item item, Characters.Inventory.Inventory inventory, StatList statList, SkillList skillList)
         {
             const bool addRemove = false;
             if (!_gear.TryGetValue(item.GearSlot, out var armorItem)) return; // if not present return;
@@ -82,11 +81,6 @@ namespace XperiaRPG.Scripts.Characters.Inventory
                 }
 
                 if (statList.Lookup(name) == null) return;
-                if (unit == "%")
-                {
-                    statList.AddPercentBonus(name, amount);
-                    return;
-                }
                 statList.AddPoints(name, amount);
             }
         }
@@ -114,11 +108,16 @@ namespace XperiaRPG.Scripts.Characters.Inventory
 
                             if (bonus.Unit == "points")
                             {
-                                bonuses += $"{shortName + ": " + bonus.Amount} ";
+                                bonuses += $"{shortName + ":" + bonus.Amount} ";
                             }
                             else
-                            { 
-                                bonuses += $"{shortName + ": " + bonus.Amount + bonus.Unit} ";
+                            {
+                                var plusMinus = "+";
+                                if (bonus.Amount < 0)
+                                {
+                                    plusMinus = "0";
+                                }
+                                bonuses += $"{shortName + ":"+ plusMinus + bonus.Amount + bonus.Unit} ";
                             }
                         }
 

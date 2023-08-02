@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Characters.Inventory;
 
 namespace XperiaRPG.Scripts.Items
@@ -27,11 +28,10 @@ namespace XperiaRPG.Scripts.Items
 
     public class ArmorDatabase : Database
 {
-    private List<Armor> List { get; set; }
 
     public ArmorDatabase()
     {
-        List = new List<Armor>
+        List = new List<Item>
         {
             new Armor(1,0, GearSlot.Chest, "Plate", "Arnold's Chestplate",200, "Best of the chests", 
                 new List<AttributeBonus>() {
@@ -58,11 +58,5 @@ namespace XperiaRPG.Scripts.Items
         };
     }
 
-    public Armor Lookup(string name)
-    {
-        if (name == null) throw new ArgumentNullException(nameof(name));
-        return List.FirstOrDefault(a => a?.Name == name);
-            
     }
-}
 }

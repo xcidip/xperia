@@ -7,10 +7,11 @@ namespace XperiaRPG.Scripts.Attributes
 {
     public class Skill : Attribute
     {
-        public new double Level { get; set; }
+        public double Level { get; set; }
         
-        public Skill(string name, string shortName, int xp, int percentBonus) : base(name, shortName, percentBonus)
+        public Skill(string name, string shortName, int xp, int percentBonus) : base(name, shortName)
         {
+            PercentBonus = percentBonus;
             Xp = xp;
             if (xp >= 40)
             {

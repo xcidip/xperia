@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.CharacterCreation;
 
-namespace XperiaRPG.Scripts.CharacterCreation
+namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
 {
     public class Name : PlayerSetting
     {
@@ -51,12 +50,6 @@ namespace XperiaRPG.Scripts.CharacterCreation
                 new Suffix("the Forest Gump", "Run, Forrest, run!", new AttributeBonus("Traveling", 50,"percent")), // traveling
                 new Suffix("the Hoarder", "You know to talk with people", new AttributeBonus("Bartering", 30,"percent")), // bartering
             };
-            
-        }
-        public Suffix Lookup(string name)
-        {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            return (Suffix)List.FirstOrDefault(a => a?.Name == name);
             
         }
     }

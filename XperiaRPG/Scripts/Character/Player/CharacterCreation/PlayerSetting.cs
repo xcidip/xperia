@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using XperiaRPG.Scripts.Attributes;
 
-namespace XperiaRPG.Scripts.CharacterCreation
+namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
 {
     public abstract class PlayerSetting
     {
@@ -19,7 +21,6 @@ namespace XperiaRPG.Scripts.CharacterCreation
             Name = name;
         }
     }
-    
     public abstract class ChoiceList
     {
         public List<PlayerSetting> List { get; set; }
@@ -27,6 +28,12 @@ namespace XperiaRPG.Scripts.CharacterCreation
         protected ChoiceList()
         {
             List = new List<PlayerSetting>();
+        }
+        public PlayerSetting Lookup(string name)
+        {
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            return (PlayerSetting)List.FirstOrDefault(a => a?.Name == name);
+
         }
     }
 }
