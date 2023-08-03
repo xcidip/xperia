@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Sprites\FishingSprite.cs" />
     <Compile Include="Assets\Sprites\WelcomeSprite.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="Scripts\Items\Weapon.cs" />
     <Compile Include="Scripts\Skills\Cooking.cs" />
     <Compile Include="Scripts\Skills\Fishing.cs" />
+    <Compile Include="Scripts\Skills\Material.cs" />
+    <Compile Include="Scripts\Skills\SkillUtility.cs" />
     <Compile Include="Scripts\UI\Choice.cs" />
     <Compile Include="Scripts\UI\MainMenu.cs" />
     <Compile Include="Scripts\UI\Utility.cs" />

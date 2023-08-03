@@ -53,10 +53,10 @@ namespace XperiaRPG.Scripts.Items
         }
     }
 
-    public class ArmorListOfItems : ListOfItems
+    public class ArmorItemList : ItemList
 {
 
-    public ArmorListOfItems()
+    public ArmorItemList()
         {
         List = new List<Item>
         {

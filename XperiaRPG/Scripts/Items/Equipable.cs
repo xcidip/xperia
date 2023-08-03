@@ -43,9 +43,9 @@ namespace XperiaRPG.Scripts.Items
     }
 
 
-    public class ToolListOfItems : ListOfItems
+    public class ToolItemList : ItemList
     {
-        public ToolListOfItems()
+        public ToolItemList()
         {
             List = new List<Item>
             {

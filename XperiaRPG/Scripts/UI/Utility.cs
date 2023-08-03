@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -8,6 +9,7 @@ using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.Characters.Inventory;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Skills;
 using Attribute = XperiaRPG.Scripts.Attributes.Attribute;
 
 namespace XperiaRPG.Scripts.UI
@@ -124,7 +126,7 @@ namespace XperiaRPG.Scripts.UI
             var itemList = list.ToList();
             var numOfItems = itemList.Count();
 
-            if (numOfItems == 0)
+            if (numOfItems == 0) 
             {
                 Console.WriteLine(
                     "+-------------------------------+\n" +
@@ -299,6 +301,65 @@ namespace XperiaRPG.Scripts.UI
                     }
                 }
             }
+        }
+    }
+
+    public static class SkillUtils
+    {
+        public static void PrintMenuHeader(int columns, int lengthOfColumn, string header)
+        {
+            Utility.PrintBorder(columns, lengthOfColumn);
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.WriteLine($"+-----{header.ToUpper()}");
+        }
+        public static void PrintCraftingMenu(string header,int columns, int lengthOfColumn, CookingRecipeList cookingRecipeList)
+        {
+            /*
+            +------------------------------------------------+------------------------------------------------+
+            | Cooked Shrimp - 1x Shrimp 1x Knife             | Cooked Trout - 1x Trout 1x Shrimp              |
+            | Cooked Trout - 1x Trout 1x Shrimp              | Cooked Shrimp - 1x Shrimp 1x Knife             |
+            +------------------------------------------------+------------------------------------------------+
+             */
+            var list = cookingRecipeList.List;
+            var numOfItems = list.Count();
+
+            if (numOfItems == 0)
+            {
+                Console.WriteLine(
+                    "+-------------------------------+\n" +
+                    "|     No recipes available      |\n" +
+                    $"+------------------------------+{header.ToUpper()}"
+                );
+                return;
+            }
+
+            //top
+            PrintMenuHeader(columns, lengthOfColumn, header);
+
+            var i = 0;
+
+            foreach (var item in list)
+            {
+                Console.Write($"{"| (" + (i + 1) + ")",-4}");
+                Console.Write(format,
+                    item.Name + " " + item. + "x"); //0
+
+                i++;
+                if (i % columns != 0 && i != numOfItems) continue;
+
+                var remainingItemsInRow = i % columns;
+                var blankSpaces = remainingItemsInRow == 0 ? 0 : columns - remainingItemsInRow;
+
+                // Print the blank spaces for the remaining items in the row
+                for (var j = 0; j < blankSpaces; j++)
+                {
+                    Console.Write($"|{new string(' ', lengthOfColumn)}");
+                }
+
+                Console.WriteLine("|");
+
+                //bottom
+                Utility.PrintBorder(columns, lengthOfColumn);
         }
     }
 }

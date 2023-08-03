@@ -9,73 +9,53 @@ namespace XperiaRPG.Scripts.Skills
 {
     public class Cooking
     {
-    }
-
-    public class Recipe
-    {
-        public string Name { get; set; } // Name of recipe (name of Food)
-        public string Description { get; set; }
-        public List<string> List { get; set; } // list of ingredients needed for making
-        public Food Food { get; set; } // result of the recipe
-        public int RequiredLevel { get; set; } // cooking level required for crafting this recipe
+        /*
+         * 1) select a recipe from a list by (num)
+         * 2) Check if have Items needed for the recipe
+         * 3) Remove consumed items (not knife for example)
+         * 4) Add finished Result
+         */
 
 
-        public Recipe(Food food,int requiredLevel, string description, List<string> list)
+
+
+        public Cooking()
         {
-            Name = food.Name; // name of recipe is the results name (food.name)
-            Description = description;
-            List = list;
-            Food = food;
-            RequiredLevel = requiredLevel;
+
+        }
+
+        public static void Print()
+        {
+            //todo 
         }
     }
 
-    public class RecipeList
-    {
-        public List<Recipe> List { get; set; }
+    
 
-        public RecipeList(FoodList foodList)
+
+    public class CookingRecipeList : RecipeList
+    {
+        public CookingRecipeList(ItemList fishItemList, ItemList foodItemList, MaterialItemList materialItemList)
         {
             List = new List<Recipe>
             {
-                new Recipe((Food)foodList.Lookup("Cooked Shrimp"),0,"Well made Cooked Shrimp",new List<string>
-                {
-                    "Shrimp"
-                })
+                new Recipe(foodItemList.Lookup("Cooked Shrimp"),
+                    0,
+                    new List<Item>
+                    {
+                        fishItemList.Lookup("Shrimp")
+                    }),
+                new Recipe(foodItemList.Lookup("Cooked Trout"),
+                    5,
+                    new List<Item>
+                    {
+                        fishItemList.Lookup("Trout")
+                    }),
             };
         }
     }
 
-    public class Ingredient : Item
-    {
-        public Ingredient(int quantity, string name, string description, int price)
-            : base(quantity, name, description, price)
-        {
 
-        }
-
-
-        public override void Use()
-        {
-
-        }
-
-        public override void Examine()
-        {
-
-        }
-    }
-
-    public class IngredientList : ListOfItems
-    {
-        public IngredientList()
-        {
-            List = new List<Item>
-            {
-                new Ingredient(1,"Flour","Flour from the local wheat farm", 5),
-            };
-        }
-    }
 
     public class Food : Item
     {
@@ -93,21 +73,20 @@ namespace XperiaRPG.Scripts.Skills
 
         public override void Examine()
         {
-
+            //todo 
         }
     }
 
-    public class FoodList : ListOfItems
+    public class FoodItemList : ItemList
     {
-        public FoodList()
+        public FoodItemList()
         {
             List = new List<Item>
             {
-                new Food(1,"Cooked fish", "Nice tasteful fish by Arnold", 20),
+                new Food(1,"Cooked Shrimp", "Nice tasteful fish by Arnold", 10),
+                new Food(1,"Cooked Trout", "Nice tasteful fish by Arnold", 15),
             };
         }
     }
-
-    
 
 }

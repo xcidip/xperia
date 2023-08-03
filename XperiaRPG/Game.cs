@@ -37,7 +37,7 @@ namespace XperiaRPG
 
             // Inventory test
             /*
-            var armorDatabase = new ArmorListOfItems();
+            var armorDatabase = new ArmorItemList();
             var droppedArmor = armorDatabase.Lookup("Arnold's Helmut");
             var droppedArmor1 = armorDatabase.Lookup("Arnold's test");
             player.Inventory.AddItem(droppedArmor);
@@ -45,8 +45,8 @@ namespace XperiaRPG
             player.Inventory.AddItem(droppedArmor1);
             
 
-            var weaponDatabase = new WeaponListOfItems();
-            var toolDatabase = new ToolListOfItems();
+            var weaponDatabase = new WeaponItemList();
+            var toolDatabase = new ToolItemList();
             var droppedItem = weaponDatabase.Lookup("Arnold's Sword");
             var droppedItem1 = weaponDatabase.Lookup("Arnold's Iron Shield");
             var droppedItem2 = weaponDatabase.Lookup("Arnold's Staff");

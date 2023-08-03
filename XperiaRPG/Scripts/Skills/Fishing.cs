@@ -44,9 +44,9 @@ namespace XperiaRPG.Scripts.Skills
         }
     }
 
-    public class FishList : ListOfItems
+    public class FishItemList : ItemList
     {
-        public FishList()
+        public FishItemList()
         {
             List = new List<Item>
             {
