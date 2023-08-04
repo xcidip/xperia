@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using XperiaRPG.Scripts.Character.Player.Inventory;
 
 namespace XperiaRPG.Scripts.UI
 {
@@ -7,20 +9,18 @@ namespace XperiaRPG.Scripts.UI
     {
         public static int NumberRangeValidation(int bottom, int top)
         {
-            var isValidInput = false;
-            var userInput = 0;
             Console.Write("\n");
 
-            while (!isValidInput)
+            while (true)
             {
                 Console.Write($"Please enter a number between {bottom} and {top}: ");
                 var input = Console.ReadLine();
 
-                if (int.TryParse(input, out userInput))
+                if (int.TryParse(input, out var userInput))
                 {
                     if (userInput >= bottom && userInput <= top)
                     {
-                        isValidInput = true;
+                        return userInput;
                     }
                 }
                 else
@@ -28,7 +28,6 @@ namespace XperiaRPG.Scripts.UI
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                 }
             }
-            return userInput;
         }
 
         public static string NameValidation()
@@ -40,7 +39,7 @@ namespace XperiaRPG.Scripts.UI
                 Console.Write($"Please enter your character's name: ");
                 var input = Console.ReadLine();
 
-                var tooLong = input.Length > 40;
+                var tooLong = input?.Length > 40;
                 var hasNumbers = ContainsNumbers(input);
 
                 if (tooLong)
@@ -100,5 +99,49 @@ namespace XperiaRPG.Scripts.UI
             Console.Write("\nPress ENTER to continue:");
             Console.ReadLine();
         }
+
+
+        public static char InventoryActionInput()
+        {
+            var inventoryActionList = new InventoryActionList();
+            var list = inventoryActionList.List;
+            var length = list.Count;
+
+            // What do you want to do here? (attributes/crafting/gear/items)
+            Console.Write("\nWhat do you want to do here? (");
+            while (true)
+            {
+                foreach (var option in list)
+                {
+                    Console.Write($"{option.Value}");
+                    Console.Write("/");
+                }
+                Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                Console.WriteLine(")");
+
+                // Please enter (a/c/g/i):
+                Console.Write("Please enter (");
+                foreach (var option in list)
+                {
+                    Console.Write($"{option.Key}");
+                    Console.Write("/");
+                }
+                Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                Console.Write("): ");
+
+
+                var myChar = Console.ReadLine();
+
+                if (myChar != null && inventoryActionList.Lookup(myChar[0]) != null)
+                {
+                    return myChar[0];
+                }
+                
+                Console.WriteLine("The is not in the list.");
+                
+            }
+        }
+
     }
+
 }

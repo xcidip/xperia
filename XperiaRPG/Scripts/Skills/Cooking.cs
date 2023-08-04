@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Skills
 {
@@ -15,18 +16,24 @@ namespace XperiaRPG.Scripts.Skills
          * 3) Remove consumed items (not knife for example)
          * 4) Add finished Result
          */
-
-
-
+        public FishItemList FishItemList { get; set; }
+        public MaterialItemList MaterialItemList { get; set; }
+        public FoodItemList FoodItemList { get; set; }
+        public static CookingRecipeList CookingRecipeList { get; set; }
+        
 
         public Cooking()
         {
+            FishItemList = new FishItemList();
+            MaterialItemList = new MaterialItemList();
+            FoodItemList = new FoodItemList();
+            CookingRecipeList = new CookingRecipeList(FishItemList, FoodItemList, MaterialItemList);
 
         }
 
-        public static void Print()
+        public void Print()
         {
-            //todo 
+            SkillUtils.PrintCraftingMenu("Cooking", 2, 50, "{0,-20}", CookingRecipeList);
         }
     }
 
@@ -46,10 +53,28 @@ namespace XperiaRPG.Scripts.Skills
                         fishItemList.Lookup("Shrimp")
                     }),
                 new Recipe(foodItemList.Lookup("Cooked Trout"),
-                    5,
+                    10,
                     new List<Item>
                     {
                         fishItemList.Lookup("Trout")
+                    }),
+                new Recipe(foodItemList.Lookup("Cooked Salmon"),
+                    20,
+                    new List<Item>
+                    {
+                        fishItemList.Lookup("Salmon")
+                    }),
+                new Recipe(foodItemList.Lookup("Cooked Tuna"),
+                    30,
+                    new List<Item>
+                    {
+                        fishItemList.Lookup("Tuna")
+                    }),
+                new Recipe(foodItemList.Lookup("Cooked Crayfish"),
+                    40,
+                    new List<Item>
+                    {
+                        fishItemList.Lookup("Crayfish")
                     }),
             };
         }
@@ -83,8 +108,11 @@ namespace XperiaRPG.Scripts.Skills
         {
             List = new List<Item>
             {
-                new Food(1,"Cooked Shrimp", "Nice tasteful fish by Arnold", 10),
-                new Food(1,"Cooked Trout", "Nice tasteful fish by Arnold", 15),
+                new Food(1,"Cooked Shrimp", "Nice tasteful fish by Arnold", 20),
+                new Food(1,"Cooked Trout", "Nice tasteful fish by Arnold", 25),
+                new Food(1,"Cooked Salmon", "Nice tasteful fish by Arnold", 35),
+                new Food(1,"Cooked Tuna", "Nice tasteful fish by Arnold", 45),
+                new Food(1,"Cooked Crayfish", "Nice tasteful fish by Arnold", 50),
             };
         }
     }

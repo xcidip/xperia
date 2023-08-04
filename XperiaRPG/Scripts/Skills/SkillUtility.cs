@@ -25,7 +25,7 @@ namespace XperiaRPG.Scripts.Skills
 
     public abstract class RecipeList
     {
-        protected List<Recipe> List { get; set; } = new List<Recipe>();
+        public List<Recipe> List { get; set; } = new List<Recipe>();
 
         protected RecipeList() { }
 

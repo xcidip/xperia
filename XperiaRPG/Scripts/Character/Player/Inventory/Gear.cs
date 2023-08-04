@@ -30,8 +30,8 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
 
         public void Equip(Item item, Player player)
         {
-            var statList = player.StatList;
-            var skillList = player.SkillList;
+            var statList = player.Stats;
+            var skillList = player.Skills;
             var characterInfo = player.CharacterInfo;
             var inventory = player.Inventory;
 
@@ -72,8 +72,8 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         private void UnequipArmor(Item item, Player player)
         {
             var inventory = player.Inventory;
-            var statList = player.StatList;
-            var skillList = player.SkillList;
+            var statList = player.Stats;
+            var skillList = player.Skills;
             const bool addRemove = false;
             if (!_gear.TryGetValue(item.GearSlot, out var armorItem)) return; // if not present return;
             if (armorItem != null) inventory.AddItem(armorItem); // if present put back to inventory
@@ -82,7 +82,7 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
             Console.WriteLine(item.Name + " Unequipped!");
         }
 
-        private static void AddBonus(bool addRemove, Item item, StatList statList, SkillList skillList)
+        private static void AddBonus(bool addRemove, Item item, Stats stats, Attributes.Skills skills)
         {
             var i = 1;
             if (addRemove == false) i = -1;
@@ -96,24 +96,24 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
                 var amount = bonus.Amount * i;
                 var unit = bonus.Unit;
 
-                if (skillList.Lookup(name) != null)
+                if (skills.Lookup(name) != null)
                 {
                     if (unit == "%")
                     {
-                        skillList.AddPercentBonus(name, amount);
+                        skills.AddPercentBonus(name, amount);
                         return;
                     }
-                    skillList.AddXp(name, amount);
+                    skills.AddXp(name, amount);
                     return;
                 }
 
-                if (statList.Lookup(name) == null) return;
-                statList.AddPoints(name, amount);
+                if (stats.Lookup(name) == null) return;
+                stats.AddPoints(name, amount);
             }
         }
 
         // skillList and statList for shortName of skill/stat
-        public void Print(SkillList skillList, StatList statList)
+        public void Print(Attributes.Skills skills, Stats stats)
         {
             Console.WriteLine("+---SLOTS----+-----------------------------+-----------------------------------------+");
 
@@ -130,8 +130,8 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
                         foreach (var bonus in item.AttributeBonusList)
                         {
                             var shortName = bonus.Name;
-                            if (skillList.Lookup(bonus.Name) != null) shortName = skillList.Lookup(bonus.Name).ShortName;
-                            if (statList.Lookup(bonus.Name) != null) shortName = statList.Lookup(bonus.Name).ShortName;
+                            if (skills.Lookup(bonus.Name) != null) shortName = skills.Lookup(bonus.Name).ShortName;
+                            if (stats.Lookup(bonus.Name) != null) shortName = stats.Lookup(bonus.Name).ShortName;
 
                             if (bonus.Unit == "points")
                             {

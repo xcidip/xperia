@@ -10,7 +10,7 @@ namespace XperiaRPG.Scripts.Character
         public Profession Profession { get; set; }
         public Race Race { get; set; }
         
-        public StatList StatList { get; set; }
+        public Stats Stats { get; set; }
 
         protected Character()
         {

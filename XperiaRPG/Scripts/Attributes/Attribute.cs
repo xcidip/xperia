@@ -10,11 +10,13 @@ namespace XperiaRPG.Scripts.Attributes
         public int Xp{ get; set; }
         public int PercentBonus { get; set; }
         public double Value{ get; set; }
+        public string Description { get; set; }
 
-        protected Attribute(string name, string shortName)
+        protected Attribute(string name, string shortName, string description)
         {
             ShortName = shortName;
             Name = name;
+            Description = description;
         }
     }
     
@@ -36,7 +38,6 @@ namespace XperiaRPG.Scripts.Attributes
             var symbol = "+";
             if (Amount < 0) symbol = "";
             var text = symbol + Amount + " " + Unit + " to " + Name;
-            //Console.Write($"{symbol + Amount + " " + Unit + " to " + Skill,-27}");
             return text;
         }
     }

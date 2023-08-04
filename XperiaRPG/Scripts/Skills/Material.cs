@@ -36,8 +36,26 @@ namespace XperiaRPG.Scripts.Skills
                 new Material(1,"Flour","Flour from the local wheat farm", 5),
                 // iron bar...
                 // herbs maybe??
-                //todo 
             };
+        }
+    }
+
+    public class Ingredient : Item
+    {
+        public Ingredient(int quantity, string name, string description, int price)
+            : base(quantity, name, description, price)
+        {
+
+        }
+
+        public override void Use()
+        {
+
+        }
+
+        public override void Examine()
+        {
+            // todo
         }
     }
 }

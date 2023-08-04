@@ -51,6 +51,10 @@ namespace XperiaRPG.Scripts.Skills
             List = new List<Item>
             {
                 new Fish(1,"Shrimp", "Little shrimp, so easy to catch.", 15),
+                new Fish(1,"Trout", "Trout, so easy to catch.", 20),
+                new Fish(1,"Salmon", "Could be delicious if cooked.", 30),
+                new Fish(1,"Tuna", "Tuna, so tasty.",40),
+                new Fish(1,"Crayfish", $"Crusty Crayfish, not so easy to catch.", 45),
             };
         }
 

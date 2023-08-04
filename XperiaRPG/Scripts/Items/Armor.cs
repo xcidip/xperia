@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Player.Inventory;
-using XperiaRPG.Scripts.Characters.Inventory;
 
 namespace XperiaRPG.Scripts.Items
 {
@@ -39,7 +38,7 @@ namespace XperiaRPG.Scripts.Items
                       $"Description: {Description}\n" +
                       $"Quantity: {Quantity}x\n" +
                       $"Required level to equip: {RequiredLevel}\n" +
-                      $"Armor Type: {ArmorType}" +
+                      $"Armor Type: {ArmorType}\n" +
                       $"It goes in {GearSlot} slot and only {Profession} profession can equip it\n" +
                       $"It sells for: {Price}gp\n" +
                       $"Bonuses: ");

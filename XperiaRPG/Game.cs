@@ -36,7 +36,7 @@ namespace XperiaRPG
 
 
             // Inventory test
-            /*
+            
             var armorDatabase = new ArmorItemList();
             var droppedArmor = armorDatabase.Lookup("Arnold's Helmut");
             var droppedArmor1 = armorDatabase.Lookup("Arnold's test");
@@ -64,10 +64,14 @@ namespace XperiaRPG
             player.Inventory.AddItem(droppedItem6);
 
             // Inventory menu
-            InventoryUtils.InventoryAction(columns, player);
-            */
+            
+            Utility.Action(columns, player);
+
 
             Fishing.Print();
+
+            player.Skills.Cooking.Print();
+
 
             Console.ReadLine();
         }
