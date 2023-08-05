@@ -5,6 +5,7 @@ using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
+using XperiaRPG.Scripts.Skills;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Items

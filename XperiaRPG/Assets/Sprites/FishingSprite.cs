@@ -7,7 +7,7 @@ namespace XperiaRPG.Assets.Sprites
 {
     public class FishingSprite
     {
-        public readonly string FishingMan;
+        public readonly string FishingManOnBoat;
         /* FishingMan
                   /\             
                o /  \           
@@ -15,6 +15,12 @@ namespace XperiaRPG.Assets.Sprites
         ~~~|(_______)~\~~~ 
           %            <){
         
+        fish is coming to me and when its the fishing rod line press enter to catch it
+                       /\             -'^'-
+    -'^'-           o /  \   -'^'-
+                  __|/___ \
+~`~`~`~`~`~`~`~`~(_______)~\~`~`~`~`~`~`~`~`~
+                                                  <){
          */
 
 
@@ -22,9 +28,8 @@ namespace XperiaRPG.Assets.Sprites
 
         public FishingSprite()
         {
-            FishingMan =
-                "          /\\             \r\n       o /  \\           \r\n   []__|/___ \\      \r\n~~~|(_______)~\\~~~ \r\n  %            <){\r\n";
-
+            FishingManOnBoat =
+                "                       /\\             -'^'-\r\n    -'^'-           o /  \\   -'^'-\r\n                  __|/___ \\\r\n~`~`~`~`~`~`~`~`~(_______)~\\~`~`~`~`~`~`~`~`~";
         }
     }
 }

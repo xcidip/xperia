@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using XperiaRPG.Scripts.Character.Player.Inventory;
+using XperiaRPG.Scripts.Skills;
 
 namespace XperiaRPG.Scripts.UI
 {
@@ -67,29 +68,34 @@ namespace XperiaRPG.Scripts.UI
             // Use Regex.IsMatch to check if the pattern is found in the input string.
             return Regex.IsMatch(input, pattern);
         }
-        
+
         public static char YesNoValidation()
         {
             char userInput;
             Console.Write("\n");
 
-            while (true) 
+            while (true)
             {
-                Console.Write("Please enter (y/n):");
+                Console.Write("Please enter (y/n) or ENTER:");
                 var input = Console.ReadLine();
 
-                if (char.TryParse(input, out userInput)) 
+                if (string.IsNullOrEmpty(input))  // Check if the input is empty (Enter was pressed)
+                {
+                    userInput = 'y';  // Treat Enter as "yes"
+                    break;
+                }
+
+                if (char.TryParse(input, out userInput))
                 {
                     if (userInput == 'y' || userInput == 'n')
                     {
                         break;
-                    } 
+                    }
                 }
-                else 
+                else
                 {
                     Console.WriteLine("Invalid input!");
                 }
-
             }
             return userInput;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.CharacterCreation;
@@ -65,15 +66,19 @@ namespace XperiaRPG
 
             // Inventory menu
             
-            Utility.Action(columns, player);
+            //Utility.Action(columns, player);
+            var fishItemList = new FishItemList();
 
+            var pond = new Pond(0, new List<Fish>
+            {
+                (Fish)fishItemList.Lookup("Shrimp"),
+                (Fish)fishItemList.Lookup("Trout")
+            });
 
-            Fishing.Print();
-
-            player.Skills.Cooking.Print();
-
+            Fishing.Start(pond,player.Inventory);
 
             Console.ReadLine();
+
         }
     }
 }
