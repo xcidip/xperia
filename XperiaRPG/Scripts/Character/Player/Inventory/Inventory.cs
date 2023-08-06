@@ -66,35 +66,5 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         }
     }
 
-    public class InventoryAction
-    {
-        public char Key { get; set; }
-        public string Value { get; set; }
-
-        public InventoryAction(char key, string value)
-        {
-            Key = key;
-            Value = value;
-        }
-    }
-    public class InventoryActionList
-    {
-        public List<InventoryAction> List { get; set; }
-
-        public InventoryActionList()
-        {
-            List = new List<InventoryAction>
-            {
-                new InventoryAction('a', "Attributes"),
-                new InventoryAction('c', "Crafting"),
-                new InventoryAction('g', "Gear"),
-                new InventoryAction('i', "Inventory"),
-
-            };
-        }
-        public InventoryAction Lookup(char key)
-        {
-            return List.FirstOrDefault(a => a?.Key == key);
-        }
-    }
+    
 }

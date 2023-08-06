@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Skills
 {
-    public class Cooking
+    public static class Cooking
     {
         /*
          * 1) select a recipe from a list by (num)
@@ -16,24 +18,15 @@ namespace XperiaRPG.Scripts.Skills
          * 3) Remove consumed items (not knife for example)
          * 4) Add finished Result
          */
-        public FishItemList FishItemList { get; set; }
-        public MaterialItemList MaterialItemList { get; set; }
-        public FoodItemList FoodItemList { get; set; }
-        public static CookingRecipeList CookingRecipeList { get; set; }
-        
-
-        public Cooking()
+        public static void Craft(Food food, CookingRecipeList cookingRecipeList)
         {
-            FishItemList = new FishItemList();
-            MaterialItemList = new MaterialItemList();
-            FoodItemList = new FoodItemList();
-            CookingRecipeList = new CookingRecipeList(FishItemList, FoodItemList, MaterialItemList);
-
+            // check for inventory items
         }
 
-        public void Print()
+
+        public static void Print(int columns, CookingRecipeList cookingRecipeList)
         {
-            SkillUtils.PrintCraftingMenu("Cooking", 2, 50, "{0,-20}", CookingRecipeList);
+            SkillUtils.PrintCraftingMenu("Cooking", columns, 50, "{0,-20}", cookingRecipeList);
         }
     }
 

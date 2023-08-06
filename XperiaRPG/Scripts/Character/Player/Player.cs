@@ -68,7 +68,7 @@ namespace XperiaRPG.Scripts.Character.Player
                 i++;
             }
         }
-        public static IEnumerable<PlayerSetting> WhatToChange()
+        public static PlayerSetting[] WhatToChange()
         {
             var characterInfo = new PlayerSetting[6];
             

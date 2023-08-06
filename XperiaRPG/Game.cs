@@ -15,14 +15,16 @@ namespace XperiaRPG
         { 
             Console.WriteLine($"Hey, {Environment.UserName}");
             Console.WriteLine("Make the game fullscreen please");
+            Console.WriteLine("US keyboard layout recommended");
             // ask for columns
             var columns = 4;
 
-            Console.ReadLine();
+            Choice.PressEnter();
 
             //var characterInfo = Player.WhatToChange();
 
-            // Test Character for easy of use
+            #region DemoCharacter
+            //*
             var characterInfo = new PlayerSetting[6];
             characterInfo[0] = new RaceList().Lookup("Human");
             characterInfo[1] = new ProfessionList().Lookup("Warrior");
@@ -30,21 +32,20 @@ namespace XperiaRPG
             characterInfo[3] = new Name("TestMan");
             characterInfo[4] = new SuffixList().Lookup("the Tough guy");
             characterInfo[5] = new SexualityList().Lookup("Celibacy");
-
+            //*/
+            #endregion
 
             // create player
             var player = new Player(characterInfo);
 
-
-            // Inventory test
-            
+            #region Inventory item management test
             var armorDatabase = new ArmorItemList();
             var droppedArmor = armorDatabase.Lookup("Arnold's Helmut");
             var droppedArmor1 = armorDatabase.Lookup("Arnold's test");
             player.Inventory.AddItem(droppedArmor);
             player.Inventory.AddItem(droppedArmor1);
             player.Inventory.AddItem(droppedArmor1);
-            
+
 
             var weaponDatabase = new WeaponItemList();
             var toolDatabase = new ToolItemList();
@@ -64,9 +65,15 @@ namespace XperiaRPG
             player.Inventory.AddItem(droppedItem5);
             player.Inventory.AddItem(droppedItem6);
 
+            #endregion
+
+
             // Inventory menu
-            
-            //Utility.Action(columns, player);
+
+            Utility.Action(columns, player);
+
+            #region Fishing
+            /*
             var fishItemList = new FishItemList();
 
             var pond = new Pond(0, new List<Fish>
@@ -75,10 +82,12 @@ namespace XperiaRPG
                 (Fish)fishItemList.Lookup("Trout")
             });
 
-            Fishing.Start(pond,player.Inventory);
+            Fishing.Start(pond, player.Inventory);
+            */
+            #endregion  
 
             Console.ReadLine();
 
         }
     }
-}
+} 

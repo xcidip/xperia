@@ -70,7 +70,6 @@
     <Compile Include="Scripts\UI\Choice.cs" />
     <Compile Include="Scripts\UI\InventoryUtils.cs" />
     <Compile Include="Scripts\UI\MainMenu.cs" />
-    <Compile Include="Scripts\UI\SkillUtils.cs" />
     <Compile Include="Scripts\UI\Utility.cs" />
   </ItemGroup>
   <ItemGroup />

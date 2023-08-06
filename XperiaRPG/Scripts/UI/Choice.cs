@@ -104,46 +104,58 @@ namespace XperiaRPG.Scripts.UI
         {
             Console.Write("\nPress ENTER to continue:");
             Console.ReadLine();
+            Console.Clear();
         }
 
 
-        public static char InventoryActionInput()
+        public static string InventoryActionInput(int invLength)
         {
-            var inventoryActionList = new InventoryActionList();
-            var list = inventoryActionList.List;
-            var length = list.Count;
+
+            // list of possible actions
+            var actionList = new ActionList(invLength);
+            var actionsList = actionList.List;
+            var length = actionsList.Count;
+
+            
 
             // What do you want to do here? (attributes/crafting/gear/items)
             Console.Write("\nWhat do you want to do here? (");
             while (true)
             {
-                foreach (var option in list)
+                var i = 1;
+                foreach (var option in actionsList)
                 {
                     Console.Write($"{option.Value}");
+                    if (i >= length) continue;
+                    i++;
                     Console.Write("/");
                 }
-                Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+
+
                 Console.WriteLine(")");
 
-                // Please enter (a/c/g/i):
-                Console.Write("Please enter (");
-                foreach (var option in list)
+                // Please enter (a/c/g/i/0-9):
+                i = 1;
+                Console.Write("Please enter (0) EXIT (");
+                foreach (var option in actionsList)
                 {
                     Console.Write($"{option.Key}");
+                    if (i >= length) continue;
+                    i++;
                     Console.Write("/");
                 }
-                Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                 Console.Write("): ");
 
 
-                var myChar = Console.ReadLine();
+                var choice = Console.ReadLine();
 
-                if (myChar != null && inventoryActionList.Lookup(myChar[0]) != null)
+                if (int.TryParse(choice, out var number))
                 {
-                    return myChar[0];
+                    if (number >= 0 && number <= length) return number.ToString();
                 }
-                
-                Console.WriteLine("The is not in the list.");
+
+                if (actionList.Lookup(choice) != null) return choice;
+                Console.WriteLine("Wrong input");
                 
             }
         }
