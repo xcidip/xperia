@@ -12,8 +12,8 @@ namespace XperiaRPG.Scripts.UI
         public static void PrintInventoryHeader(int columns, int lengthOfColumn, int numOfItems, int inventorySize)
         {
             Utility.PrintBorder(columns, lengthOfColumn);
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Console.WriteLine($"+-----INVENTORY {numOfItems + "/" + inventorySize}");
+            Console.SetCursorPosition(5, Console.CursorTop - 1);
+            Console.WriteLine($"INVENTORY {numOfItems + "/" + inventorySize}");
         }
 
         public static void PrintInventory(IEnumerable<Item> list, int columns, int lengthOfColumn, string format)
@@ -37,7 +37,7 @@ namespace XperiaRPG.Scripts.UI
 
             foreach (var item in itemList)
             {
-                Console.Write($"{"| (" + (i + 1) + ")",-4}");
+                Console.Write($"{"| (" + (i + 1) + ")",-6}");
                 Console.Write(format,
                     item.Name + " " + item.Quantity + "x"); //0
 

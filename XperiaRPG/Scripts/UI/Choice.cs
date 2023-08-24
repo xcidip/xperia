@@ -136,7 +136,7 @@ namespace XperiaRPG.Scripts.UI
 
                 // Please enter (a/c/g/i/0-9):
                 i = 1;
-                Console.Write("Please enter (0) EXIT (");
+                Console.Write("Please enter (0)EXIT (");
                 foreach (var option in actionsList)
                 {
                     Console.Write($"{option.Key}");
@@ -149,9 +149,9 @@ namespace XperiaRPG.Scripts.UI
 
                 var choice = Console.ReadLine();
 
-                if (int.TryParse(choice, out var number))
+                if (int.TryParse(choice, out int number))
                 {
-                    if (number >= 0 && number <= length) return number.ToString();
+                    if (number >= 0 && number <= invLength) return number.ToString();
                 }
 
                 if (actionList.Lookup(choice) != null) return choice;

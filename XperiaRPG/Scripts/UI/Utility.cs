@@ -160,9 +160,17 @@ namespace XperiaRPG.Scripts.UI
                             Console.WriteLine($"({i}) {skill.Name}");
                             i++;
                         }
-                        var whatSkill = craftingSkillList[Choice.NumberRangeValidation(1,craftingSkillList.Count)];
+                        var whatSkill = craftingSkillList[Choice.NumberRangeValidation(1,craftingSkillList.Count)-1].Name;
+                        switch (whatSkill)
+                        {
+                            case "Cooking":
+                                var cooking = new Cooking();
+                                cooking.Print(columns);
+                                cooking.WhatToCraft(inventory);
+                                break;
 
-
+                        }
+                        
 
                         Console.ReadLine();
                         break;
@@ -174,7 +182,7 @@ namespace XperiaRPG.Scripts.UI
                     default:
                         if (int.TryParse(choice, out var number))
                         {
-                            var item = inventory.List[number];
+                            var item = inventory.List[number-1];
                             Console.WriteLine($"\nItem Selected: {item.Name}");
 
                             ItemInteraction.ItemInteract(item, player, number);

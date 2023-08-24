@@ -10,7 +10,7 @@ namespace XperiaRPG.Scripts.Attributes
     public class Skill : Attribute
     {
         public double Level { get; set; }
-        public string Type { get; private set; }
+        public string Type { get; }
         
         public Skill(string type,string name, string shortName, int xp, int percentBonus, string description) : base(name, shortName, description)
         {
@@ -52,9 +52,6 @@ namespace XperiaRPG.Scripts.Attributes
                 new Skill("","Seduction","Sdc", 0, 0, "is about seducing people for profit"),
                 new Skill("","Traveling","Trv", 0, 0, "is about increasing travel speed"),
             };
-            
-            Cooking = new Cooking();
-            // todo add more skills
         }
 
         public Skill Lookup(string name)

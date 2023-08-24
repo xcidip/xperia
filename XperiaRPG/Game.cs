@@ -17,7 +17,9 @@ namespace XperiaRPG
             Console.WriteLine("Make the game fullscreen please");
             Console.WriteLine("US keyboard layout recommended");
             // ask for columns
-            var columns = 4;
+            Console.WriteLine("how many columns?");
+            var columns = Choice.NumberRangeValidation(1, 4);
+            //var columns = 4;
 
             Choice.PressEnter();
 
@@ -69,6 +71,9 @@ namespace XperiaRPG
 
 
             // Inventory menu
+            var fishItemList = new FishItemList();
+            var droppedFish = fishItemList.Lookup("Shrimp");
+            player.Inventory.AddItem(droppedFish);
 
             Utility.Action(columns, player);
 

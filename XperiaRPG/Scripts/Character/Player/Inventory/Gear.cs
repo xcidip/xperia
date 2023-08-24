@@ -115,7 +115,7 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         // skillList and statList for shortName of skill/stat
         public void Print(Attributes.Skills skills, Stats stats)
         {
-            Console.WriteLine("+---SLOTS----+-----------------------------+-----------------------------------------+");
+            Console.WriteLine("+---SLOTS----+--------ITEM-NAME------------+---------------BONUSES-------------------+");
 
             // armor
             foreach (GearSlot slot in Enum.GetValues(typeof(GearSlot)))

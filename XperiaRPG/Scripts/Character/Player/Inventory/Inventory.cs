@@ -62,7 +62,12 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
 
         public void Print(int columns)
         {
-            InventoryUtils.PrintInventory(List, columns, 42, " {0,-37}");
+            InventoryUtils.PrintInventory(List, columns, 42, " {0,-36}");
+        }
+
+        public Item Lookup(string name)
+        {
+            return List.FirstOrDefault(a => a?.Name == name);
         }
     }
 

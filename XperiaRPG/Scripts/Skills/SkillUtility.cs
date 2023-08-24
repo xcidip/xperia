@@ -74,8 +74,8 @@ namespace XperiaRPG.Scripts.Skills
         public static void PrintMenuHeader(int columns, int lengthOfColumn, string header)
         {
             Utility.PrintBorder(columns, lengthOfColumn);
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Console.WriteLine($"+-----{header.ToUpper()}");
+            Console.SetCursorPosition(5, Console.CursorTop - 1);
+            Console.WriteLine($"{header.ToUpper()}");
         }
 
         public static void PrintCraftingMenu(string header, int columns, int lengthOfColumn, string format,
