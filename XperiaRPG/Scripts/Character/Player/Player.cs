@@ -174,9 +174,9 @@ namespace XperiaRPG.Scripts.Character.Player
             Gear = new Gear();
         }
 
-        public void Action(int columns)
+        public void Action()
         {
-            ActionUtility.Action(columns, this);
+            ActionUtility.Action(this);
         }
 
     }

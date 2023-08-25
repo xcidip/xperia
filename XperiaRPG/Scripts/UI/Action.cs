@@ -42,7 +42,7 @@ namespace XperiaRPG.Scripts.UI
 
     public static class ActionUtility
     {
-        public static void Action(int columns, Player player)
+        public static void Action(Player player)
         {
             var inventory = player.Inventory;
             var invLength = inventory.List.Count;
@@ -52,15 +52,12 @@ namespace XperiaRPG.Scripts.UI
 
             while (true)
             {
-                // length of stats
-                var statColumns = 2;
-                if (columns >= 2) statColumns = 5;
 
 
                 gear.Print(skillList, statList);
-                statList.Print(statColumns);
-                skillList.Print(columns);
-                inventory.Print(columns);
+                statList.Print();
+                skillList.Print();
+                inventory.Print();
 
 
                 var choice = Choice.InventoryActionInput(invLength);
@@ -69,12 +66,12 @@ namespace XperiaRPG.Scripts.UI
                     // tell more about what stats & skills does
                     case "a":
                         Console.Clear();
-                        statList.Print(statColumns);
+                        statList.Print();
                         statList.Explain();
 
                         Choice.PressEnter();
 
-                        skillList.Print(columns);
+                        skillList.Print();
                         skillList.Explain();
 
                         Choice.PressEnter();
@@ -94,7 +91,7 @@ namespace XperiaRPG.Scripts.UI
                         {
                             case "Cooking":
                                 var cooking = new Cooking();
-                                cooking.Print(columns);
+                                cooking.Print();
                                 cooking.WhatToCraft(inventory);
                                 break;
                                 // todo more professions

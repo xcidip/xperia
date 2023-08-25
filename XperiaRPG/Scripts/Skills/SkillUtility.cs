@@ -71,14 +71,14 @@ namespace XperiaRPG.Scripts.Skills
 
     public static class SkillUtils
     {
-        public static void PrintMenuHeader(int columns, int lengthOfColumn, string header)
+        public static void PrintMenuHeader(int lengthOfColumn, string header)
         {
-            Utility.PrintBorder(columns, lengthOfColumn);
+            Utility.PrintBorder(lengthOfColumn);
             Console.SetCursorPosition(5, Console.CursorTop - 1);
             Console.WriteLine($"{header.ToUpper()}");
         }
 
-        public static void PrintCraftingMenu(string header, int columns, int lengthOfColumn, string format,
+        public static void PrintCraftingMenu(string header, int lengthOfColumn, string format,
             RecipeList recipeList)
         {
             /*
@@ -101,7 +101,7 @@ namespace XperiaRPG.Scripts.Skills
             }
 
             //top
-            PrintMenuHeader(columns, lengthOfColumn, header);
+            PrintMenuHeader(lengthOfColumn, header);
 
             var i = 0;
 
@@ -114,10 +114,10 @@ namespace XperiaRPG.Scripts.Skills
                 var itemsNeeded = recipe.List.Aggregate("", (current, item) => current + $"{item.Quantity}x {item.Name}");
                 Console.Write($"{itemsNeeded,-23}");
                 i++;
-                if (i % columns != 0 && i != numOfItems) continue;
+                if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;
 
-                var remainingItemsInRow = i % columns;
-                var blankSpaces = remainingItemsInRow == 0 ? 0 : columns - remainingItemsInRow;
+                var remainingItemsInRow = i % GlobalVariables.Columns; 
+                var blankSpaces = remainingItemsInRow == 0 ? 0 : GlobalVariables.Columns - remainingItemsInRow;
 
                 // Print the blank spaces for the remaining items in the row
                 for (var j = 0; j < blankSpaces; j++)
@@ -127,7 +127,7 @@ namespace XperiaRPG.Scripts.Skills
 
                 Console.WriteLine("|");
             }
-            Utility.PrintBorder(columns, lengthOfColumn);
+            Utility.PrintBorder(lengthOfColumn);
         }
 
     }

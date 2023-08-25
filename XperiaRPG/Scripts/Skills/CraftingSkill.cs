@@ -43,9 +43,9 @@ namespace XperiaRPG.Scripts.Skills
             Craft(RecipeList.List[choice - 1], inv);
         }
 
-        public void Print(int columns)
+        public void Print()
         {
-            SkillUtils.PrintCraftingMenu("Cooking", columns, 50, "{0,-20}", RecipeList);
+            SkillUtils.PrintCraftingMenu("Cooking", 50, "{0,-20}", RecipeList);
         }
     }
 }

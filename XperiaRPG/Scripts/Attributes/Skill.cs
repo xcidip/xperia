@@ -79,11 +79,11 @@ namespace XperiaRPG.Scripts.Attributes
                 Console.WriteLine($"{skill.ShortName} - {skill.Name} - {skill.Description}");
             }
         }
-        public void Print(int columns)
+        public void Print()
         {
             var attributeList = List.Cast<Attribute>().ToList();
 
-            Utility.PrintAttributes(attributeList, columns,42,"skills", "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-7} ");
+            Utility.PrintAttributes(attributeList,42,"skills", "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-7} ");
         }
     }
 }

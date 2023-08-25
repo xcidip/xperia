@@ -18,8 +18,7 @@ namespace XperiaRPG
             Console.WriteLine("US keyboard layout recommended");
             // ask for columns
             Console.WriteLine("how many columns?");
-            var columns = Choice.NumberRangeValidation(1, 4);
-            //var columns = 4;
+            GlobalVariables.Columns = Choice.NumberRangeValidation(1, 4);
 
             Choice.PressEnter();
 
@@ -75,7 +74,7 @@ namespace XperiaRPG
             var droppedFish = fishItemList.Lookup("Shrimp");
             player.Inventory.AddItem(droppedFish);
 
-            player.Action(columns);
+            player.Action();
 
            
 

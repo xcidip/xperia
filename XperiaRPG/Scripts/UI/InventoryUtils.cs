@@ -9,14 +9,14 @@ namespace XperiaRPG.Scripts.UI
 {
     public static class InventoryUtils
     {
-        public static void PrintInventoryHeader(int columns, int lengthOfColumn, int numOfItems, int inventorySize)
+        public static void PrintInventoryHeader(int lengthOfColumn, int numOfItems, int inventorySize)
         {
-            Utility.PrintBorder(columns, lengthOfColumn);
+            Utility.PrintBorder(lengthOfColumn);
             Console.SetCursorPosition(5, Console.CursorTop - 1);
             Console.WriteLine($"INVENTORY {numOfItems + "/" + inventorySize}");
         }
 
-        public static void PrintInventory(IEnumerable<Item> list, int columns, int lengthOfColumn, string format)
+        public static void PrintInventory(IEnumerable<Item> list, int lengthOfColumn, string format)
         {
             var itemList = list.ToList();
             var numOfItems = itemList.Count();
@@ -31,7 +31,7 @@ namespace XperiaRPG.Scripts.UI
                 return;
             }
 
-            PrintInventoryHeader(columns, lengthOfColumn, numOfItems, 30);
+            PrintInventoryHeader(lengthOfColumn, numOfItems, 30);
 
             var i = 0;
 
@@ -42,10 +42,10 @@ namespace XperiaRPG.Scripts.UI
                     item.Name + " " + item.Quantity + "x"); //0
 
                 i++;
-                if (i % columns != 0 && i != numOfItems) continue;
+                if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;
 
-                var remainingItemsInRow = i % columns;
-                var blankSpaces = remainingItemsInRow == 0 ? 0 : columns - remainingItemsInRow;
+                var remainingItemsInRow = i % GlobalVariables.Columns;
+                var blankSpaces = remainingItemsInRow == 0 ? 0 : GlobalVariables.Columns - remainingItemsInRow;
 
                 // Print the blank spaces for the remaining items in the row
                 for (var j = 0; j < blankSpaces; j++)
@@ -56,7 +56,7 @@ namespace XperiaRPG.Scripts.UI
                 Console.WriteLine("|");
             }
 
-            Utility.PrintBorder(columns, lengthOfColumn);
+            Utility.PrintBorder(lengthOfColumn);
         }
 
         public static void ItemExamine(Item item)

@@ -60,9 +60,9 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
             item.Quantity--;
         }
 
-        public void Print(int columns)
+        public void Print()
         {
-            InventoryUtils.PrintInventory(List, columns, 42, " {0,-36}");
+            InventoryUtils.PrintInventory(List, 42, " {0,-36}");
         }
 
         public Item Lookup(string name)
