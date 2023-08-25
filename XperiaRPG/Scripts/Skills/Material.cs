@@ -34,6 +34,8 @@ namespace XperiaRPG.Scripts.Skills
             List = new List<Item>
             {
                 new Material(1,"Flour","Flour from the local wheat farm", 5),
+                new Material(1,"Flask","Flask for alchemy for example",5),
+                new Material(1,"Linen cloth","Cloth for making cloth armor", 5),
                 // iron bar...
                 // herbs maybe??
             };

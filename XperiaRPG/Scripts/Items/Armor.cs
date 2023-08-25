@@ -53,36 +53,30 @@ namespace XperiaRPG.Scripts.Items
     }
 
     public class ArmorItemList : ItemList
-{
+    {
 
-    public ArmorItemList()
+        public ArmorItemList()
         {
-        List = new List<Item>
-        {
-            new Armor(1,0, GearSlot.Chest, "Plate", "Arnold's Chestplate",200, "Best of the chests", 
-                new List<AttributeBonus>() {
-                    new AttributeBonus("Strength", 3, "points"),
-                    new AttributeBonus("Defense", 2, "points"),
-                    new AttributeBonus("Agility", 1, "points")
-                }),
-            new Armor(1,0, GearSlot.Legs, "Leather", "Arnold's Legplates",200, "Best of the legs",
-                new List<AttributeBonus>() {
-                    new AttributeBonus("Strength", 2, "points"),
-                    new AttributeBonus("Defense", 4, "points"),
-                    new AttributeBonus("Agility", 2, "points")
-                }),
-            new Armor(1,0, GearSlot.Head, "Cloth", "Arnold's Helmut",200, "Best of the helms",
-                new List<AttributeBonus>() {
-                    new AttributeBonus("Defense", 3, "points"),
-                    new AttributeBonus("Agility", 4, "points")
-                }),
-            new Armor(1,0, GearSlot.Head, "Cloth", "Arnold's test",9999, "Best of the helms",
-                new List<AttributeBonus>() {
-                    new AttributeBonus("Defense", 1000, "points"),
-                    new AttributeBonus("Mining", 5000, "xp")
-                }),
-        };
-    }
-
+            List = new List<Item>
+            {
+                new Armor(1,0, GearSlot.Chest, "Cloth", "Wizard's Coat",200, "Belonged to an old wizard once", 
+                    new List<AttributeBonus>() {
+                        new AttributeBonus("Intellect", 3, "points"),
+                        new AttributeBonus("Defense", 2, "points"),
+                        new AttributeBonus("Agility", 1, "points")
+                    }),
+                new Armor(1,0, GearSlot.Legs, "Cloth", "Wizard's Skirt",200, "Belonged to an old wizard once",
+                    new List<AttributeBonus>() {
+                        new AttributeBonus("Intellect", 2, "points"),
+                        new AttributeBonus("Defense", 4, "points"),
+                        new AttributeBonus("Agility", 2, "points")
+                    }),
+                new Armor(1,0, GearSlot.Head, "Cloth", "Wizard's Hat",200, "Belonged to an old wizard once",
+                    new List<AttributeBonus>() {
+                        new AttributeBonus("Defense", 3, "points"),
+                        new AttributeBonus("Intellect", 4, "points")
+                    }),
+            };
+        }
     }
 }

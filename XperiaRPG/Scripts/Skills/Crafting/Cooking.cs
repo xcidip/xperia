@@ -20,14 +20,11 @@ namespace XperiaRPG.Scripts.Skills
          */
         public Cooking()
         {
-            var foodItemList = new FoodItemList();
-            var materialItemList = new MaterialItemList();
-            var fishItemList = new FishItemList();
-            RecipeList = new CookingRecipeList(fishItemList, foodItemList, materialItemList);
-        }
-
-        // what food to craft, recipe to craft that food
-        
+            FoodItemList = new FoodItemList();
+            MaterialItemList = new MaterialItemList();
+            FishItemList = new FishItemList();
+            RecipeList = new CookingRecipeList(FishItemList, FoodItemList, MaterialItemList);
+        }        
     }
 
     

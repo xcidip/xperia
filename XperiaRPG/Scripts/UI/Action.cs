@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XperiaRPG.Scripts.Character.Player;
+using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Skills;
+using XperiaRPG.Scripts.Skills.Crafting;
 
 namespace XperiaRPG.Scripts.UI
 {
@@ -94,12 +96,24 @@ namespace XperiaRPG.Scripts.UI
                                 cooking.Print();
                                 cooking.WhatToCraft(inventory);
                                 break;
-                                // todo more professions
+                            // todo more professions
+                            case "Alchemy":
+                                var alchemy = new Alchemy();
+                                alchemy.Print();
+                                alchemy.WhatToCraft(inventory);
+                                break;
+                            case "Tailoring":
+                                var tailoring = new Tailoring();
+                                tailoring.Print();
+                                tailoring.WhatToCraft(inventory);
+                                break;
                         }
                         break;
                     // show gear menu (unequip, examine gear)
                     case "g":
-
+                        Console.Clear();
+                        gear.GearMenu(player);
+                        Console.Clear();
                         break;
                     // Interact with items
                     default:

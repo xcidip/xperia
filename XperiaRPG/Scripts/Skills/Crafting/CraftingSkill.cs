@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XperiaRPG.Scripts.Character.Player.Inventory;
+using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Skills.Crafting;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Skills
@@ -11,6 +13,12 @@ namespace XperiaRPG.Scripts.Skills
     public abstract class CraftingSkill
     {
         public RecipeList RecipeList { get; protected set; }
+        public MaterialItemList MaterialItemList { get; protected set; }
+        public FoodItemList FoodItemList { get; protected set; }
+        public FishItemList FishItemList { get; protected set; }
+        public HerbItemList HerbItemList { get; protected set; }
+        public PotionItemList PotionItemList { get; protected set; }
+        public ArmorItemList ArmorItemList { get; protected set; }
 
         protected CraftingSkill()
         {
@@ -24,6 +32,7 @@ namespace XperiaRPG.Scripts.Skills
                 if (inv.Lookup(item.Name) == null)
                 {
                     Console.WriteLine($"{item.Name} is not in your inventory!");
+                    Choice.PressEnter();
                     return;
                 }
 

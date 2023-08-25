@@ -28,7 +28,7 @@ namespace XperiaRPG
             //*
             var characterInfo = new PlayerSetting[6];
             characterInfo[0] = new RaceList().Lookup("Human");
-            characterInfo[1] = new ProfessionList().Lookup("Warrior");
+            characterInfo[1] = new ProfessionList().Lookup("Mage");
             characterInfo[2] = new DifficultyList().Lookup("Hard");
             characterInfo[3] = new Name("TestMan");
             characterInfo[4] = new SuffixList().Lookup("the Tough guy");
@@ -41,11 +41,12 @@ namespace XperiaRPG
 
             #region Inventory item management test
             var armorDatabase = new ArmorItemList();
-            var droppedArmor = armorDatabase.Lookup("Arnold's Helmut");
-            var droppedArmor1 = armorDatabase.Lookup("Arnold's test");
+            var droppedArmor = armorDatabase.Lookup("Wizard's Coat");
+            var droppedArmor1 = armorDatabase.Lookup("Wizard's Skirt");
+            var droppedArmor2 = armorDatabase.Lookup("Wizard's Hat");
             player.Inventory.AddItem(droppedArmor);
             player.Inventory.AddItem(droppedArmor1);
-            player.Inventory.AddItem(droppedArmor1);
+            player.Inventory.AddItem(droppedArmor2);
 
 
             var weaponDatabase = new WeaponItemList();
@@ -73,6 +74,14 @@ namespace XperiaRPG
             var fishItemList = new FishItemList();
             var droppedFish = fishItemList.Lookup("Shrimp");
             player.Inventory.AddItem(droppedFish);
+
+            // tailoring crafting test
+            var materialItemList = new MaterialItemList();
+            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
+            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
+            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
+            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
+
 
             player.Action();
 
