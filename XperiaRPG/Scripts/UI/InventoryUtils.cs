@@ -59,6 +59,12 @@ namespace XperiaRPG.Scripts.UI
             Utility.PrintBorder(columns, lengthOfColumn);
         }
 
+        public static void ItemExamine(Item item)
+        {
+            Console.Clear();
+            item.Examine();
+            Choice.PressEnter();
+        }
         
     }
 }

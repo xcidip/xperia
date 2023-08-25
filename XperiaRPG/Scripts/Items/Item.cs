@@ -79,8 +79,7 @@ namespace XperiaRPG.Scripts.Items
                                 gear.Equip(itemObj, player);
                                 break;
                             case 2:
-                                itemObj.Examine();
-                                Choice.PressEnter();
+                                InventoryUtils.ItemExamine(itemObj);
                                 break;
                             case 3:
                                 inventory.List.RemoveAt(index);
@@ -106,8 +105,7 @@ namespace XperiaRPG.Scripts.Items
                                 itemObj.Use();
                                 break;
                             case 2:
-                                itemObj.Examine();
-                                Choice.PressEnter();
+                                InventoryUtils.ItemExamine(itemObj);
                                 break;
                             case 3:
                                 inventory.List.RemoveAt(index);
@@ -133,8 +131,7 @@ namespace XperiaRPG.Scripts.Items
                                 gear.Equip(itemObj, player);
                                 break;
                             case 2:
-                                itemObj.Examine();
-                                Choice.PressEnter();
+                                InventoryUtils.ItemExamine(itemObj);
                                 break;
                             case 3:
                                 inventory.List.RemoveAt(index);
@@ -160,8 +157,7 @@ namespace XperiaRPG.Scripts.Items
                                 gear.Equip(itemObj, player);
                                 break;
                             case 2:
-                                itemObj.Examine();
-                                Choice.PressEnter();
+                                InventoryUtils.ItemExamine(itemObj);
                                 break;
                             case 3:
                                 inventory.List.RemoveAt(index);

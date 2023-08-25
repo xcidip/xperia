@@ -146,9 +146,11 @@ namespace XperiaRPG.Scripts.UI
                 }
                 Console.Write("): ");
 
-
+                // what to do
                 var choice = Console.ReadLine();
-
+                
+                // if number is int
+                // return as string 
                 if (int.TryParse(choice, out int number))
                 {
                     if (number >= 0 && number <= invLength) return number.ToString();
