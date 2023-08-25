@@ -116,6 +116,7 @@ namespace XperiaRPG.Scripts.Character.Player
 
         #endregion
 
+        // Stat, skill bonuses for character creation
         private static void CharacterCreationBonuses(PlayerSetting[] characterInfo, Stats stats, Attributes.Skills skills)
         {
             var whatOptionsHaveBonuses = new List<int>
@@ -172,6 +173,12 @@ namespace XperiaRPG.Scripts.Character.Player
             // Weapons and Armor Inventory
             Gear = new Gear();
         }
+
+        public void Action(int columns)
+        {
+            ActionUtility.Action(columns, this);
+        }
+
     }
     
     

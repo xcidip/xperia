@@ -75,7 +75,9 @@ namespace XperiaRPG
             var droppedFish = fishItemList.Lookup("Shrimp");
             player.Inventory.AddItem(droppedFish);
 
-            Utility.Action(columns, player);
+            player.Action(columns);
+
+           
 
             #region Fishing
             /*
@@ -91,7 +93,7 @@ namespace XperiaRPG
             */
             #endregion  
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
         }
     }

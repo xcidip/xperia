@@ -67,9 +67,11 @@
     <Compile Include="Scripts\Items\Potion.cs" />
     <Compile Include="Scripts\Items\Weapon.cs" />
     <Compile Include="Scripts\Skills\Cooking.cs" />
+    <Compile Include="Scripts\Skills\CraftingSkill.cs" />
     <Compile Include="Scripts\Skills\Fishing.cs" />
     <Compile Include="Scripts\Skills\Material.cs" />
     <Compile Include="Scripts\Skills\SkillUtility.cs" />
+    <Compile Include="Scripts\UI\Action.cs" />
     <Compile Include="Scripts\UI\Choice.cs" />
     <Compile Include="Scripts\UI\InventoryUtils.cs" />
     <Compile Include="Scripts\UI\MainMenu.cs" />

@@ -10,15 +10,6 @@ using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Skills
 {
-    public abstract class CraftingSkill
-    {
-        public RecipeList RecipeList { get; protected set; }
-
-        protected CraftingSkill()
-        {
-        }
-    }
-
     public class Cooking : CraftingSkill
     {
         /*
@@ -27,50 +18,16 @@ namespace XperiaRPG.Scripts.Skills
          * 3) Remove consumed items (not knife for example)
          * 4) Add finished Result
          */
-        private readonly CookingRecipeList CookingRecipeList;
         public Cooking()
         {
             var foodItemList = new FoodItemList();
             var materialItemList = new MaterialItemList();
             var fishItemList = new FishItemList();
-            CookingRecipeList = new CookingRecipeList(fishItemList, foodItemList, materialItemList);
+            RecipeList = new CookingRecipeList(fishItemList, foodItemList, materialItemList);
         }
 
         // what food to craft, recipe to craft that food
-        public void Craft(Recipe recipe, Inventory inv)
-        {
-            var thingsNeeded = recipe.List;
-            foreach (var item in thingsNeeded)
-            {
-                if (inv.Lookup(item.Name) == null)
-                {
-                    Console.WriteLine($"{item.Name} is not in your inventory!");
-                    return;
-                }
-                
-            }
-            foreach (var item in thingsNeeded)
-            {
-                inv.RemoveItem(inv.Lookup(item.Name));
-            }
-            inv.AddItem(recipe.Result);
-            
-            // check for the things in inventory
-
-        }
-
-        public void WhatToCraft(Inventory inv)
-        {
-            Console.WriteLine("What do you want to craft 0 - EXIT");
-            var choice = Choice.NumberRangeValidation(0, CookingRecipeList.List.Count);
-            if (choice == 0) return;
-            Craft(CookingRecipeList.List[choice-1], inv);
-        }
-
-        public void Print(int columns)
-        {
-            SkillUtils.PrintCraftingMenu("Cooking", columns, 50, "{0,-20}", CookingRecipeList);
-        }
+        
     }
 
     
