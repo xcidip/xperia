@@ -28,9 +28,9 @@ namespace XperiaRPG.Scripts.UI
 
     public static class Utility
     {
-        public static void PrintBorder(int lengthOfColumn)
+        public static void PrintBorder(int columns,int lengthOfColumn)
         {
-            for (var i = 0; i < GlobalVariables.Columns; i++)
+            for (var i = 0; i < columns; i++)
             {
                 Console.Write("+");
                 for (var j = 0; j < lengthOfColumn; j++) Console.Write("-");
@@ -38,13 +38,13 @@ namespace XperiaRPG.Scripts.UI
 
             Console.Write("+\n");
         }
-        public static void PrintAttributes(IEnumerable<Attribute> list, int lengthOfColumn,
+        public static void PrintAttributes(IEnumerable<Attribute> list, int lengthOfColumn, int columns,
             string headerName, string format)
         {
             var attributes = list.ToList();
             var numOfItems = attributes.Count();
 
-            Utility.PrintBorder(lengthOfColumn);
+            Utility.PrintBorder(columns,lengthOfColumn);
             Console.SetCursorPosition(0, Console.CursorTop - 1);
             Console.WriteLine($"+-{headerName.ToUpper()}");
             var i = 0;
@@ -60,10 +60,10 @@ namespace XperiaRPG.Scripts.UI
                 );
 
                 i++;
-                if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;
+                if (i % columns != 0 && i != numOfItems) continue;
 
-                var remainingItemsInRow = i % GlobalVariables.Columns;
-                var blankSpaces = remainingItemsInRow == 0 ? 0 : GlobalVariables.Columns - remainingItemsInRow;
+                var remainingItemsInRow = i % columns;
+                var blankSpaces = remainingItemsInRow == 0 ? 0 : columns - remainingItemsInRow;
 
                 // Print the blank spaces for the remaining items in the row
                 for (var j = 0; j < blankSpaces; j++)
@@ -74,7 +74,7 @@ namespace XperiaRPG.Scripts.UI
                 Console.WriteLine("|");
             }
 
-            PrintBorder(lengthOfColumn);
+            PrintBorder(columns, lengthOfColumn);
         }
 
         public static PlayerSetting PrintCharacterCreationSetting(ChoiceList choiceList, string format)

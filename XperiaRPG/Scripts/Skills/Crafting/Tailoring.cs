@@ -25,8 +25,8 @@ namespace XperiaRPG.Scripts.Skills.Crafting
 
     public class TailoringRecipeList : RecipeList
     {
-        MaterialItemList MaterialItemList;
-        ArmorItemList ArmorItemList;
+        public MaterialItemList MaterialItemList;
+        public ArmorItemList ArmorItemList;
         
         public TailoringRecipeList()
         {

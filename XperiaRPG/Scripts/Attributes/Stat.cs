@@ -60,8 +60,11 @@ namespace XperiaRPG.Scripts.Attributes
         public void Print()
         {
             var attributeList = List.Cast<Attribute>().ToList();
+            var columns = GlobalVariables.Columns * 2;
+            if (GlobalVariables.Columns >= 4) columns = 9;
+            if (GlobalVariables.Columns == 3) columns = 5;
 
-            Utility.PrintAttributes(attributeList,16,"stats","| {0,-9}: {3,-4}");
+            Utility.PrintAttributes(attributeList,16,columns,"stats","| {0,-9}: {3,-4}");
         }
     }
 }

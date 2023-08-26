@@ -71,9 +71,9 @@ namespace XperiaRPG.Scripts.Skills
 
     public static class SkillUtils
     {
-        public static void PrintMenuHeader(int lengthOfColumn, string header)
+        public static void PrintMenuHeader(int columns,int lengthOfColumn, string header)
         {
-            Utility.PrintBorder(lengthOfColumn);
+            Utility.PrintBorder(columns,lengthOfColumn);
             Console.SetCursorPosition(5, Console.CursorTop - 1);
             Console.WriteLine($"{header.ToUpper()}");
         }
@@ -101,7 +101,7 @@ namespace XperiaRPG.Scripts.Skills
             }
 
             //top
-            PrintMenuHeader(lengthOfColumn, header);
+            PrintMenuHeader(GlobalVariables.Columns,lengthOfColumn, header);
 
             var i = 0;
 
@@ -127,7 +127,7 @@ namespace XperiaRPG.Scripts.Skills
 
                 Console.WriteLine("|");
             }
-            Utility.PrintBorder(lengthOfColumn);
+            Utility.PrintBorder(GlobalVariables.Columns,lengthOfColumn);
         }
 
     }

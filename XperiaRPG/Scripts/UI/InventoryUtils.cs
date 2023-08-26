@@ -11,7 +11,7 @@ namespace XperiaRPG.Scripts.UI
     {
         public static void PrintInventoryHeader(int lengthOfColumn, int numOfItems, int inventorySize)
         {
-            Utility.PrintBorder(lengthOfColumn);
+            Utility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
             Console.SetCursorPosition(5, Console.CursorTop - 1);
             Console.WriteLine($"INVENTORY {numOfItems + "/" + inventorySize}");
         }
@@ -24,9 +24,9 @@ namespace XperiaRPG.Scripts.UI
             if (numOfItems == 0)
             {
                 Console.WriteLine(
-                    "+-------------------------------+\n" +
+                    "+-INVENTORY---------------------+\n" +
                     "|      Empty like my soul       |\n" +
-                    "+-----------INVENTORY-----------+"
+                    "+-------------------------------+"
                 );
                 return;
             }
@@ -55,7 +55,7 @@ namespace XperiaRPG.Scripts.UI
                 Console.WriteLine("|");
             }
 
-            Utility.PrintBorder(lengthOfColumn);
+            Utility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
         }
 
         public static void ItemExamine(Item item)

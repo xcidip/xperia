@@ -7,26 +7,37 @@ using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Skills;
 using XperiaRPG.Scripts.UI;
+using System.Runtime.InteropServices;
 
 namespace XperiaRPG
 {
     internal static class Game
     {
         public static void Main()
-        { 
+        {
             Console.WriteLine($"Hey, {Environment.UserName}");
             Console.WriteLine("Make the game fullscreen please");
             Console.WriteLine("US keyboard layout recommended");
             // ask for columns
-            Console.WriteLine("how many columns?");
-            GlobalVariables.Columns = Choice.NumberRangeValidation(1, 4);
+            Console.WriteLine("how many columns? 4-1080p 7-2160p");
+            GlobalVariables.Columns = Choice.NumberRangeValidation(1, 7);
 
-            Choice.PressEnter();
+            /* for final build
+            MainMenu.Welcome(200); // Welcoming animation
+            var choice = Choice.NumberRangeValidation(1, 3);
+            switch (choice)
+            {
+                case 1: // make new character
+                    var characterInfo = Player.WhatToChange();
+                    break;
+                case 2: // load character, location
+                    break;
+                default:
+                    break;
+            }
+            */
 
-            //var characterInfo = Player.WhatToChange();
-
-            #region DemoCharacter
-            //*
+            #region Demo Character (not creating it everytime XD)
             var characterInfo = new PlayerSetting[6];
             characterInfo[0] = new RaceList().Lookup("Human");
             characterInfo[1] = new ProfessionList().Lookup("Mage");
@@ -34,7 +45,6 @@ namespace XperiaRPG
             characterInfo[3] = new Name("TestMan");
             characterInfo[4] = new SuffixList().Lookup("the Tough guy");
             characterInfo[5] = new SexualityList().Lookup("Celibacy");
-            //*/
             #endregion
 
             // create player
