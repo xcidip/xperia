@@ -9,8 +9,8 @@ namespace XperiaRPG.Scripts.Skills
     // basic materials for all professions
     public class Material : Item
     {
-        public Material(int quantity, string name, string description, int price)
-            : base(quantity, name, description, price)
+        public Material(string name, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
+            : base(name, description, price, colors)
         {
 
         }
@@ -33,31 +33,12 @@ namespace XperiaRPG.Scripts.Skills
         {
             List = new List<Item>
             {
-                new Material(1,"Flour","Flour from the local wheat farm", 5),
-                new Material(1,"Flask","Flask for alchemy for example",5),
-                new Material(1,"Linen cloth","Cloth for making cloth armor", 5),
+                new Material("Flour","Flour from the local wheat farm", 5, Rarity.Common),
+                new Material("Flask","Flask for alchemy for example",5, Rarity.Common),
+                new Material("Linen cloth","Cloth for making cloth armor", 5, Rarity.Common),
                 // iron bar...
                 // herbs maybe??
             };
-        }
-    }
-
-    public class Ingredient : Item
-    {
-        public Ingredient(int quantity, string name, string description, int price)
-            : base(quantity, name, description, price)
-        {
-
-        }
-
-        public override void Use()
-        {
-
-        }
-
-        public override void Examine()
-        {
-            // todo
         }
     }
 }

@@ -11,11 +11,11 @@ namespace XperiaRPG.Scripts.Skills
     {
         public string Name { get; set; } // Name of recipe (name of Result)
         public int RequiredLevel { get; set; } // level required for crafting this recipe
-        public List<Item> List { get; set; } // list of items needed for making
+        public List<ItemStack> List { get; set; } // list of items needed for making
         public Item Result { get; set; } // result of the recipe
 
 
-        public Recipe(Item result, int requiredLevel, List<Item> list)
+        public Recipe(Item result, int requiredLevel, List<ItemStack> list)
         {
             Name = result.Name; // name of recipe is the results name (result.name)
             List = list;
@@ -26,7 +26,7 @@ namespace XperiaRPG.Scripts.Skills
 
     public abstract class RecipeList
     {
-        public List<Recipe> List { get; set; } = new List<Recipe>();
+        public List<Recipe> List { get; set; }
 
         protected RecipeList() { }
 
@@ -40,8 +40,8 @@ namespace XperiaRPG.Scripts.Skills
     public class ProfessionTool : Item
     {
 
-        public ProfessionTool(int quantity, string name, string description, int price)
-            : base(quantity, name, description, price)
+        public ProfessionTool(string name, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
+            : base(name, description, price, colors)
         {
             
         }
@@ -64,7 +64,7 @@ namespace XperiaRPG.Scripts.Skills
         {
             List = new List<Item>
             {
-                new ProfessionTool(1,"Knife","Used for cutting in Cooking",2),
+                new ProfessionTool("Knife","Used for cutting in Cooking",2, Rarity.Common),
             };
         }
     }
@@ -111,7 +111,7 @@ namespace XperiaRPG.Scripts.Skills
                 Console.Write(format,
                     recipe.Name); //0
                 Console.Write("- ");
-                var itemsNeeded = recipe.List.Aggregate("", (current, item) => current + $"{item.Quantity}x {item.Name} ");
+                var itemsNeeded = recipe.List.Aggregate("", (current, item) => current + /*$"{item.Quantity}x*/ item.Name );
                 Console.Write($"{itemsNeeded,-23}");
                 i++;
                 if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;

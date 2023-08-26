@@ -18,38 +18,39 @@ namespace XperiaRPG.Scripts.Skills.Crafting
 
         public Tailoring()
         {
-            MaterialItemList = new MaterialItemList();
-            ArmorItemList = new ArmorItemList();
-            RecipeList = new TailoringRecipeList(MaterialItemList,ArmorItemList);
+            RecipeList = new TailoringRecipeList();
         }
 
     }
 
     public class TailoringRecipeList : RecipeList
     {
-        public TailoringRecipeList(MaterialItemList materialItemList, ArmorItemList armorItemList)
+        MaterialItemList MaterialItemList;
+        ArmorItemList ArmorItemList;
+        
+        public TailoringRecipeList()
         {
             List = new List<Recipe>
             {
-                new Recipe(armorItemList.Lookup("Wizard's Coat"),
+                new Recipe(ArmorItemList.Lookup("Wizard's Coat"),
                     0,
-                    new List<Item>
+                    new List<ItemStack>
                     {
-                        materialItemList.Lookup("Linen cloth"),
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
                     }),
 
-                new Recipe(armorItemList.Lookup("Wizard's Skirt"),
+                new Recipe(ArmorItemList.Lookup("Wizard's Skirt"),
                     0,
-                    new List<Item>
+                    new List<ItemStack>
                     {
-                        materialItemList.Lookup("Linen cloth"),
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
                     }),
                 
-                new Recipe(armorItemList.Lookup("Wizard's Hat"),
+                new Recipe(ArmorItemList.Lookup("Wizard's Hat"),
                     0,
-                    new List<Item>
+                    new List<ItemStack>
                     {
-                        materialItemList.Lookup("Linen cloth"),
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
                     }),
             };
         }

@@ -16,36 +16,38 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
-        public void AddItem(Item newItem)
+        public void AddItem(ItemStack itemStack)
         {
-            var itemExists = false;
-
-            foreach (var item in List.Where(item => item.Name == newItem.Name))
+            if (List.Count != 0)
             {
-                item.Quantity += newItem.Quantity;
-                itemExists = true;
-                break;
+                if (List.Count >= GlobalVariables.InvWarning) // if 90% full say almost full
+                {
+                    if (List.Count >= GlobalVariables.InvSize) // if full dont add more
+                    {
+                        Console.WriteLine("Inventory full!");
+                        Choice.PressEnter();
+                        return;
+                    }
+                    Console.WriteLine("Inventory almost full");
+                    Console.WriteLine($"You have {GlobalVariables.InvSize - List.Count} slots empty");
+                    Choice.PressEnter();
+                }
             }
-
-            if (!itemExists)
-            {
-                List.Add(newItem);
-            }
-
-            Console.WriteLine(newItem.Name + " added to inventory");
+            for (int i = 0; i < itemStack.Quantity; i++) List.Add(itemStack.Item);
+            Console.WriteLine($"{itemStack.Quantity}x {itemStack.Name} added to inventory");
         }
 
-        public void PickDrop(Item item)
+        public void PickDrop(ItemStack itemStack)
         {
             Console.Write("Pickup?");
             var choice = Choice.YesNoValidation();
             switch (choice)
             {
                 case 'y':
-                    AddItem(item);
+                    AddItem(itemStack);
                     break;
                 case 'n':
-                    Console.WriteLine($"You left {item.Name} on the ground.");
+                    Console.WriteLine($"You left {itemStack.Name} on the ground.");
                     break;
             }
         }
@@ -53,11 +55,6 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         public void RemoveItem(Item item)
         {
             List.Remove(item);
-        }
-
-        public static void ReduceItem(Item item)
-        {
-            item.Quantity--;
         }
 
         public void Print()
@@ -71,5 +68,5 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         }
     }
 
-    
+
 }

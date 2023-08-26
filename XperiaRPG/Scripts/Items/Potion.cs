@@ -9,8 +9,8 @@ namespace XperiaRPG.Scripts.Items
         public int Potency { get; set; }
         public string Effect { get; set; }
 
-        protected Potion(int quantity, string name, int price, string description, int potency) 
-            : base(quantity,name, description, price)
+        protected Potion(string name, int price, string description, int potency, (ConsoleColor Foreground, ConsoleColor Background) colors) 
+            : base(name, description, price, colors)
         {
             Potency = potency;
         }
@@ -21,7 +21,6 @@ namespace XperiaRPG.Scripts.Items
         {
             Console.Write($"Name: {Name}\n" +
                           $"Description: {Description}\n" +
-                          $"Quantity: {Quantity}x\n" +
                           $"Required level to equip: {RequiredLevel}\n" +
                           $"Effect: {Effect}\n" +
                           $"Potency: {Potency}" +
@@ -44,9 +43,9 @@ namespace XperiaRPG.Scripts.Items
         {
             List = new List<Item>
             {
-                new HealingPotion(1,"Small HP potion","Heals for a small amount of health",20,10),
-                new HealingPotion(1,"Medium HP potion","Medium health potion for medium health pool",40,50),
-                new HealingPotion(1,"Large HP potion","Big boy healing",100,200),
+                new HealingPotion("Small HP potion","Heals for a small amount of health",20,10, Rarity.Common),
+                new HealingPotion("Medium HP potion","Medium health potion for medium health pool",40,50, Rarity.Common),
+                new HealingPotion("Large HP potion","Big boy healing",100,200, Rarity.Common),
             };
         }
     }
@@ -54,8 +53,8 @@ namespace XperiaRPG.Scripts.Items
 
 public class HealingPotion : Potion
 {
-    public HealingPotion(int quantity, string name, string description, int potency, int price)
-        : base(quantity, name, price, description,  potency)
+    public HealingPotion(string name, string description, int potency, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
+        : base(name, price, description,  potency, colors)
     {
         Effect = "healing";
     }

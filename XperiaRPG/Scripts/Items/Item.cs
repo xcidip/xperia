@@ -14,39 +14,54 @@ namespace XperiaRPG.Scripts.Items
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Quantity { get; set; }
         public int RequiredLevel { get; set; }
         public int Price { get; set; }
         public GearSlot GearSlot { get; set; } // mount, pickaxe, head slot...
         public List<AttributeBonus> AttributeBonusList { get; set; }
         public string Profession { get; set; }
+        public ConsoleColor ForeColor { get; }
+        public ConsoleColor BackColor { get; }
 
         // protected = cannot be called outside of this class
-        protected Item(int quantity, string name, string description, int price)
+        protected Item(string name, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
         {
-            Quantity = quantity;
             Description = description;
             Name = name;
             Price = price;
+            ForeColor = colors.Foreground;
+            BackColor = colors.Background;
         }
 
         // Abstract method for using an item (to be implemented by derived classes)
         public abstract void Use();
-
-        public void Reduce()
-        {
-            Quantity--;
-        }
-
         public abstract void Examine();
+    }
+
+    // recipe consists of ingredients
+    // ingredient is item + quantity of that item
+    public class ItemStack
+    {
+        public Item Item { get; set; }
+        public int Quantity { get; set; }
+        public string Name { get; set; }
+
+
+        public ItemStack(int quantity, Item item)
+        {
+            Name = item.Name;
+            Quantity = quantity;
+            Item = item;
+        }
     }
 
     public abstract class ItemList
     {
         protected List<Item> List { get; set; } = new List<Item>();
+        public Rarity Rarity { get; set; }
 
         protected ItemList()
         {
+            Rarity = new Rarity();
         }
 
         public Item Lookup(string name)

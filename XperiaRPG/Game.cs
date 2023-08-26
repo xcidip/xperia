@@ -45,9 +45,9 @@ namespace XperiaRPG
             var droppedArmor = armorDatabase.Lookup("Wizard's Coat");
             var droppedArmor1 = armorDatabase.Lookup("Wizard's Skirt");
             var droppedArmor2 = armorDatabase.Lookup("Wizard's Hat");
-            player.Inventory.AddItem(droppedArmor);
-            player.Inventory.AddItem(droppedArmor1);
-            player.Inventory.AddItem(droppedArmor2);
+            //player.Inventory.AddItem(droppedArmor);
+            //player.Inventory.AddItem(droppedArmor1);
+            //player.Inventory.AddItem(droppedArmor2);
 
 
             var weaponDatabase = new WeaponItemList();
@@ -60,28 +60,20 @@ namespace XperiaRPG
             var droppedItem5 = toolDatabase.Lookup("Arnold's FishingRod");
             var droppedItem6 = toolDatabase.Lookup("Arnold's Horse");
 
-            player.Inventory.AddItem(droppedItem);
-            player.Inventory.AddItem(droppedItem1);
-            player.Inventory.AddItem(droppedItem2);
-            player.Inventory.AddItem(droppedItem3);
-            player.Inventory.AddItem(droppedItem4);
-            player.Inventory.AddItem(droppedItem5);
-            player.Inventory.AddItem(droppedItem6);
+            //player.Inventory.AddItem(droppedItem);
+            //player.Inventory.AddItem(droppedItem1);
+            //player.Inventory.AddItem(droppedItem2);
+            //player.Inventory.AddItem(droppedItem3);
+            //player.Inventory.AddItem(droppedItem4);
+            //player.Inventory.AddItem(droppedItem5);
+            //player.Inventory.AddItem(droppedItem6);
 
             #endregion
 
 
-            // Inventory menu
-            var fishItemList = new FishItemList();
-            var droppedFish = fishItemList.Lookup("Shrimp");
-            player.Inventory.AddItem(droppedFish);
-
             // tailoring crafting test
             var materialItemList = new MaterialItemList();
-            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
-            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
-            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
-            player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
+
 
 
             var npcList = new NpcList();

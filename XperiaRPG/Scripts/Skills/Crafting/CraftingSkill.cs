@@ -26,22 +26,36 @@ namespace XperiaRPG.Scripts.Skills
 
         public void Craft(Recipe recipe, Inventory inv)
         {
-            var thingsNeeded = recipe.List;
-            foreach (var item in thingsNeeded)
+            // Have enough resources in inventory for that recipe?
+            foreach (var stack in recipe.List) // check each stack
             {
-                if (inv.Lookup(item.Name) == null)
+                // count how many of that item is in the inventory
+                var itemNum = 0;
+                foreach (var item in inv.List) // check for each item occurence
                 {
-                    Console.WriteLine($"{item.Name} is not in your inventory!");
-                    Choice.PressEnter();
-                    return;
+                    if (item.Name == stack.Name && item.Name != null) itemNum++;
                 }
 
+                // if you dont have the required item in your inventory at all
+                if (itemNum == 0) { Console.WriteLine($"You dont have: {stack.Name}"); return; }
+
+                // if there is more in the recipe than in inventory
+                if (stack.Quantity > itemNum) { Console.WriteLine($"You need {stack.Quantity - itemNum} of {stack.Name}"); return; }
             }
-            foreach (var item in thingsNeeded)
+
+            // remove items from inv
+            foreach (var stack in recipe.List)
             {
-                inv.RemoveItem(inv.Lookup(item.Name));
+                for (var i= 0; i < stack.Quantity; i++) 
+                {
+                    inv.RemoveItem(inv.Lookup(stack.Item.Name));
+                }
             }
-            inv.AddItem(recipe.Result);
+
+            // add result
+            inv.AddItem(new ItemStack(1, recipe.Result));
+
+
             Choice.PressEnter();
         }
         public void WhatToCraft(Inventory inv)

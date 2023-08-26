@@ -38,8 +38,7 @@ namespace XperiaRPG.Scripts.UI
             foreach (var item in itemList)
             {
                 Console.Write($"{"| (" + (i + 1) + ")",-6}");
-                Console.Write(format,
-                    item.Name + " " + item.Quantity + "x"); //0
+                //Console.Write(format,                    item.Name + " " + item.Quantity + "x"); //0
 
                 i++;
                 if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;

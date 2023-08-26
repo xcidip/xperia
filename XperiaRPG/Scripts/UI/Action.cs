@@ -119,6 +119,7 @@ namespace XperiaRPG.Scripts.UI
                     default:
                         if (int.TryParse(choice, out var number))
                         {
+                            if (number == 0) return;
                             var item = inventory.List[number - 1];
                             Console.WriteLine($"\nItem Selected: {item.Name}");
 

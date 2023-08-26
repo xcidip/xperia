@@ -50,7 +50,7 @@ namespace XperiaRPG.Scripts.Skills
                     {
                         var caughtFish = pond.List[random.Next(pond.List.Count)];
                         Console.WriteLine($"Good job, you caught {caughtFish.Name}");
-                        inventory.AddItem(caughtFish);
+                        inventory.AddItem(new ItemStack(1,caughtFish));
                     }
                     else
                     {
@@ -93,7 +93,8 @@ namespace XperiaRPG.Scripts.Skills
 
     public class Fish : Item
     {
-        public Fish(int quantity, string name,string description, int price) : base(quantity, name, description, price)
+        public Fish(string name,string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors) 
+            : base(name, description, price, colors)
         {
         }
 
@@ -114,11 +115,11 @@ namespace XperiaRPG.Scripts.Skills
         {
             List = new List<Item>
             {
-                new Fish(1,"Shrimp", "Little shrimp, so easy to catch.", 15),
-                new Fish(1,"Trout", "Trout, so easy to catch.", 20),
-                new Fish(1,"Salmon", "Could be delicious if cooked.", 30),
-                new Fish(1,"Tuna", "Tuna, so tasty.",40),
-                new Fish(1,"Crayfish", $"Crusty Crayfish, not so easy to catch.", 45),
+                new Fish("Shrimp", "Little shrimp, so easy to catch.", 15, Rarity.Common),
+                new Fish("Trout", "Trout, so easy to catch.", 20, Rarity.Common),
+                new Fish("Salmon", "Could be delicious if cooked.", 30, Rarity.Uncommon),
+                new Fish("Tuna", "Tuna, so tasty.",40, Rarity.Uncommon),
+                new Fish("Crayfish", $"Crusty Crayfish, not so easy to catch.", 45, Rarity.Rare),
             };
         }
 

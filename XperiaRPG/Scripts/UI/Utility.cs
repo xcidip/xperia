@@ -121,6 +121,18 @@ namespace XperiaRPG.Scripts.UI
     public static class GlobalVariables
     {
         public static int Columns { get; set; }
+        
+        private static int invSize;
+        public static int InvSize
+        {
+            get { return invSize; }
+            set
+            {
+                invSize = value;
+                InvWarning = (int)Math.Round(invSize * 0.90);
+            }
+        }
+        public static int InvWarning { get; set; }
     }
 
 }

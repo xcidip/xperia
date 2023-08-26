@@ -18,10 +18,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         
         public Alchemy()
         {
-            MaterialItemList = new MaterialItemList();
-            HerbItemList = new HerbItemList();
-            PotionItemList = new PotionItemList();
-            RecipeList = new AlchemyRecipeList(MaterialItemList, HerbItemList, PotionItemList);
+            RecipeList = new AlchemyRecipeList();
         }
 
     }
@@ -33,16 +30,16 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         {
             List = new List<Item>
             {
-                new Herb(1,"Peacebloom","the most common herb there is",2),
-                new Herb(1,"Goldthorn","ouch stingy",5),
-                new Herb(1,"Sungrass","grass but shinier name", 10),
+                new Herb("Peacebloom","the most common herb there is",2, Rarity.Common),
+                new Herb("Goldthorn","ouch stingy",5, Rarity.Common),
+                new Herb("Sungrass","grass but shinier name", 10, Rarity.Uncommon),
             };
         }
     }
     public class Herb : Item
     {
-        public Herb(int quantity, string name, string description, int price)
-            : base(quantity, name, description, price)
+        public Herb(string name, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
+            : base(name, description, price, colors)
         {
 
         }
@@ -59,32 +56,39 @@ namespace XperiaRPG.Scripts.Skills.Crafting
     
     public class AlchemyRecipeList : RecipeList
     {
-        public AlchemyRecipeList(MaterialItemList materialItemList, HerbItemList herbItemList, PotionItemList potionItemList)
+        MaterialItemList MaterialItemList;
+        HerbItemList HerbItemList;
+        PotionItemList PotionItemList;
+        public AlchemyRecipeList()
         {
+            MaterialItemList = new MaterialItemList();
+            HerbItemList = new HerbItemList();
+            PotionItemList = new PotionItemList();
+
             List = new List<Recipe>
             {
-                new Recipe(potionItemList.Lookup("Small HP potion"),
+                new Recipe(PotionItemList.Lookup("Small HP potion"),
                     0,
-                    new List<Item>
+                    new List<ItemStack>
                     {
-                        materialItemList.Lookup("Flask"),
-                        herbItemList.Lookup("Peacebloom"),
+                        new ItemStack(1,MaterialItemList.Lookup("Flask")),
+                        new ItemStack(1,HerbItemList.Lookup("Peacebloom")),
                     }),
 
-                new Recipe(potionItemList.Lookup("Medium HP potion"),
+                new Recipe(PotionItemList.Lookup("Medium HP potion"),
                     10,
-                    new List<Item>
+                    new List<ItemStack>
                     {
-                        materialItemList.Lookup("Flask"),
-                        herbItemList.Lookup("Goldthorn"),
+                        new ItemStack(1,MaterialItemList.Lookup("Flask")),
+                        new ItemStack(1,HerbItemList.Lookup("Goldthorn")),
                     }),
 
-                new Recipe(potionItemList.Lookup("Large HP potion"),
+                new Recipe(PotionItemList.Lookup("Large HP potion"),
                     0,
-                    new List<Item>
+                    new List<ItemStack>
                     {
-                        materialItemList.Lookup("Flask"),
-                        herbItemList.Lookup("Sungrass"),
+                        new ItemStack(1,MaterialItemList.Lookup("Flask")),
+                        new ItemStack(1,HerbItemList.Lookup("Sungrass")),
                     }),
             };
         }
