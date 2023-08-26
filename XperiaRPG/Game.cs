@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.CharacterCreation;
@@ -81,6 +82,10 @@ namespace XperiaRPG
             player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
             player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
             player.Inventory.AddItem(materialItemList.Lookup("Linen cloth"));
+
+
+            var npcList = new NpcList();
+            var npc = npcList.Lookup("Norwyn");
 
 
             player.Action();
