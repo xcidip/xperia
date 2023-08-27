@@ -76,7 +76,7 @@ namespace XperiaRPG.Scripts.UI
 
             while (true)
             {
-                Console.Write("Please enter (y/n) or ENTER:");
+                Console.Write("Please enter (y/n) or ENTER for y:");
                 var input = Console.ReadLine();
 
                 if (string.IsNullOrEmpty(input))  // Check if the input is empty (Enter was pressed)

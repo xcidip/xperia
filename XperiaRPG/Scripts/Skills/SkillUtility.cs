@@ -111,7 +111,7 @@ namespace XperiaRPG.Scripts.Skills
                 Console.Write(format,
                     recipe.Name); //0
                 Console.Write("- ");
-                var itemsNeeded = recipe.List.Aggregate("", (current, item) => current + /*$"{item.Quantity}x*/ item.Name );
+                var itemsNeeded = recipe.List.Aggregate("", (current, item) => current + $"{item.Quantity}x {item.Name} ");
                 Console.Write($"{itemsNeeded,-23}");
                 i++;
                 if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;

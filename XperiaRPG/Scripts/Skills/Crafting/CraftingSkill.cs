@@ -1,28 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
-using XperiaRPG.Scripts.Skills.Crafting;
 using XperiaRPG.Scripts.UI;
 
-namespace XperiaRPG.Scripts.Skills
+namespace XperiaRPG.Scripts.Skills.Crafting
 {
     public abstract class CraftingSkill
     {
         public RecipeList RecipeList { get; protected set; }
-        public MaterialItemList MaterialItemList { get; protected set; }
-        public FoodItemList FoodItemList { get; protected set; }
-        public FishItemList FishItemList { get; protected set; }
-        public HerbItemList HerbItemList { get; protected set; }
-        public PotionItemList PotionItemList { get; protected set; }
-        public ArmorItemList ArmorItemList { get; protected set; }
-
-        protected CraftingSkill()
-        {
-        }
 
         public void Craft(Recipe recipe, Inventory inv)
         {
@@ -30,17 +16,19 @@ namespace XperiaRPG.Scripts.Skills
             foreach (var stack in recipe.List) // check each stack
             {
                 // count how many of that item is in the inventory
-                var itemNum = 0;
-                foreach (var item in inv.List) // check for each item occurence
-                {
-                    if (item.Name == stack.Name && item.Name != null) itemNum++;
-                }
+                var itemNum = inv.List.Count(item => item.Name == stack.Name && item.Name != null);
 
                 // if you dont have the required item in your inventory at all
-                if (itemNum == 0) { Console.WriteLine($"You dont have: {stack.Name}"); return; }
+                if (itemNum == 0)
+                {
+                    Console.WriteLine($"You don't have: {stack.Name}"); 
+                    Choice.PressEnter();
+                    return;
+                }
 
                 // if there is more in the recipe than in inventory
-                if (stack.Quantity > itemNum) { Console.WriteLine($"You need {stack.Quantity - itemNum} of {stack.Name}"); return; }
+                if (stack.Quantity <= itemNum) continue;
+                Console.WriteLine($"You need {stack.Quantity - itemNum} of {stack.Name}"); return;
             }
 
             // remove items from inv
@@ -53,7 +41,7 @@ namespace XperiaRPG.Scripts.Skills
             }
 
             // add result
-            inv.AddItem(new ItemStack(1, recipe.Result));
+            inv.AddItemStack(new ItemStack(1, recipe.Result));
 
 
             Choice.PressEnter();
@@ -66,9 +54,6 @@ namespace XperiaRPG.Scripts.Skills
             Craft(RecipeList.List[choice - 1], inv);
         }
 
-        public void Print()
-        {
-            SkillUtils.PrintCraftingMenu("Cooking", 50, "{0,-20}", RecipeList);
-        }
+        public abstract void Print();
     }
 }

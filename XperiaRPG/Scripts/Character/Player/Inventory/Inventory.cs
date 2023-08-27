@@ -15,25 +15,20 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
             List = new List<Item>();
         }
 
-        // ReSharper disable once MemberCanBePrivate.Global
-        public void AddItem(ItemStack itemStack)
+        public void AddItem(Item item)
         {
-            if (List.Count != 0)
+            if (InventoryUtils.FullCheck(List.Count)) return;
+            List.Add(item);
+            Console.WriteLine($"{item.Name} added to inventory");
+        }
+        public void AddItemStack(ItemStack itemStack)
+        {
+            
+            for (var i = 0; i < itemStack.Quantity; i++)
             {
-                if (List.Count >= GlobalVariables.InvWarning) // if 90% full say almost full
-                {
-                    if (List.Count >= GlobalVariables.InvSize) // if full dont add more
-                    {
-                        Console.WriteLine("Inventory full!");
-                        Choice.PressEnter();
-                        return;
-                    }
-                    Console.WriteLine("Inventory almost full");
-                    Console.WriteLine($"You have {GlobalVariables.InvSize - List.Count} slots empty");
-                    Choice.PressEnter();
-                }
+                if (InventoryUtils.FullCheck(List.Count)) return;
+                List.Add(itemStack.Item);
             }
-            for (int i = 0; i < itemStack.Quantity; i++) List.Add(itemStack.Item);
             Console.WriteLine($"{itemStack.Quantity}x {itemStack.Name} added to inventory");
         }
 
@@ -44,7 +39,7 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
             switch (choice)
             {
                 case 'y':
-                    AddItem(itemStack);
+                    AddItemStack(itemStack);
                     break;
                 case 'n':
                     Console.WriteLine($"You left {itemStack.Name} on the ground.");
@@ -59,6 +54,7 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
 
         public void Print()
         {
+            List.Sort((obj1, obj2) => string.CompareOrdinal(obj1.Name, obj2.Name));
             InventoryUtils.PrintInventory(List, 42, " {0,-36}");
         }
 

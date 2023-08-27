@@ -9,6 +9,29 @@ namespace XperiaRPG.Scripts.UI
 {
     public static class InventoryUtils
     {
+        public static void ItemExamine(Item item)
+        {
+            Console.Clear();
+            item.Examine();
+            Choice.PressEnter();
+        }
+
+        public static bool FullCheck(int itemCount)
+        {
+            if (itemCount == 0) return false;
+            if (itemCount < GlobalVariables.InvWarning) return false; // if 90% full say almost full
+            if (itemCount >= GlobalVariables.InvSize) // if full dont add more
+            {
+                Console.WriteLine("Inventory full!");
+                Choice.PressEnter();
+                return true;
+            }
+            Console.WriteLine("Inventory almost full");
+            Console.WriteLine($"You have {GlobalVariables.InvSize - itemCount} slots empty");
+            Choice.PressEnter();
+            return false;
+        }
+
         public static void PrintInventoryHeader(int lengthOfColumn, int numOfItems, int inventorySize)
         {
             Utility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
@@ -38,7 +61,15 @@ namespace XperiaRPG.Scripts.UI
             foreach (var item in itemList)
             {
                 Console.Write($"{"| (" + (i + 1) + ")",-6}");
-                //Console.Write(format,                    item.Name + " " + item.Quantity + "x"); //0
+
+                // Set foreground and background colors
+                Console.ForegroundColor = item.ForeColor;
+                Console.BackgroundColor = item.BackColor;
+
+                Console.Write(format, item.Name); //0
+
+                // Reset console colors to default
+                Console.ResetColor();
 
                 i++;
                 if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;
@@ -58,12 +89,5 @@ namespace XperiaRPG.Scripts.UI
             Utility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
         }
 
-        public static void ItemExamine(Item item)
-        {
-            Console.Clear();
-            item.Examine();
-            Choice.PressEnter();
-        }
-        
     }
 }

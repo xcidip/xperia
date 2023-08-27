@@ -69,7 +69,7 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
             var skillList = player.Skills;
             const bool addRemove = false;
             if (!_gear.TryGetValue(gearSlot, out var armorItem)) return; // if not present return;
-            if (armorItem != null) inventory.AddItem(new ItemStack(1,armorItem)); // if present put back to inventory
+            if (armorItem != null) inventory.AddItemStack(new ItemStack(1,armorItem)); // if present put back to inventory
             _gear.Remove(gearSlot);
             AddBonus(addRemove, armorItem, statList, skillList);
             Console.WriteLine($"Unequipped item from {gearSlot} slot");

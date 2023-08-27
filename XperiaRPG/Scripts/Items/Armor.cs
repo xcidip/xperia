@@ -63,18 +63,18 @@ namespace XperiaRPG.Scripts.Items
                         new AttributeBonus("Intellect", 3, "points"),
                         new AttributeBonus("Defense", 2, "points"),
                         new AttributeBonus("Agility", 1, "points")
-                    },Rarity.Common),
+                    },Rarity.Uncommon),
                 new Armor(0, GearSlot.Legs, "Cloth", "Wizard's Skirt",200, "Belonged to an old wizard once",
                     new List<AttributeBonus>() {
                         new AttributeBonus("Intellect", 2, "points"),
                         new AttributeBonus("Defense", 4, "points"),
                         new AttributeBonus("Agility", 2, "points")
-                    }, Rarity.Common),
+                    }, Rarity.Uncommon),
                 new Armor(0, GearSlot.Head, "Cloth", "Wizard's Hat",200, "Belonged to an old wizard once",
                     new List<AttributeBonus>() {
                         new AttributeBonus("Defense", 3, "points"),
                         new AttributeBonus("Intellect", 4, "points")
-                    }, Rarity.Common),
+                    }, Rarity.Uncommon),
             };
         }
     }

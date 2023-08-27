@@ -20,7 +20,10 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         {
             RecipeList = new TailoringRecipeList();
         }
-
+        public override void Print()
+        {
+            SkillUtils.PrintCraftingMenu("Tailoring", 50, "{0,-20}", RecipeList);
+        }
     }
 
     public class TailoringRecipeList : RecipeList

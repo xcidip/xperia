@@ -50,7 +50,7 @@ namespace XperiaRPG.Scripts.Skills
                     {
                         var caughtFish = pond.List[random.Next(pond.List.Count)];
                         Console.WriteLine($"Good job, you caught {caughtFish.Name}");
-                        inventory.AddItem(new ItemStack(1,caughtFish));
+                        inventory.AddItemStack(new ItemStack(1,caughtFish));
                     }
                     else
                     {

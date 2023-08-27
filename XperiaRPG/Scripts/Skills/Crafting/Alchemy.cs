@@ -20,7 +20,10 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         {
             RecipeList = new AlchemyRecipeList();
         }
-
+        public override void Print()
+        {
+            SkillUtils.PrintCraftingMenu("Alchemy", 50, "{0,-20}", RecipeList);
+        }
     }
 
 

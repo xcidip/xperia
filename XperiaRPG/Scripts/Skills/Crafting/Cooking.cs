@@ -6,6 +6,7 @@ using System.Text;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Skills.Crafting;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Skills
@@ -21,7 +22,12 @@ namespace XperiaRPG.Scripts.Skills
         public Cooking()
         {
             RecipeList = new CookingRecipeList();
-        }        
+        }
+
+        public override void Print()
+        {
+            SkillUtils.PrintCraftingMenu("Cooking", 50, "{0,-20}", RecipeList);
+        }
     }
 
     
