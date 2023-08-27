@@ -59,6 +59,7 @@
     <Compile Include="Scripts\Character\Player\CharacterCreation\Profession.cs" />
     <Compile Include="Scripts\Character\Player\CharacterCreation\Race.cs" />
     <Compile Include="Scripts\Character\Player\CharacterCreation\SexOrientation.cs" />
+    <Compile Include="Scripts\Character\Player\Inventory\CurrencyBag.cs" />
     <Compile Include="Scripts\Character\Player\Inventory\Gear.cs" />
     <Compile Include="Scripts\Character\Player\Inventory\Inventory.cs" />
     <Compile Include="Scripts\Character\Player\Player.cs" />

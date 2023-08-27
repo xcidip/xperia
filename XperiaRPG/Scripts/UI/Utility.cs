@@ -133,6 +133,10 @@ namespace XperiaRPG.Scripts.UI
             }
         }
         public static int InvWarning { get; set; }
+
+
+        public static CurrencyBag CurrencyBag;
+
     }
 
 }

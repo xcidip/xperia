@@ -8,12 +8,7 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
 {
     public class Inventory
     {
-        public readonly List<Item> List;
-
-        public Inventory()
-        {
-            List = new List<Item>();
-        }
+        public readonly List<Item> List = new List<Item>();
 
         public void AddItem(Item item)
         {

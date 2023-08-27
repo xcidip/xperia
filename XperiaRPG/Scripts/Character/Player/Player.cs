@@ -18,6 +18,7 @@ namespace XperiaRPG.Scripts.Character.Player
         public Attributes.Skills Skills { get; set; }
         public Inventory.Inventory Inventory { get; set; }
         public Gear Gear { get; set; }
+        public CurrencyBag CurrencyBag { get; set; }
         
 
         
@@ -172,6 +173,9 @@ namespace XperiaRPG.Scripts.Character.Player
 
             // Weapons and Armor Inventory
             Gear = new Gear();
+
+            // Currency Bag
+            CurrencyBag = new CurrencyBag();
         }
 
         public void Action()
