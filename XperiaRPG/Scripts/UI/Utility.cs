@@ -122,14 +122,18 @@ namespace XperiaRPG.Scripts.UI
     {
         public static int Columns { get; set; }
         
-        private static int invSize;
+        private static int _invSize;
         public static int InvSize
         {
-            get { return invSize; }
+            get { return _invSize; }
             set
             {
-                invSize = value;
-                InvWarning = (int)Math.Round(invSize * 0.90);
+                if (value > 100)
+                {
+                    _invSize = 99;
+                }
+                _invSize = value;
+                InvWarning = (int)Math.Round(_invSize * 0.90);
             }
         }
         public static int InvWarning { get; set; }
