@@ -55,7 +55,7 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         public void Print()
         {
             List.Sort((obj1, obj2) => string.CompareOrdinal(obj1.Name, obj2.Name));
-            InventoryUtils.PrintInventory(List, 42, " {0,-36}");
+            InventoryUtils.PrintInventory(List, 42);
         }
 
         public Item Lookup(string name)

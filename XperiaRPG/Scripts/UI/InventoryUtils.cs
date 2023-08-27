@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,55 +40,106 @@ namespace XperiaRPG.Scripts.UI
             Console.WriteLine($"INVENTORY {numOfItems + "/" + inventorySize}");
         }
 
-        public static void PrintInventory(IEnumerable<Item> list, int lengthOfColumn, string format)
+        public static void PrintColored(string format, Item item)
         {
-            var itemList = list.ToList();
-            var numOfItems = itemList.Count();
+            // Set foreground and background colors
+            Console.ForegroundColor = item.ForeColor;
+            Console.BackgroundColor = item.BackColor;
+
+            Console.Write(format, item.Name); //0
+
+            // Reset console colors to default
+            Console.ResetColor();
+        }
+
+        public static void PrintInventory(IEnumerable<Item> list, int lengthOfColumn)
+        {
+            var itemNameList = list.ToList();
+            var numOfItems = itemNameList.Count();
 
             if (numOfItems == 0)
             {
                 Console.WriteLine(
                     "+-INVENTORY---------------------+\n" +
                     "|      Empty like my soul       |\n" +
-                    "+-------------------------------+"
-                );
+                    "+-------------------------------+");
                 return;
             }
 
             PrintInventoryHeader(lengthOfColumn, numOfItems, 30);
 
+
             var i = 0;
+            var h = 0;
+            var stringPrinted = new HashSet<string>(); // Use HashSet to store the names of printed items
 
-            foreach (var item in itemList)
+            foreach (var item in itemNameList)
             {
-                Console.Write($"{"| (" + (i + 1) + ")",-6}");
-
-                // Set foreground and background colors
-                Console.ForegroundColor = item.ForeColor;
-                Console.BackgroundColor = item.BackColor;
-
-                Console.Write(format, item.Name); //0
-
-                // Reset console colors to default
-                Console.ResetColor();
-
-                i++;
-                if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;
-
-                var remainingItemsInRow = i % GlobalVariables.Columns;
-                var blankSpaces = remainingItemsInRow == 0 ? 0 : GlobalVariables.Columns - remainingItemsInRow;
-
-                // Print the blank spaces for the remaining items in the row
-                for (var j = 0; j < blankSpaces; j++)
+                if (stringPrinted.Contains(item.Name)) // if printed, skip one cycle
                 {
-                    Console.Write($"|{new string(' ', lengthOfColumn)}");
+                    continue;
                 }
 
-                Console.WriteLine("|");
+                var range = itemNameList.Count(s => s.Name == item.Name);
+
+                // Mark the item as printed
+                stringPrinted.Add(item.Name);
+
+                if (range > 1)
+                {
+                    if (i + range > 9)
+                    {
+                        if (i + range > 9 && i < 10)
+                        {
+                            Console.Write($"{"| (" + (i + 1) + "-" + (i + range) + ")",-8}");
+                            PrintColored(" {0,-34}", item);
+                        }
+                        else
+                        {
+                            Console.Write($"{"| (" + (i + 1) + "-" + (i + range) + ")",-9}");
+                            PrintColored(" {0,-33}", item);
+                        }
+                    }
+                    else
+                    {
+                        Console.Write($"{"| (" + (i + 1) + "-" + (i + range) + ")",-7}");
+                        PrintColored(" {0,-35}", item);
+                    }
+
+                    
+                    i += range -1;
+                }
+                else if (i > 9)
+                {
+                    Console.Write($"{"| (" + (i + 1) + ")",-6}");
+                    PrintColored(" {0,-36}", item);
+                }
+                else
+                {
+                    Console.Write($"{"| (" + (i + 1) + ")",-5}");
+                    PrintColored(" {0,-37}", item);
+                }
+                i++;
+                h++;
+
+
+                if (h % GlobalVariables.Columns == 0)
+                {
+                    Console.Write("|\n");
+                }
             }
 
+
+            do
+            {
+                Console.Write($"|{new string(' ', lengthOfColumn)}");
+                h++;
+            } while (h % GlobalVariables.Columns != 0);
+
+            Console.WriteLine("|");
+
             Utility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
-        }
+            }
 
     }
 }
