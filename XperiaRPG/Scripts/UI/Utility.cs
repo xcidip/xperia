@@ -2,14 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
-using XperiaRPG.Scripts.Attributes;
-using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
-using XperiaRPG.Scripts.CharacterCreation;
-using XperiaRPG.Scripts.Items;
-using XperiaRPG.Scripts.Skills;
 using Attribute = XperiaRPG.Scripts.Attributes.Attribute;
 using Console = System.Console;
 
@@ -125,7 +119,7 @@ namespace XperiaRPG.Scripts.UI
         private static int _invSize;
         public static int InvSize
         {
-            get { return _invSize; }
+            get => _invSize;
             set
             {
                 if (value > 100)
