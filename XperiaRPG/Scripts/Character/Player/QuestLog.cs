@@ -16,6 +16,8 @@ namespace XperiaRPG.Scripts.Character.Player
             List = new List<Quest>
             {
                 new Quest {}
+                // quest ideas: 
+                // recieve a sword and kill a boss with it, remove sword after completing
             };
         }
     }

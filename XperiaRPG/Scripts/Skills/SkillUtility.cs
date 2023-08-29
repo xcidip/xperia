@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
 
@@ -130,5 +132,35 @@ namespace XperiaRPG.Scripts.Skills
             Utility.PrintBorder(GlobalVariables.Columns,lengthOfColumn);
         }
 
+    }
+
+    public static class Traveling
+    {
+        public static void Travel(int seconds)
+        {
+            Console.Clear();
+            for (var i = 0; i < seconds*2; i++)
+            {
+                Console.WriteLine($"Travel time {i/2}/{seconds} seconds");
+                //Console.SetCursorPosition(0, Console.CursorTop);
+                Console.SetCursorPosition(Console.CursorLeft + i, Console.CursorTop);
+                Console.WriteLine("   __o ");
+                Console.SetCursorPosition(Console.CursorLeft + i, Console.CursorTop);
+                Console.WriteLine(" _ \\<_ ");
+                Console.SetCursorPosition(Console.CursorLeft + i, Console.CursorTop);
+                Console.WriteLine("(_)/(_)");
+
+                Console.Write("-------");
+                for (var j = 0; j < seconds*2; j++)
+                {
+                    Console.Write("-");
+                }
+                Console.Write("finish");
+
+                Thread.Sleep(500);
+                
+                Console.Clear();
+            }
+        }
     }
 }

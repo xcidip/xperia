@@ -70,7 +70,7 @@ namespace XperiaRPG
             // create player
             var player = new Player(characterInfo);
 
-            
+            Traveling.Travel(10);
 
             #region Fishing
             
