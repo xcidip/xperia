@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
+using XperiaRPG.Assets.Sprites;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
@@ -41,6 +43,18 @@ namespace XperiaRPG.Scripts.Skills.Crafting
             }
 
             // add result
+
+            // crafting animation
+            var craftSprite = new SkillSprites().CraftingHammer;
+            Console.WriteLine("\n" + craftSprite + "\n");
+            Console.WriteLine("Crafting: 3s");
+            for (int i = 1; i < 45; i++)
+            {
+                Console.Write(".");
+                Thread.Sleep(66);
+            }
+            Console.Write("\n");
+
             inv.AddItemStack(new ItemStack(1, recipe.Result));
 
 

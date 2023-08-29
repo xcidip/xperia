@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using XperiaRPG.Assets.Sprites;
 using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
@@ -14,6 +16,7 @@ namespace XperiaRPG
     {
         public static void Main()
         {
+            #region Disclaimer
             Console.WriteLine($"Hey, {Environment.UserName}");
             Console.WriteLine("Make the game fullscreen please");
             Console.WriteLine("US keyboard layout recommended");
@@ -23,15 +26,20 @@ namespace XperiaRPG
             //GlobalVariables.Columns = Choice.NumberRangeValidation(1, 7);
             GlobalVariables.Columns = 4;
             Choice.PressEnter();
+            #endregion
 
+            #region Global variables...
             GlobalVariables.InvSize = 30;
             PlayerSetting[] characterInfo = null;
+            #endregion
+
+            #region MainMenu
 
             /* for final build
             MainMenu.Welcome(200); // Welcoming animation
             var choice = Choice.NumberRangeValidation(1, 3);
 
-            
+
 
             switch (choice)
             {
@@ -44,6 +52,8 @@ namespace XperiaRPG
                     break;
             }
             */
+
+            #endregion
 
             #region Demo Character (not creating it everytime XD)
             ///*
@@ -76,15 +86,39 @@ namespace XperiaRPG
 
             #endregion
 
-
+            #region crafting test
             // tailoring crafting test
             var materialItemList = new MaterialItemList();
             player.Inventory.AddItemStack(new ItemStack(4, materialItemList.Lookup("Linen cloth")));
 
 
+            #endregion
+
+            
+
+
+            Choice.PressEnter();
+
             var npcList = new NpcList();
             var npc = npcList.Lookup("Norwyn");
+            
+            npc.Talk();
+            /*
+            // Display NPC's current dialog text
+            Console.WriteLine(npc.DialogTree.Text);
 
+            // Display player response options
+            for (int i = 0; i < npc.DialogTree.Responses.Count; i++)
+            {
+                Console.WriteLine($"({i + 1}) {npc.DialogTree.Responses[i].Text}");
+            }
+
+            // Get player's choice
+            int choice = Choice.NumberRangeValidation(1, npc.DialogTree.Responses.Count);
+
+            // Update currentNPC based on player choice
+            npc.DialogTree = npc.DialogTree.Responses[choice - 1];
+            */            
 
             player.Action();
 
@@ -98,11 +132,11 @@ namespace XperiaRPG
                 (Fish)fishItemList.Lookup("Trout")
             });
 
-            Fishing.Start(pond, player.Inventory);
+            //Fishing.Start(pond, player.Inventory);
             
             #endregion  
 
-            //Console.ReadLine();
+            Console.ReadLine();
 
         }
     }

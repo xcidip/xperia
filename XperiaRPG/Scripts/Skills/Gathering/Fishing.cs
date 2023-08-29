@@ -75,7 +75,7 @@ namespace XperiaRPG.Scripts.Skills
 
         public static void Print()
         {
-            var fishingSprite = new FishingSprite();
+            var fishingSprite = new SkillSprites();
             Console.WriteLine(fishingSprite.FishingManOnBoat);
         }
     }

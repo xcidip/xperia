@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Character.NPC
 {
@@ -24,12 +26,53 @@ namespace XperiaRPG.Scripts.Character.NPC
 
         public Npc(string name,DialogNode dialogTree)
         {
+            Name = name;
             DialogTree = dialogTree;
         }
 
         public void Talk()
         {
-            Console.WriteLine(DialogTree.Text);
+            while (true)
+            {
+                // if DialogTree used instead it would break the npc
+                var dialogTree = DialogTree;
+
+                while (true)
+                {
+                    Console.Clear();
+
+                    // if badly programmed
+                    if (dialogTree.Responses == null)
+                    {
+                        Console.WriteLine("Badly written dialog - bugged");
+                        Choice.PressEnter();
+                        break;
+                    }
+
+                    // display the option you picked
+                    Console.WriteLine("{0}\n", dialogTree.Text);
+
+                    //display the responses
+                    for (var i = 0; i < dialogTree.Responses.Count; i++) Console.WriteLine($"({i + 1}) {dialogTree.Responses[i].Text}");
+
+                    if (dialogTree.Responses.Count == 1) break;
+
+
+                    // Get player's choice
+                    var choice = Choice.NumberRangeValidation(1, dialogTree.Responses.Count);
+
+                    // Update currentNPC based on player choice
+                    dialogTree = dialogTree.Responses[choice - 1];
+                }
+
+                Console.WriteLine("\ntalk again?");
+
+
+                var talkAgain = Choice.YesNoValidation();
+                if (talkAgain == 'n') return;
+
+
+            }
         }
     }
     public class NpcList
@@ -51,9 +94,9 @@ namespace XperiaRPG.Scripts.Character.NPC
                             {
                                 new DialogNode
                                 {
-                                    Text = "Well, this place is just an ordinary island with few things going on\n" +
-                                    "you can learn skills to start your journey on the planet xperia and basic things" +
-                                    "like killing enemies and crafting your first weapon and armor",
+                                    Text = "\tWell, this place is just an ordinary island with few things going on\n" +
+                                    "\tyou can learn skills to start your journey on the planet xperia and basic things\n" +
+                                    "\tlike killing enemies and crafting your first weapon and armor",
                                 }
                             }
                         },
@@ -74,7 +117,8 @@ namespace XperiaRPG.Scripts.Character.NPC
                             Text = "Goodbye!"
                         },
                     },
-                }),
+                }
+                ),
 
 
                 

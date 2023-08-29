@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using Attribute = XperiaRPG.Scripts.Attributes.Attribute;
@@ -112,6 +113,7 @@ namespace XperiaRPG.Scripts.UI
 
         
     }
+
     public static class GlobalVariables
     {
         public static int Columns { get; set; }

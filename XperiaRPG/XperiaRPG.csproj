@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Sprites\FishingSprite.cs" />
+    <Compile Include="Assets\Sprites\SkillSprites.cs" />
     <Compile Include="Assets\Sprites\WelcomeSprite.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,7 +71,7 @@
     <Compile Include="Scripts\Items\Weapon.cs" />
     <Compile Include="Scripts\Skills\Crafting\Alchemy.cs" />
     <Compile Include="Scripts\Skills\Crafting\Cooking.cs" />
-    <Compile Include="Scripts\Skills\Crafting\CraftingSkill.cs" />
+    <Compile Include="Scripts\Skills\Crafting\Crafting.cs" />
     <Compile Include="Scripts\Skills\Crafting\Tailoring.cs" />
     <Compile Include="Scripts\Skills\Gathering\Fishing.cs" />
     <Compile Include="Scripts\Skills\Material.cs" />
