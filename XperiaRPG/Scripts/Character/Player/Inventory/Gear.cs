@@ -21,13 +21,8 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
 
     public class Gear
     {
-        private readonly Dictionary<GearSlot, Item> _gear;
+        private readonly Dictionary<GearSlot, Item> _gear = new Dictionary<GearSlot, Item>();
 
-
-        public Gear()
-        {
-            _gear = new Dictionary<GearSlot, Item>();
-        }
 
         public void Equip(Item item, Player player)
         {
@@ -117,7 +112,10 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
                 Console.Write($"| {slot,-10} | ");
                 if (_gear.TryGetValue(slot, out var item))
                 {
-                    Console.Write($"{item?.Name,-28}| ");
+                    // item name
+                    InventoryUtils.PrintColored("{0,-28}",item);
+                    Console.Write("| ");
+
                     string bonuses = null;
                     if (item != null)
                         foreach (var bonus in item.AttributeBonusList)

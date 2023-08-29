@@ -70,10 +70,11 @@ namespace XperiaRPG
             // create player
             var player = new Player(characterInfo);
 
-            Traveling.Travel(10);
-
+            #region Travel test
+            //Traveling.Travel(10);
+            #endregion
             #region Fishing
-            
+
             var fishItemList = new FishItemList();
 
             var pond = new Pond(0, new List<Fish>

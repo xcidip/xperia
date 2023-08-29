@@ -71,7 +71,7 @@ namespace XperiaRPG.Scripts.UI
 
             var i = 0;
             var h = 0;
-            var stringPrinted = new HashSet<string>(); // Use HashSet to store the names of printed items
+            var stringPrinted = new HashSet<string>(); // Use HashSet to store the names of printed items (Hashset list of uniques)
 
             foreach (var item in itemNameList)
             {
