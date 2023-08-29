@@ -70,6 +70,36 @@ namespace XperiaRPG
             // create player
             var player = new Player(characterInfo);
 
+            
+
+            #region Fishing
+            
+            var fishItemList = new FishItemList();
+
+            var pond = new Pond(0, new List<Fish>
+            {
+                (Fish)fishItemList.Lookup("Shrimp"),
+                (Fish)fishItemList.Lookup("Trout")
+            });
+
+            //Fishing.Start(pond, player.Inventory);
+
+            #endregion
+            #region NPC test
+            /*
+            var npcList = new NpcList();
+            var npc = npcList.Lookup("Norwyn");
+
+            npc.Talk();
+            */
+            #endregion
+            #region crafting test
+            // tailoring crafting test
+            var materialItemList = new MaterialItemList();
+            player.Inventory.AddItemStack(new ItemStack(4, materialItemList.Lookup("Linen cloth")));
+
+
+            #endregion
             #region Inventory item management test
             var armorDatabase = new ArmorItemList();
             player.Inventory.AddItem(armorDatabase.Lookup("Wizard's Coat"));
@@ -86,55 +116,7 @@ namespace XperiaRPG
 
             #endregion
 
-            #region crafting test
-            // tailoring crafting test
-            var materialItemList = new MaterialItemList();
-            player.Inventory.AddItemStack(new ItemStack(4, materialItemList.Lookup("Linen cloth")));
-
-
-            #endregion
-
-            
-
-
-            Choice.PressEnter();
-
-            var npcList = new NpcList();
-            var npc = npcList.Lookup("Norwyn");
-            
-            npc.Talk();
-            /*
-            // Display NPC's current dialog text
-            Console.WriteLine(npc.DialogTree.Text);
-
-            // Display player response options
-            for (int i = 0; i < npc.DialogTree.Responses.Count; i++)
-            {
-                Console.WriteLine($"({i + 1}) {npc.DialogTree.Responses[i].Text}");
-            }
-
-            // Get player's choice
-            int choice = Choice.NumberRangeValidation(1, npc.DialogTree.Responses.Count);
-
-            // Update currentNPC based on player choice
-            npc.DialogTree = npc.DialogTree.Responses[choice - 1];
-            */            
-
             player.Action();
-
-            #region Fishing
-            
-            var fishItemList = new FishItemList();
-
-            var pond = new Pond(0, new List<Fish>
-            {
-                (Fish)fishItemList.Lookup("Shrimp"),
-                (Fish)fishItemList.Lookup("Trout")
-            });
-
-            //Fishing.Start(pond, player.Inventory);
-            
-            #endregion  
 
             Console.ReadLine();
 

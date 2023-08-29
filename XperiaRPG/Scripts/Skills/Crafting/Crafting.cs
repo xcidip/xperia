@@ -42,19 +42,20 @@ namespace XperiaRPG.Scripts.Skills.Crafting
                 }
             }
 
-            // add result
+            
 
             // crafting animation
             var craftSprite = new SkillSprites().CraftingHammer;
             Console.WriteLine("\n" + craftSprite + "\n");
             Console.WriteLine("Crafting: 3s");
-            for (int i = 1; i < 45; i++)
+            for (var i = 1; i < 45; i++)
             {
                 Console.Write(".");
                 Thread.Sleep(66);
             }
             Console.Write("\n");
-
+                
+            // add result
             inv.AddItemStack(new ItemStack(1, recipe.Result));
 
 

@@ -54,6 +54,28 @@ namespace XperiaRPG.Scripts.Items
         }
     }
 
+    public class Book : Item
+    {
+        public Book(string name, string description, int price,
+            (ConsoleColor Foreground, ConsoleColor Background) colors)
+            : base(name, description, price, colors)
+        {
+
+        }
+
+        public override void Use()
+        {
+
+        }
+
+        public override void Examine()
+        {
+            //todo read the inside of the book
+            Console.WriteLine(Description);
+            Choice.PressEnter();
+        }
+    }
+
     public abstract class ItemList
     {
         protected List<Item> List { get; set; } = new List<Item>();
@@ -113,7 +135,7 @@ namespace XperiaRPG.Scripts.Items
                                           "(2) Examine\n" +
                                           "(3) Remove from inventory\n" +
                                           "(4) Leave this menu");
-                        var whatToDo = Choice.NumberRangeValidation(1, 3);
+                        var whatToDo = Choice.NumberRangeValidation(1, 4);
                         switch (whatToDo)
                         {
                             case 1:
