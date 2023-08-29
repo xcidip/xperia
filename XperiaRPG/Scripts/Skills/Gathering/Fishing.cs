@@ -44,23 +44,20 @@ namespace XperiaRPG.Scripts.Skills
                 Console.ReadKey();  // eat the key
 
                 // if the fish was under the hook
-                if (i > 24 && i < 27)
+                if (i <= 24 || i >= 27) continue;
+                if (random.Next(1,3) == 1) // 33% chance to catch a fish
                 {
-                    if (random.Next(1,3) == 1)
-                    {
-                        var caughtFish = pond.List[random.Next(pond.List.Count)];
-                        Console.WriteLine($"Good job, you caught {caughtFish.Name}");
-                        inventory.AddItemStack(new ItemStack(1,caughtFish));
-                    }
-                    else
-                    {
-                        Console.WriteLine("Fish escaped :(");
-                    }
-                    Console.Write("Continue?: ");
-                    if (Choice.YesNoValidation() == 'n') return;
-
+                    var caughtFish = pond.List[random.Next(pond.List.Count)];
+                    Console.WriteLine($"Good job, you caught {caughtFish.Name}");
+                    inventory.AddItemStack(new ItemStack(1,caughtFish));
                 }
-                
+                else
+                {
+                    Console.WriteLine("Fish escaped :(");
+                }
+                Console.Write("Continue?: ");
+                if (Choice.YesNoValidation() == 'n') return;
+
             }
             
 

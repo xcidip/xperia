@@ -177,91 +177,37 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
                     "\n(8) Mount"
                 );
                 var choice2 = Choice.NumberRangeValidation(0, 8);
-                if (choice2 == 0) return; //exit
+                if (choice2 == 0) return; // Exit
 
-                // (3) choose what to do (1) unequip (2) Examine
-                Console.WriteLine("What to do? \n(0)EXIT \n(1)Unequip \n(2)Examine");
+                Console.WriteLine("What to do?\n(0) EXIT\n(1) Unequip\n(2) Examine");
                 var choice1 = Choice.NumberRangeValidation(0, 2);
-                if (choice1 == 0) return; //exit
+                if (choice1 == 0) return; // Exit
 
-
-                switch (choice2)
+                var gearSlotMappings = new Dictionary<int, GearSlot>
                 {
-                    case 1:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.Head, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.Head, player);
-                        break;
-                    case 2:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.Chest, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.Chest, player);
-                        break;
-                    case 3:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.Legs, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.Legs, player);
-                        break;
-                    case 4:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.MainHand, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.MainHand, player);
-                        break;
-                    case 5:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.OffHand, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.OffHand, player);
-                        break;
-                    case 6:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.Pickaxe, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.Pickaxe, player);
-                        break;
-                    case 7:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.FishingRod, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.FishingRod, player);
-                        break;
-                    case 8:
-                        if (choice1 == 2)
-                        {
-                            _gear.TryGetValue(GearSlot.Mount, out var item);
-                            InventoryUtils.ItemExamine(item);
-                            break;
-                        }
-                        UnequipArmor(GearSlot.Mount, player);
-                        break;
-                    default: break;
+                    { 1, GearSlot.Head },
+                    { 2, GearSlot.Chest },
+                    { 3, GearSlot.Legs },
+                    { 4, GearSlot.MainHand },
+                    { 5, GearSlot.OffHand },
+                    { 6, GearSlot.Pickaxe },
+                    { 7, GearSlot.FishingRod },
+                    { 8, GearSlot.Mount }
+                };
+
+                if (gearSlotMappings.TryGetValue(choice2, out var gearSlot))
+                {
+                    if (choice1 == 2)
+                    {
+                        _gear.TryGetValue(gearSlot, out var item);
+                        InventoryUtils.ItemExamine(item);
+                    }
+                    else
+                    {
+                        UnequipArmor(gearSlot, player);
+                    }
                 }
-                
+
                 Console.Clear();
             }
 
