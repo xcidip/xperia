@@ -33,6 +33,8 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         
         public TailoringRecipeList()
         {
+            MaterialItemList = new MaterialItemList();
+            ArmorItemList = new ArmorItemList();
             List = new List<Recipe>
             {
                 new Recipe(ArmorItemList.Lookup("Wizard's Coat"),
