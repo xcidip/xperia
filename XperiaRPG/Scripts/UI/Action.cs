@@ -34,6 +34,7 @@ namespace XperiaRPG.Scripts.UI
                 new Action("a", "Attributes"),
                 new Action("c", "Crafting"),
                 new Action("g", "Gear"),
+                new Action("q", "Quest Log"),
             };
         }
         public Action Lookup(string key)
@@ -51,6 +52,7 @@ namespace XperiaRPG.Scripts.UI
             var gear = player.Gear;
             var statList = player.Stats;
             var skillList = player.Skills;
+            var questLog = player.QuestLog;
 
             while (true)
             {
@@ -97,7 +99,12 @@ namespace XperiaRPG.Scripts.UI
                                 inventory.Print();
                                 cooking.WhatToCraft(inventory,skillList);
                                 break;
-                            // todo more professions
+                            case "Smithing":
+                                // todo
+                                break;
+                            case "Lthrworking":
+                                //todo
+                                break;
                             case "Alchemy":
                                 var alchemy = new Alchemy();
                                 alchemy.Print();
@@ -117,6 +124,16 @@ namespace XperiaRPG.Scripts.UI
                         Console.Clear();
                         gear.GearMenu(player);
                         Console.Clear();
+                        break;
+                    // quest log
+                    case "q":
+                        Console.Clear();
+                        player.QuestLog.Print(); // todo quest interaction
+
+                        // (1) see all started quest / finished and not delivered
+                        // (2) see all unstarted quests
+                        // (3) see all hidden quests (completed quests)
+                        Choice.PressEnter();
                         break;
                     // Interact with items
                     default:

@@ -20,7 +20,7 @@ namespace XperiaRPG.Scripts.Character.Player
         public Gear Gear { get; set; }
         public CurrencyBag CurrencyBag { get; set; }
         public BattleAttributeList BattleAttributes { get; set; }
-
+        public QuestLog QuestLog { get; set; }
         
         #endregion
         
@@ -170,6 +170,9 @@ namespace XperiaRPG.Scripts.Character.Player
             
             // Battle attributes like health, dmg reduction, etc..
             BattleAttributes = new BattleAttributeList(Stats);
+
+            // QuestLog
+            QuestLog = new QuestLog();
 
             // Inventory
             Inventory = new Inventory.Inventory();

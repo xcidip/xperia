@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Skills
@@ -75,7 +76,7 @@ namespace XperiaRPG.Scripts.Skills
     {
         public static void PrintMenuHeader(int columns,int lengthOfColumn, string header)
         {
-            Utility.PrintBorder(columns,lengthOfColumn);
+            BorderUtility.PrintBorder(columns,lengthOfColumn);
             Console.SetCursorPosition(5, Console.CursorTop - 1);
             Console.WriteLine($"{header.ToUpper()}");
         }
@@ -129,7 +130,7 @@ namespace XperiaRPG.Scripts.Skills
 
                 Console.WriteLine("|");
             }
-            Utility.PrintBorder(GlobalVariables.Columns,lengthOfColumn);
+            BorderUtility.PrintBorder(GlobalVariables.Columns,lengthOfColumn);
         }
 
     }

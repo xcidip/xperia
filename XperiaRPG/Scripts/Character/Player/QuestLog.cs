@@ -10,6 +10,7 @@ using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Characters;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Skills;
+using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Character.Player
 {
@@ -46,6 +47,42 @@ namespace XperiaRPG.Scripts.Character.Player
                 // receive a sword and kill a boss with it, remove sword after completing
             };
         }
+
+        public void StartQuest(string name)
+        {
+            var quest = List[List.FindIndex(a => a.Name == name)];
+            if (quest.State == "started" || quest.State == "finished")
+            {
+                Console.WriteLine("Quest already started!");
+                Choice.PressEnter();
+                return;
+            }
+
+            quest.State = "started";
+            Console.WriteLine($"Quest started: \"{name}\" !");
+        }
+        public bool IsQuestFinished(string name)
+        {
+            var quest = List[List.FindIndex(a => a.Name == name)];
+            return quest.State == "finished";
+        }
+        public void FinishQuest(string name)
+        {
+            List[List.FindIndex(a => a.Name == name)].State = "finished";
+        }
+        public void HideQuest(string name)
+        {
+            List[List.FindIndex(a => a.Name == name)].State = "hidden";
+        }
+        public Quest Lookup(string name)
+        {
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            return List.FirstOrDefault(a => a?.Name == name);
+        }
+        public void Print()
+        {
+            Utility.PrintQuestLog();
+        }
     }
 
     public class Quest
@@ -56,7 +93,7 @@ namespace XperiaRPG.Scripts.Character.Player
         public int RecommendedLevel { get; set; } // recommended level to complete the level
         public QuestDifficulty QuestDifficulty { get; set; } // easy(green)/medium(yellow)/hard(red)/insane(white black)
         // recommended level                                       -3          -2 - +2     +3 - +5          +6
-        public string State { get; set; } // finished, started, not taken, locked
+        public string State { get; set; } // finished, started, unstarted, hidden
         public string FromWho { get; set; } // whoToFind gave you the quest
         public string ToWho { get; set; } // whoToFind to go to to complete the quest
         public List<Objective> Objectives { get; set; } // list of things to do

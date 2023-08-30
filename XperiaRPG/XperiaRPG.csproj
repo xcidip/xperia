@@ -71,6 +71,7 @@
     <Compile Include="Scripts\Items\Potion.cs" />
     <Compile Include="Scripts\Items\Rarity.cs" />
     <Compile Include="Scripts\Items\Weapon.cs" />
+    <Compile Include="Scripts\Misc\GlobalVariables.cs" />
     <Compile Include="Scripts\Skills\Crafting\Alchemy.cs" />
     <Compile Include="Scripts\Skills\Crafting\Cooking.cs" />
     <Compile Include="Scripts\Skills\Crafting\Crafting.cs" />

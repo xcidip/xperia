@@ -7,6 +7,7 @@ using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.Skills;
 using XperiaRPG.Scripts.UI;
 
@@ -74,7 +75,7 @@ namespace XperiaRPG
             //Traveling.Travel(10);
             #endregion
             #region Fishing
-
+            /*
             var fishItemList = new FishItemList();
 
             var pond = new Pond(0, new List<Fish>
@@ -83,16 +84,16 @@ namespace XperiaRPG
                 (Fish)fishItemList.Lookup("Trout")
             });
 
-            //Fishing.Start(pond, player.Inventory);
-
+            Fishing.Start(pond, player.Inventory);
+            */
             #endregion
             #region NPC test
-            /*
+            ///*
             var npcList = new NpcList();
-            var npc = npcList.Lookup("Norwyn");
+            var npc = npcList.Lookup("QuestTestNpc");
+            npc.Talk(player);
 
-            npc.Talk();
-            */
+            //*/
             #endregion
             #region crafting test
             // tailoring crafting test

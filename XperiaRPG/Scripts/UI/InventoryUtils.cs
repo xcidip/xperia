@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Misc;
 
 namespace XperiaRPG.Scripts.UI
 {
@@ -35,7 +36,7 @@ namespace XperiaRPG.Scripts.UI
 
         public static void PrintInventoryHeader(int lengthOfColumn, int numOfItems, int inventorySize)
         {
-            Utility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
+            BorderUtility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
             Console.SetCursorPosition(5, Console.CursorTop - 1);
             Console.WriteLine($"INVENTORY {numOfItems + "/" + inventorySize}");
         }
@@ -138,7 +139,7 @@ namespace XperiaRPG.Scripts.UI
 
             Console.WriteLine("|");
 
-            Utility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
+            BorderUtility.PrintBorder(GlobalVariables.Columns, lengthOfColumn);
             }
 
     }

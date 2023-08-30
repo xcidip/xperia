@@ -32,9 +32,10 @@ namespace XperiaRPG.Scripts.UI
             return level;
         }
     }
-    public static class Utility
+
+    public static class BorderUtility
     {
-        public static void PrintBorder(int columns,int lengthOfColumn)
+        public static void PrintBorder(int columns, int lengthOfColumn)
         {
             for (var i = 0; i < columns; i++)
             {
@@ -44,15 +45,27 @@ namespace XperiaRPG.Scripts.UI
 
             Console.Write("+\n");
         }
+
+        public static void PrintHeaderBorder(string headerName, int columns, int lengthOfColumn)
+        {
+            PrintBorder(columns, lengthOfColumn);
+            Console.SetCursorPosition(0, Console.CursorTop - 1);
+            Console.WriteLine($"+-{headerName.ToUpper()}");
+        }
+    }
+    public static class Utility
+    {
+        
+
+        
         public static void PrintAttributes(IEnumerable<Attribute> list, int lengthOfColumn, int columns,
             string headerName, string format)
         {
             var attributes = list.ToList();
             var numOfItems = attributes.Count();
 
-            Utility.PrintBorder(columns,lengthOfColumn);
-            Console.SetCursorPosition(0, Console.CursorTop - 1);
-            Console.WriteLine($"+-{headerName.ToUpper()}");
+            BorderUtility.PrintHeaderBorder(headerName,columns,lengthOfColumn);
+
             var i = 0;
 
             foreach (var attribute in attributes)
@@ -80,7 +93,13 @@ namespace XperiaRPG.Scripts.UI
                 Console.WriteLine("|");
             }
 
-            PrintBorder(columns, lengthOfColumn);
+            BorderUtility.PrintBorder(columns, lengthOfColumn);
+        }
+
+        public static void PrintQuestLog()
+        {
+            BorderUtility.PrintHeaderBorder("quest log",1,60);
+            //todo
         }
 
         public static PlayerSetting PrintCharacterCreationSetting(ChoiceList choiceList, string format)
@@ -121,33 +140,6 @@ namespace XperiaRPG.Scripts.UI
 
             return null;
         }
-
         
     }
-
-    public static class GlobalVariables
-    {
-        public static int Columns { get; set; }
-        
-        private static int _invSize;
-        public static int InvSize
-        {
-            get => _invSize;
-            set
-            {
-                if (value > 100)
-                {
-                    _invSize = 99;
-                }
-                _invSize = value;
-                InvWarning = (int)Math.Round(_invSize * 0.90);
-            }
-        }
-        public static int InvWarning { get; set; }
-
-
-        public static CurrencyBag CurrencyBag;
-
-    }
-
 }
