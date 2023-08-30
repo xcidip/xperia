@@ -102,7 +102,7 @@ namespace XperiaRPG
 
             #endregion
             #region Inventory item management test
-            var armorDatabase = new ArmorItemList();
+            var armorDatabase = new Armor.ArmorItemList();
             player.Inventory.AddItem(armorDatabase.Lookup("Wizard's Coat"));
 
             var weaponDatabase = new WeaponItemList();
@@ -114,6 +114,7 @@ namespace XperiaRPG
             player.Inventory.AddItem(toolDatabase.Lookup("Arnold's Pickaxe"));
             player.Inventory.AddItem(toolDatabase.Lookup("Arnold's FishingRod"));
             player.Inventory.AddItem(toolDatabase.Lookup("Arnold's Horse"));
+            player.Inventory.AddItem(armorDatabase.Lookup("Arnold's test"));
 
             #endregion
 

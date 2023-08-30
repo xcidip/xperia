@@ -48,11 +48,6 @@ namespace XperiaRPG.Scripts.Skills
             
         }
 
-        public override void Examine()
-        {
-
-        }
-
         public override void Use()
         {
 

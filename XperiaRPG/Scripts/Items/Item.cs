@@ -23,7 +23,8 @@ namespace XperiaRPG.Scripts.Items
         public ConsoleColor BackColor { get; }
 
         // protected = cannot be called outside of this class
-        protected Item(string name, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
+        protected Item(string name, string description, int price,
+            (ConsoleColor Foreground, ConsoleColor Background) colors)
         {
             Description = description;
             Name = name;
@@ -34,7 +35,20 @@ namespace XperiaRPG.Scripts.Items
 
         // Abstract method for using an item (to be implemented by derived classes)
         public abstract void Use();
-        public abstract void Examine();
+
+        public void Examine()
+        {
+            Console.Write($"Name: {Name}\n" +
+                          $"Description: {Description}\n" +
+                          $"It sells for: {Price}gp\n" +
+                          $"Bonuses: ");
+            foreach (var attributeBonus in AttributeBonusList)
+            {
+                Console.Write($"{attributeBonus.Bonus()}, ");
+            }
+
+            Console.WriteLine();
+        }
     }
 
     // recipe consists of ingredients
@@ -51,28 +65,6 @@ namespace XperiaRPG.Scripts.Items
             Name = item.Name;
             Quantity = quantity;
             Item = item;
-        }
-    }
-
-    public class Book : Item
-    {
-        public Book(string name, string description, int price,
-            (ConsoleColor Foreground, ConsoleColor Background) colors)
-            : base(name, description, price, colors)
-        {
-
-        }
-
-        public override void Use()
-        {
-
-        }
-
-        public override void Examine()
-        {
-            //todo read the inside of the book
-            Console.WriteLine(Description);
-            Choice.PressEnter();
         }
     }
 
@@ -95,117 +87,139 @@ namespace XperiaRPG.Scripts.Items
 
     public static class ItemInteraction
     {
-         public static void ItemInteract(Item item, Player player, int index)
-         {
+        public static void ItemInteract(Item item, Player player, int index)
+        {
             var gear = player.Gear;
             var inventory = player.Inventory;
 
             switch (item)
             {
                 case Armor itemObj:
+                {
+                    Console.WriteLine("What do you want to do with this armor piece?");
+                    Console.WriteLine("(1) Equip\n" +
+                                      "(2) Examine\n" +
+                                      "(3) Remove from inventory\n" +
+                                      "(4) Leave this menu");
+                    var whatToDo = Choice.NumberRangeValidation(1, 4);
+                    switch (whatToDo)
                     {
-                        Console.WriteLine("What do you want to do with this armor piece?");
-                        Console.WriteLine("(1) Equip\n" +
-                                          "(2) Examine\n" +
-                                          "(3) Remove from inventory\n" +
-                                          "(4) Leave this menu");
-                        var whatToDo = Choice.NumberRangeValidation(1, 4);
-                        switch (whatToDo)
-                        {
-                            case 1:
-                                gear.Equip(itemObj, player);
-                                break;
-                            case 2:
-                                InventoryUtils.ItemExamine(itemObj);
-                                break;
-                            case 3:
-                                inventory.List.RemoveAt(index);
-                                Console.WriteLine(itemObj.Name + "removed from inventory");
-                                break;
-                            case 4:
-                                break;
-                        }
-
-                        break;
+                        case 1:
+                            gear.Equip(itemObj, player);
+                            break;
+                        case 2:
+                            InventoryUtils.ItemExamine(itemObj);
+                            break;
+                        case 3:
+                            inventory.List.RemoveAt(index);
+                            Console.WriteLine(itemObj.Name + "removed from inventory");
+                            break;
+                        case 4:
+                            break;
                     }
+
+                    break;
+                }
                 case Potion itemObj:
+                {
+                    Console.WriteLine("What do you want to do with this Potion?");
+                    Console.WriteLine("(1) Use\n" +
+                                      "(2) Examine\n" +
+                                      "(3) Remove from inventory\n" +
+                                      "(4) Leave this menu");
+                    var whatToDo = Choice.NumberRangeValidation(1, 4);
+                    switch (whatToDo)
                     {
-                        Console.WriteLine("What do you want to do with this Potion?");
-                        Console.WriteLine("(1) Use\n" +
-                                          "(2) Examine\n" +
-                                          "(3) Remove from inventory\n" +
-                                          "(4) Leave this menu");
-                        var whatToDo = Choice.NumberRangeValidation(1, 4);
-                        switch (whatToDo)
-                        {
-                            case 1:
-                                itemObj.Use();
-                                break;
-                            case 2:
-                                InventoryUtils.ItemExamine(itemObj);
-                                break;
-                            case 3:
-                                inventory.List.RemoveAt(index);
-                                Console.WriteLine(itemObj.Name + "removed from inventory");
-                                break;
-                            case 4:
-                                break;
-                        }
-
-                        break;
+                        case 1:
+                            itemObj.Use();
+                            break;
+                        case 2:
+                            InventoryUtils.ItemExamine(itemObj);
+                            break;
+                        case 3:
+                            inventory.List.RemoveAt(index);
+                            Console.WriteLine(itemObj.Name + "removed from inventory");
+                            break;
+                        case 4:
+                            break;
                     }
+
+                    break;
+                }
                 case Weapon itemObj:
+                {
+                    Console.WriteLine("What do you want to do with this weapon?");
+                    Console.WriteLine("(1) Equip\n" +
+                                      "(2) Examine\n" +
+                                      "(3) Remove from inventory\n" +
+                                      "(4) Leave this menu");
+                    var whatToDo = Choice.NumberRangeValidation(1, 4);
+                    switch (whatToDo)
                     {
-                        Console.WriteLine("What do you want to do with this weapon?");
-                        Console.WriteLine("(1) Equip\n" +
-                                          "(2) Examine\n" +
-                                          "(3) Remove from inventory\n" +
-                                          "(4) Leave this menu");
-                        var whatToDo = Choice.NumberRangeValidation(1, 4);
-                        switch (whatToDo)
-                        {
-                            case 1:
-                                gear.Equip(itemObj, player);
-                                break;
-                            case 2:
-                                InventoryUtils.ItemExamine(itemObj);
-                                break;
-                            case 3:
-                                inventory.List.RemoveAt(index);
-                                Console.WriteLine(itemObj.Name + "removed from inventory");
-                                break;
-                            case 4:
-                                break;
-                        }
-
-                        break;
+                        case 1:
+                            gear.Equip(itemObj, player);
+                            break;
+                        case 2:
+                            InventoryUtils.ItemExamine(itemObj);
+                            break;
+                        case 3:
+                            inventory.List.RemoveAt(index);
+                            Console.WriteLine(itemObj.Name + "removed from inventory");
+                            break;
+                        case 4:
+                            break;
                     }
+
+                    break;
+                }
                 case Equipable itemObj:
+                {
+                    Console.WriteLine("What do you want to do with this item?");
+                    Console.WriteLine("(1) Equip\n" +
+                                      "(2) Examine\n" +
+                                      "(3) Remove from inventory\n" +
+                                      "(4) Leave this menu");
+                    var whatToDo = Choice.NumberRangeValidation(1, 4);
+                    switch (whatToDo)
                     {
-                        Console.WriteLine("What do you want to do with this item?");
-                        Console.WriteLine("(1) Equip\n" +
-                                          "(2) Examine\n" +
-                                          "(3) Remove from inventory\n" +
-                                          "(4) Leave this menu");
-                        var whatToDo = Choice.NumberRangeValidation(1, 4);
-                        switch (whatToDo)
-                        {
-                            case 1:
-                                gear.Equip(itemObj, player);
-                                break;
-                            case 2:
-                                InventoryUtils.ItemExamine(itemObj);
-                                break;
-                            case 3:
-                                inventory.List.RemoveAt(index);
-                                Console.WriteLine(itemObj.Name + "removed from inventory");
-                                break;
-                            case 4:
-                                break;
-                        }
-
-                        break;
+                        case 1:
+                            gear.Equip(itemObj, player);
+                            break;
+                        case 2:
+                            InventoryUtils.ItemExamine(itemObj);
+                            break;
+                        case 3:
+                            inventory.List.RemoveAt(index);
+                            Console.WriteLine(itemObj.Name + "removed from inventory");
+                            break;
+                        case 4:
+                            break;
                     }
+
+                    break;
+                }
+                default:
+                {
+                    Console.WriteLine("What do you want to do with this item?");
+                    Console.WriteLine("(1) Examine\n" +
+                                      "(3) Remove from inventory\n" +
+                                      "(4) Leave this menu");
+                    var whatToDo = Choice.NumberRangeValidation(1, 4);
+                    switch (whatToDo)
+                    {
+                        case 1:
+                            InventoryUtils.ItemExamine(item);
+                            break;
+                        case 2:
+                            inventory.List.RemoveAt(index);
+                            Console.WriteLine(item.Name + "removed from inventory");
+                            break;
+                        case 3:
+                            break;
+                    }
+
+                    break;
+                }
             }
         }
     }

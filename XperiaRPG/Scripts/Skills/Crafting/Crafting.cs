@@ -42,8 +42,19 @@ namespace XperiaRPG.Scripts.Skills.Crafting
                 }
             }
 
+            // 3s global crafting delay
+            CraftingDelay();
             
+                
+            // add result
+            inv.AddItemStack(new ItemStack(1, recipe.Result));
 
+
+            Choice.PressEnter();
+        }
+
+        public void CraftingDelay()
+        {
             // crafting animation
             var craftSprite = new SkillSprites().CraftingHammer;
             Console.WriteLine("\n" + craftSprite + "\n");
@@ -54,12 +65,6 @@ namespace XperiaRPG.Scripts.Skills.Crafting
                 Thread.Sleep(66);
             }
             Console.Write("\n");
-                
-            // add result
-            inv.AddItemStack(new ItemStack(1, recipe.Result));
-
-
-            Choice.PressEnter();
         }
         public void WhatToCraft(Inventory inv)
         {

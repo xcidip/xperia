@@ -21,10 +21,6 @@ namespace XperiaRPG.Scripts.Skills
 
         }
 
-        public override void Examine()
-        {
-            //todo 
-        }
     }
 
     public class MaterialItemList : ItemList

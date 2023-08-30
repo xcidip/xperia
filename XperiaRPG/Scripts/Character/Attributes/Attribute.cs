@@ -7,7 +7,25 @@ namespace XperiaRPG.Scripts.Attributes
         public string ShortName { get; }
         public string Name { get; }
         public int Points { get; set; }
-        public int Xp{ get; set; }
+        public double Level { get; set; }
+
+        private int _xp;
+        public int Xp
+        {
+            get => _xp;
+            set
+            {
+                _xp = value;
+                if (_xp >= 40)
+                {
+                    Level = Math.Floor(Math.Sqrt(_xp) / 2) - 3;
+                }
+                else
+                {
+                    Level = 1;
+                }
+            }
+        }
         public int PercentBonus { get; set; }
         public double Value{ get; set; }
         public string Description { get; set; }

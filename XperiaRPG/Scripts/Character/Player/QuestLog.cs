@@ -25,7 +25,6 @@ namespace XperiaRPG.Scripts.Character.Player
             FishItemList = new FishItemList();
             List = new List<Quest>
             {
-                //todo
                 new Quest("First Quest","Kill 10 wolves around here","kill",
                     "Norwyn","Norwyn",0,1,QuestDifficultyList.Lookup("Easy"),"unstarted",
                     new List<Objective>

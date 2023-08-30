@@ -51,7 +51,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
 
         }
 
-        public override void Examine()
+        public new void Examine()
         {
             //todo 
         }

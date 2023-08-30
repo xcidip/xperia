@@ -96,9 +96,9 @@ namespace XperiaRPG.Scripts.Skills
             // eat
         }
 
-        public override void Examine()
+        public new void Examine()
         {
-            //todo 
+            //todo heal value
         }
     }
 

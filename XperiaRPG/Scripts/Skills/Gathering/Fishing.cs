@@ -99,11 +99,6 @@ namespace XperiaRPG.Scripts.Skills
         {
             // useless
         }
-
-        public override void Examine()
-        {
-
-        }
     }
 
     public class FishItemList : ItemList

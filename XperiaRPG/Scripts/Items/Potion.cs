@@ -17,7 +17,7 @@ namespace XperiaRPG.Scripts.Items
 
         public abstract override void Use();
 
-        public override void Examine()
+        public new void Examine()
         {
             Console.Write($"Name: {Name}\n" +
                           $"Description: {Description}\n" +
