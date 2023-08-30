@@ -5,22 +5,33 @@ using System.Linq;
 using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
-using Attribute = XperiaRPG.Scripts.Attributes.Attribute;
+using Attribute = XperiaRPG.Scripts.Character.Attributes.Attribute;
 using Console = System.Console;
 
 namespace XperiaRPG.Scripts.UI
 {
     public static class MathUtility
     {
-        public static int CalculateLevelFromXp(int xp)
+        public static int ConvertXpToLevel(double xp)
         {
-            var number = Math.Floor(Math.Sqrt(xp) / 2) - 3;
-            if (number < 0) return 1;
-            return (int)number;
+            if (xp <= 0)
+            {
+                return 1; // Level is 0 when XP is 0 or negative.
+            }
+
+            var xpNeededForNextLevel = 83.0; // Starting XP needed for level 1.
+            var level = 1;
+
+            while (xp >= xpNeededForNextLevel)
+            {
+                xp -= xpNeededForNextLevel;
+                xpNeededForNextLevel *= 1.104; // Increase by 10.4%
+                level++;
+            }
+
+            return level;
         }
     }
-
-
     public static class Utility
     {
         public static void PrintBorder(int columns,int lengthOfColumn)
@@ -48,7 +59,7 @@ namespace XperiaRPG.Scripts.UI
             {
                 Console.Write(format,
                     attribute.Name, //0
-                    MathUtility.CalculateLevelFromXp(attribute.Xp), //1
+                    attribute.Level, //1
                     attribute.Xp, //2
                     attribute.Points, //3
                     "+" + attribute.PercentBonus + "%" //4

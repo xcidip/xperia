@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Skills;
 using XperiaRPG.Scripts.UI;
-using Attribute = XperiaRPG.Scripts.Attributes.Attribute;
+using Attribute = XperiaRPG.Scripts.Character.Attributes.Attribute;
 
 namespace XperiaRPG.Scripts.Character.Attributes
 {
@@ -86,7 +86,7 @@ namespace XperiaRPG.Scripts.Character.Attributes
         {
             var attributeList = List.Cast<Attribute>().ToList();
 
-            Utility.PrintAttributes(attributeList,42,GlobalVariables.Columns,"skills", "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-7} ");
+            Utility.PrintAttributes(attributeList,42,GlobalVariables.Columns,"skills", "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-8}");
         }
     }
 }

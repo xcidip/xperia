@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;

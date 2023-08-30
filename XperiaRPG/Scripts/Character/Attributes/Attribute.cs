@@ -1,29 +1,27 @@
-﻿using System;
+﻿using XperiaRPG.Scripts.UI;
 
-namespace XperiaRPG.Scripts.Attributes
+namespace XperiaRPG.Scripts.Character.Attributes
 {
     public abstract class Attribute
     {
         public string ShortName { get; }
         public string Name { get; }
         public int Points { get; set; }
-        public double Level { get; set; }
+        public int Level { get; set; }
 
-        private int _xp;
-        public int Xp
+        private double _xp;
+        public double Xp
         {
             get => _xp;
             set
             {
+                if (value > 13034431) // if you reach this get a life. jk
+                {
+                    value = 13034431; // if someone reaches this legit way, I will lick their foot
+                }
                 _xp = value;
-                if (_xp >= 40)
-                {
-                    Level = Math.Floor(Math.Sqrt(_xp) / 2) - 3;
-                }
-                else
-                {
-                    Level = 1;
-                }
+                Level = MathUtility.ConvertXpToLevel(_xp);
+
             }
         }
         public int PercentBonus { get; set; }

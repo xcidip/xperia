@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 
 namespace XperiaRPG.Scripts.Items
@@ -64,7 +65,7 @@ namespace XperiaRPG.Scripts.Items
                     new Armor(0, GearSlot.Head, "Cloth", "Arnold's test", 9999, "Belonged to an old wizard once",
                         new List<AttributeBonus>()
                         {
-                            new AttributeBonus("Mining", 3000, "xp"),
+                            new AttributeBonus("Mining", 13034431, "xp"),
                             new AttributeBonus("Intellect", 4, "points")
                         }, Rarity.Uncommon),
                 };

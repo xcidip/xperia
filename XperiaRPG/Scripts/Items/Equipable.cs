@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 
 namespace XperiaRPG.Scripts.Items

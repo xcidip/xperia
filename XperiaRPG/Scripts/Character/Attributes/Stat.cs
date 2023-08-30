@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.UI;
+using Attribute = XperiaRPG.Scripts.Character.Attributes.Attribute;
 
 namespace XperiaRPG.Scripts.Attributes
 {
