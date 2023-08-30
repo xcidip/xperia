@@ -46,32 +46,37 @@ namespace XperiaRPG.Scripts.Skills
 
             List = new List<Recipe>
             {
-                new Recipe(FoodItemList.Lookup("Cooked Shrimp"),
-                    0,
+                new Recipe("Cooking",
+                    FoodItemList.Lookup("Cooked Shrimp"),
+                    5,0,
                     new List<ItemStack>
                     {
                         new ItemStack(1, FishItemList.Lookup("Shrimp")),
                     }),
-                new Recipe(FoodItemList.Lookup("Cooked Trout"),
-                    10,
+                new Recipe("Cooking",
+                    FoodItemList.Lookup("Cooked Trout"),
+                    10,10,
                     new List<ItemStack>
                     {
                         new ItemStack(1, FishItemList.Lookup("Trout")),
                     }),
-                new Recipe(FoodItemList.Lookup("Cooked Salmon"),
-                    20,
+                new Recipe("Cooking",
+                    FoodItemList.Lookup("Cooked Salmon"),
+                    15,20,
                     new List<ItemStack>
                     {
                         new ItemStack(1, FishItemList.Lookup("Salmon")),
                     }),
-                new Recipe(FoodItemList.Lookup("Cooked Tuna"),
-                    30,
+                new Recipe("Cooking", 
+                    FoodItemList.Lookup("Cooked Tuna"),
+                    25,30,
                     new List<ItemStack>
                     {
                         new ItemStack(1, FishItemList.Lookup("Tuna")),
                     }),
-                new Recipe(FoodItemList.Lookup("Cooked Crayfish"),
-                    40,
+                new Recipe("Cooking",
+                    FoodItemList.Lookup("Cooked Crayfish"),
+                    30,40,
                     new List<ItemStack>
                     {
                         new ItemStack(1, FishItemList.Lookup("Crayfish")),

@@ -37,22 +37,25 @@ namespace XperiaRPG.Scripts.Skills.Crafting
             ArmorItemList = new Armor.ArmorItemList();
             List = new List<Recipe>
             {
-                new Recipe(ArmorItemList.Lookup("Wizard's Coat"),
-                    0,
+                new Recipe("Tailoring",
+                    ArmorItemList.Lookup("Wizard's Coat"),
+                    10,0,
                     new List<ItemStack>
                     {
                         new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
                     }),
 
-                new Recipe(ArmorItemList.Lookup("Wizard's Skirt"),
-                    0,
+                new Recipe("Tailoring",
+                    ArmorItemList.Lookup("Wizard's Skirt"),
+                    10,0,
                     new List<ItemStack>
                     {
                         new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
                     }),
                 
-                new Recipe(ArmorItemList.Lookup("Wizard's Hat"),
-                    0,
+                new Recipe("Tailoring",
+                    ArmorItemList.Lookup("Wizard's Hat"),
+                    10, 0,
                     new List<ItemStack>
                     {
                         new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),

@@ -70,24 +70,27 @@ namespace XperiaRPG.Scripts.Skills.Crafting
 
             List = new List<Recipe>
             {
-                new Recipe(PotionItemList.Lookup("Small HP potion"),
-                    0,
+                new Recipe("Alchemy",
+                    PotionItemList.Lookup("Small HP potion"),
+                    10,0,
                     new List<ItemStack>
                     {
                         new ItemStack(1,MaterialItemList.Lookup("Flask")),
                         new ItemStack(1,HerbItemList.Lookup("Peacebloom")),
                     }),
 
-                new Recipe(PotionItemList.Lookup("Medium HP potion"),
-                    10,
+                new Recipe("Alchemy",
+                    PotionItemList.Lookup("Medium HP potion"),
+                    50,10,
                     new List<ItemStack>
                     {
                         new ItemStack(1,MaterialItemList.Lookup("Flask")),
                         new ItemStack(1,HerbItemList.Lookup("Goldthorn")),
                     }),
 
-                new Recipe(PotionItemList.Lookup("Large HP potion"),
-                    0,
+                new Recipe("Alchemy",
+                    PotionItemList.Lookup("Large HP potion"),
+                    100,0,
                     new List<ItemStack>
                     {
                         new ItemStack(1,MaterialItemList.Lookup("Flask")),

@@ -15,12 +15,16 @@ namespace XperiaRPG.Scripts.Skills
         public int RequiredLevel { get; set; } // level required for crafting this recipe
         public List<ItemStack> List { get; set; } // list of items needed for making
         public Item Result { get; set; } // result of the recipe
+        public int Xp { get; set; }
+        public string WhatSkill { get; set; }
 
 
-        public Recipe(Item result, int requiredLevel, List<ItemStack> list)
+        public Recipe(string whatSkill,Item result, int xp, int requiredLevel, List<ItemStack> list)
         {
+            WhatSkill = whatSkill;
             Name = result.Name; // name of recipe is the results name (result.name)
             List = list;
+            Xp = xp;
             Result = result;
             RequiredLevel = requiredLevel;
         }

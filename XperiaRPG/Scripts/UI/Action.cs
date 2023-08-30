@@ -95,20 +95,20 @@ namespace XperiaRPG.Scripts.UI
                                 var cooking = new Cooking();
                                 cooking.Print();
                                 inventory.Print();
-                                cooking.WhatToCraft(inventory);
+                                cooking.WhatToCraft(inventory,skillList);
                                 break;
                             // todo more professions
                             case "Alchemy":
                                 var alchemy = new Alchemy();
                                 alchemy.Print();
                                 inventory.Print();
-                                alchemy.WhatToCraft(inventory);
+                                alchemy.WhatToCraft(inventory, skillList);
                                 break;
                             case "Tailoring":
                                 var tailoring = new Tailoring();
                                 tailoring.Print();
                                 inventory.Print();
-                                tailoring.WhatToCraft(inventory);
+                                tailoring.WhatToCraft(inventory, skillList);
                                 break;
                         }
                         break;
