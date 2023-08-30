@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Timers;
 using XperiaRPG.Assets.Sprites;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
@@ -95,7 +96,7 @@ namespace XperiaRPG.Scripts.Skills
         {
         }
 
-        public override void Use()
+        public override void Use(Player player)
         {
             // useless
         }

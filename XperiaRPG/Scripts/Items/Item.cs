@@ -22,6 +22,7 @@ namespace XperiaRPG.Scripts.Items
         public string Profession { get; set; }
         public ConsoleColor ForeColor { get; }
         public ConsoleColor BackColor { get; }
+        public int HealValue { get; set; }
 
         // protected = cannot be called outside of this class
         protected Item(string name, string description, int price,
@@ -35,19 +36,13 @@ namespace XperiaRPG.Scripts.Items
         }
 
         // Abstract method for using an item (to be implemented by derived classes)
-        public abstract void Use();
+        public abstract void Use(Player player);
 
-        public void Examine()
+        public virtual void Examine()
         {
             Console.Write($"Name: {Name}\n" +
                           $"Description: {Description}\n" +
-                          $"It sells for: {Price}gp\n" +
-                          $"Bonuses: ");
-            foreach (var attributeBonus in AttributeBonusList)
-            {
-                Console.Write($"{attributeBonus.Bonus()}, ");
-            }
-
+                          $"It sells for: {Price}gp\n");
             Console.WriteLine();
         }
     }
@@ -132,7 +127,33 @@ namespace XperiaRPG.Scripts.Items
                     switch (whatToDo)
                     {
                         case 1:
-                            itemObj.Use();
+                            itemObj.Use(player);
+                            break;
+                        case 2:
+                            InventoryUtils.ItemExamine(itemObj);
+                            break;
+                        case 3:
+                            inventory.List.RemoveAt(index);
+                            Console.WriteLine(itemObj.Name + "removed from inventory");
+                            break;
+                        case 4:
+                            break;
+                    }
+
+                    break;
+                }
+                case Food itemObj:
+                {
+                    Console.WriteLine("What do you want to do with this Food?");
+                    Console.WriteLine("(1) Use\n" +
+                                      "(2) Examine\n" +
+                                      "(3) Remove from inventory\n" +
+                                      "(4) Leave this menu");
+                    var whatToDo = Choice.NumberRangeValidation(1, 4);
+                    switch (whatToDo)
+                    {
+                        case 1:
+                            itemObj.Use(player);
                             break;
                         case 2:
                             InventoryUtils.ItemExamine(itemObj);

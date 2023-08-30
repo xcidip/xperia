@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
 
 namespace XperiaRPG.Scripts.Skills
@@ -16,7 +17,7 @@ namespace XperiaRPG.Scripts.Skills
         }
 
 
-        public override void Use()
+        public override void Use(Player player)
         {
 
         }

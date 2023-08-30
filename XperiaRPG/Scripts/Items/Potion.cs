@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
 
 namespace XperiaRPG.Scripts.Items
@@ -15,7 +16,7 @@ namespace XperiaRPG.Scripts.Items
             Potency = potency;
         }
 
-        public abstract override void Use();
+        public abstract override void Use(Player player);
 
         public new void Examine()
         {
@@ -59,9 +60,9 @@ public class HealingPotion : Potion
         Effect = "healing";
     }
 
-    public override void Use()
+    public override void Use(Player player)
     {
-        // Heal the user 
+        // todo Heal the user 
     }
 }
 /*

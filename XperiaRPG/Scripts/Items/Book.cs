@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XperiaRPG.Scripts.Character.Player;
 
 namespace XperiaRPG.Scripts.Items
 {
@@ -16,7 +17,7 @@ namespace XperiaRPG.Scripts.Items
             InsideOfBook = insideOfBook;
         }
 
-        public override void Use()
+        public override void Use(Player player)
         {
 
         }

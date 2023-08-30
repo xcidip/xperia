@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
 
 namespace XperiaRPG.Scripts.Skills.Crafting
@@ -46,14 +47,9 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         {
 
         }
-        public override void Use()
+        public override void Use(Player player)
         {
 
-        }
-
-        public new void Examine()
-        {
-            //todo 
         }
     }
     

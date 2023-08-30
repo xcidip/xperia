@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Skills.Crafting;
@@ -89,21 +90,33 @@ namespace XperiaRPG.Scripts.Skills
 
     public class Food : Item
     {
-        public Food(string name, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
+        public Food(string name,int healValue, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
             : base(name, description, price, colors)
         {
-
+            HealValue = healValue;
         }
 
 
-        public override void Use()
+        public override void Use(Player player)
         {
-            // eat
+            Console.WriteLine($"{Name} was eaten");
+            //var maxHeal = (player.Stats.Lookup("Stamina") *2 ) - player.BattleAttributes.Lookup("Health)
+            //player.BattleAttributes.Heal(HealValue);
+            var healed = HealValue;
+            //if (maxHealed > HealValue) healed = maxHeal 
+            Console.WriteLine($"Player healed by {healed}");
+            //todo consume item + heal
+
         }
 
-        public new void Examine()
+        public override void Examine()
         {
             //todo heal value
+            Console.Write($"Name: {Name}\n" +
+                          $"Description: {Description}\n" +
+                          $"It sells for: {Price}gp\n" +
+                          $"It heals for {HealValue}");
+            Console.WriteLine();
         }
     }
 
@@ -113,11 +126,11 @@ namespace XperiaRPG.Scripts.Skills
         {
             List = new List<Item>
             {
-                new Food("Cooked Shrimp", "Nice tasteful fish by Arnold", 20, Rarity.Common),
-                new Food("Cooked Trout", "Nice tasteful fish by Arnold", 25, Rarity.Common),
-                new Food("Cooked Salmon", "Nice tasteful fish by Arnold", 35, Rarity.Uncommon),
-                new Food("Cooked Tuna", "Nice tasteful fish by Arnold", 45, Rarity.Uncommon),
-                new Food("Cooked Crayfish", "Nice tasteful fish by Arnold", 50, Rarity.Rare),
+                new Food("Cooked Shrimp",20, "Nice tasteful fish by Arnold", 20, Rarity.Common),
+                new Food("Cooked Trout",30, "Nice tasteful fish by Arnold", 25, Rarity.Common),
+                new Food("Cooked Salmon",40, "Nice tasteful fish by Arnold", 35, Rarity.Uncommon),
+                new Food("Cooked Tuna",50, "Nice tasteful fish by Arnold", 45, Rarity.Uncommon),
+                new Food("Cooked Crayfish",60, "Nice tasteful fish by Arnold", 50, Rarity.Rare),
             };
         }
     }

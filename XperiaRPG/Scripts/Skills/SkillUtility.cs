@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
 
@@ -52,7 +53,7 @@ namespace XperiaRPG.Scripts.Skills
             
         }
 
-        public override void Use()
+        public override void Use(Player player)
         {
 
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Attributes;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 
 namespace XperiaRPG.Scripts.Items
@@ -30,7 +31,7 @@ namespace XperiaRPG.Scripts.Items
             }
         }
 
-        public override void Use()
+        public override void Use(Player player)
         {
             // armor special effect
         }

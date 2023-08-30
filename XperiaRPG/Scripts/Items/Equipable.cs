@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Attributes;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 
 namespace XperiaRPG.Scripts.Items
@@ -20,11 +21,11 @@ namespace XperiaRPG.Scripts.Items
             Profession = "all";
         }
 
-        public override void Use()
+        public override void Use(Player player)
         {
             // special effect
         }
-        public new void Examine()
+        public override void Examine()
         {
             Console.Write($"Name: {Name}\n" +
                               $"Description: {Description}\n" +
