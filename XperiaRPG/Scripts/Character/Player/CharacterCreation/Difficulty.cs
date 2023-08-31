@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using XperiaRPG.Scripts.CharacterCreation;
 
 namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
 {

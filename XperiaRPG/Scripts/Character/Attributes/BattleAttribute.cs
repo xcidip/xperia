@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Attribute = XperiaRPG.Scripts.Character.Attributes.Attribute;
+﻿using System.Collections.Generic;
 
-namespace XperiaRPG.Scripts.Attributes
+namespace XperiaRPG.Scripts.Character.Attributes
 {
     public class BattleAttribute : Attribute
     {

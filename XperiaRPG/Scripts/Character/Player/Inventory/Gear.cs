@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.UI;

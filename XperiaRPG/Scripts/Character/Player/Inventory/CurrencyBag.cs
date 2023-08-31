@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
-using XperiaRPG.Scripts.CharacterCreation;
 
 namespace XperiaRPG.Scripts.Character.Player.Inventory
 {

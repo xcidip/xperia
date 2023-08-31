@@ -100,10 +100,16 @@ namespace XperiaRPG.Scripts.UI
                                 cooking.WhatToCraft(inventory,skillList);
                                 break;
                             case "Smithing":
-                                // todo
+                                var smithing = new Smithing();
+                                smithing.Print();
+                                inventory.Print();
+                                smithing.WhatToCraft(inventory,skillList);
                                 break;
                             case "Lthrworking":
-                                //todo
+                                var lthrworking = new Lthrworking();
+                                lthrworking.Print();
+                                inventory.Print();
+                                lthrworking.WhatToCraft(inventory,skillList);
                                 break;
                             case "Alchemy":
                                 var alchemy = new Alchemy();

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.UI;
-using Attribute = XperiaRPG.Scripts.Character.Attributes.Attribute;
 
-namespace XperiaRPG.Scripts.Attributes
+namespace XperiaRPG.Scripts.Character.Attributes
 {
     public class Stat : Attribute
     {

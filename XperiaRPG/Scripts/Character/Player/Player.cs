@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
-using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Character.Player

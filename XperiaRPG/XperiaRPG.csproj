@@ -64,6 +64,7 @@
     <Compile Include="Scripts\Character\Player\Inventory\Inventory.cs" />
     <Compile Include="Scripts\Character\Player\Player.cs" />
     <Compile Include="Scripts\Character\Player\QuestLog.cs" />
+    <Compile Include="Scripts\Fighting\GuessNumber.cs" />
     <Compile Include="Scripts\Items\Consumable.cs" />
     <Compile Include="Scripts\Items\GearItems.cs" />
     <Compile Include="Scripts\Items\Item.cs" />

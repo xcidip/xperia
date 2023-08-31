@@ -41,4 +41,27 @@ namespace XperiaRPG.Scripts.Skills.Crafting
             SkillUtils.PrintCraftingMenu("Tailoring",RecipeList);
         }
     }
+
+    public class Smithing : CraftingSkill
+    {
+        public Smithing()
+        {
+            RecipeList = new TailoringRecipeList();
+        }
+        public override void Print()
+        {
+            SkillUtils.PrintCraftingMenu("Smithing", RecipeList);
+        }
+    }
+    public class Lthrworking : CraftingSkill
+    {
+        public Lthrworking()
+        {
+            RecipeList = new TailoringRecipeList();
+        }
+        public override void Print()
+        {
+            SkillUtils.PrintCraftingMenu("Lthrworking", RecipeList);
+        }
+    }
 }

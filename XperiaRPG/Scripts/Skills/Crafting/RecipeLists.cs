@@ -141,5 +141,79 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         }
     }
 
+    public class SmithingRecipeList : RecipeList
+    {
+        public MaterialItemList MaterialItemList;
+        public ArmorItemList ArmorItemList;
 
+        public SmithingRecipeList()
+        {
+            MaterialItemList = new MaterialItemList();
+            ArmorItemList = new ArmorItemList();
+            List = new List<Recipe>
+            {
+                new Recipe("Smithing",
+                    ArmorItemList.Lookup("Wizard's Coat"),
+                    10,0,
+                    new List<ItemStack>
+                    {
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
+                    }),
+
+                new Recipe("Smithing",
+                    ArmorItemList.Lookup("Wizard's Skirt"),
+                    10,0,
+                    new List<ItemStack>
+                    {
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
+                    }),
+
+                new Recipe("Smithing",
+                    ArmorItemList.Lookup("Wizard's Hat"),
+                    10, 0,
+                    new List<ItemStack>
+                    {
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
+                    }),
+            };
+        }
+    }
+    
+    public class LthrworkingRecipeList : RecipeList
+    {
+        public MaterialItemList MaterialItemList;
+        public ArmorItemList ArmorItemList;
+
+        public LthrworkingRecipeList()
+        {
+            MaterialItemList = new MaterialItemList();
+            ArmorItemList = new ArmorItemList();
+            List = new List<Recipe>
+            {
+                new Recipe("Lthrworking",
+                    ArmorItemList.Lookup("Wizard's Coat"),
+                    10,0,
+                    new List<ItemStack>
+                    {
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
+                    }),
+
+                new Recipe("Lthrworking",
+                    ArmorItemList.Lookup("Wizard's Skirt"),
+                    10,0,
+                    new List<ItemStack>
+                    {
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
+                    }),
+
+                new Recipe("Lthrworking",
+                    ArmorItemList.Lookup("Wizard's Hat"),
+                    10, 0,
+                    new List<ItemStack>
+                    {
+                        new ItemStack(1,MaterialItemList.Lookup("Linen cloth")),
+                    }),
+            };
+        }
+    }
 }

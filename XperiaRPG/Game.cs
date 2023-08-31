@@ -5,7 +5,6 @@ using XperiaRPG.Assets.Sprites;
 using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
-using XperiaRPG.Scripts.CharacterCreation;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.Skills;

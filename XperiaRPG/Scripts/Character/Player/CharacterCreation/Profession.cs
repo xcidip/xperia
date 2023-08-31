@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Character.Attributes;
-using XperiaRPG.Scripts.CharacterCreation;
 
 namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
 {
