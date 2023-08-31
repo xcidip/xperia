@@ -145,6 +145,40 @@ namespace XperiaRPG.Scripts.Items
         }
     }
 
+    public class WeaponItemList : ItemList
+    {
 
+
+        public WeaponItemList()
+        {
+            List = new List<Item>
+            {
+                new Weapon( 0, GearSlot.MainHand, "Melee", "Arnold's Sword",150, "Best of the swords",
+                    new List<AttBonus>()
+                    {
+                        new AttBonus("Strength", 4, "points"),
+                        new AttBonus("Defense", 2, "points"),
+                    }, Rarity.Common),
+                new Weapon(0, GearSlot.OffHand, "Melee", "Arnold's Iron Shield",150, "Best of the iron shields",
+                    new List<AttBonus>()
+                    {
+                        new AttBonus("Defense", 4, "points"),
+                        new AttBonus("NatureRes", 3, "points"),
+                    }, Rarity.Common),
+                new Weapon(0, GearSlot.MainHand, "Magic", "Arnold's Staff",150, "Best of the staffs",
+                    new List<AttBonus>()
+                    {
+                        new AttBonus("Intellect", 4, "points"),
+                        new AttBonus("Defense", 2, "points"),
+                    }, Rarity.Common),
+                new Weapon(0, GearSlot.OffHand, "Magic", "Arnold's Tome",150, "Best of the Tomes",
+                    new List<AttBonus>()
+                    {
+                        new AttBonus("Intellect", 5, "points"),
+                    }, Rarity.Common),
+            };
+        }
+
+    }
 
 }

@@ -104,7 +104,7 @@ namespace XperiaRPG
 
             #endregion
             #region Inventory item management test
-            var armorDatabase = new Armor.ArmorItemList();
+            var armorDatabase = new ArmorItemList();
             player.Inventory.AddItem(armorDatabase.Lookup("Wizard's Coat"));
 
             var weaponDatabase = new WeaponItemList();

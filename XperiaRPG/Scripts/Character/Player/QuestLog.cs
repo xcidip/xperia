@@ -22,14 +22,14 @@ namespace XperiaRPG.Scripts.Character.Player
         private List<Quest> List { get; }
         private QuestDifficultyList QuestDifficultyList { get; set; }
         private FishItemList FishItemList { get; set; }
-        private Armor.ArmorItemList ArmorItemList { get; set; }
+        private ArmorItemList ArmorItemList { get; set; }
         #endregion
 
         public QuestLog()
         {
             QuestDifficultyList = new QuestDifficultyList();
             FishItemList = new FishItemList();
-            ArmorItemList = new Armor.ArmorItemList();
+            ArmorItemList = new ArmorItemList();
             List = new List<Quest>
             {
                 new Quest("First Quest", "Kill 10 wolves around here", "kill",
