@@ -5,6 +5,7 @@ using XperiaRPG.Assets.Sprites;
 using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
+using XperiaRPG.Scripts.Fighting;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.Skills;
@@ -17,6 +18,8 @@ namespace XperiaRPG
     {
         public static void Main()
         {
+            var guessNumber = new GuessNumber();
+
             #region Disclaimer
             Console.WriteLine($"Hey, {Environment.UserName}");
             Console.WriteLine("Make the game fullscreen please");
