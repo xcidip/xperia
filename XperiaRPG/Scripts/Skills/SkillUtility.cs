@@ -45,32 +45,7 @@ namespace XperiaRPG.Scripts.Skills
         }
     }
 
-    public class ProfessionTool : Item
-    {
-
-        public ProfessionTool(string name, string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors)
-            : base(name, description, price, colors)
-        {
-            
-        }
-
-        public override void Use(Player player)
-        {
-
-        }
-
-    }
-
-    public class ProfessionToolItemList : ItemList
-    {
-        public ProfessionToolItemList()
-        {
-            List = new List<Item>
-            {
-                new ProfessionTool("Knife","Used for cutting in Cooking",2, Rarity.Common),
-            };
-        }
-    }
+    
 
     public static class SkillUtils
     {

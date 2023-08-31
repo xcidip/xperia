@@ -18,7 +18,7 @@ namespace XperiaRPG.Scripts.Items
         public int RequiredLevel { get; set; }
         public int Price { get; set; }
         public GearSlot GearSlot { get; set; } // mount, pickaxe, head slot...
-        public List<AttributeBonus> AttributeBonusList { get; set; }
+        public List<AttBonus> AttributeBonusList { get; set; }
         public string Profession { get; set; }
         public ConsoleColor ForeColor { get; }
         public ConsoleColor BackColor { get; }
@@ -67,11 +67,11 @@ namespace XperiaRPG.Scripts.Items
     public abstract class ItemList
     {
         protected List<Item> List { get; set; } = new List<Item>();
-        public Rarity Rarity { get; set; }
+        public ItemRarity Rarity { get; set; }
 
         protected ItemList()
         {
-            Rarity = new Rarity();
+            Rarity = new ItemRarity();
         }
 
         public Item Lookup(string name)

@@ -13,7 +13,7 @@ namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
         public string Description { get; set; }
 
         public string Lore { get; set; }
-        public AttributeBonus AttributeBonus { get; set; }
+        public AttBonus AttBonus { get; set; }
         public string HowToPlay { get; set; }
         public string ArmorType { get; set; }
         

@@ -10,11 +10,11 @@ namespace XperiaRPG.Scripts.CharacterCreation
 {
     public class Race : PlayerSetting
     {
-        public Race(string name, string description, AttributeBonus attributeBonus, string lore) 
+        public Race(string name, string description, AttBonus attBonus, string lore) 
             :base(name)
         {
             Description = description;
-            AttributeBonus = attributeBonus;
+            AttBonus = attBonus;
             Lore = lore;
         }
     }
@@ -25,13 +25,13 @@ namespace XperiaRPG.Scripts.CharacterCreation
 
             List = new List<PlayerSetting>
             {
-                new Race("Human", "Faithful human", new AttributeBonus("Agility",2, "points"),
+                new Race("Human", "Faithful human", new AttBonus("Agility",2, "points"),
                     "Lore about humans"),
-                new Race("Gnome", "Ingenious gnome", new AttributeBonus("Intellect",2, "points"),
+                new Race("Gnome", "Ingenious gnome", new AttBonus("Intellect",2, "points"),
                     "Violets are blue, my friend's mind is ingenious, with gears and circuits, their brilliance continues."),
-                new Race("Orc", "Bloodthirsty orc", new AttributeBonus("Strength",2, "points"),
+                new Race("Orc", "Bloodthirsty orc", new AttBonus("Strength",2, "points"),
                     "Lore about orcs"),
-                new Race("Troll", "Mystic troll", new AttributeBonus("NatureRes",4, "points"),
+                new Race("Troll", "Mystic troll", new AttBonus("NatureRes",4, "points"),
                     "Lore about trolls")
             };
         }

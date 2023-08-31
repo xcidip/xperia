@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XperiaRPG.Scripts.Items
 {
-    public class Rarity
+    public class ItemRarity
     {
         public (ConsoleColor Foreground, ConsoleColor Background) Common { get; } = (ConsoleColor.White, ConsoleColor.Black);
         public (ConsoleColor Foreground, ConsoleColor Background) Uncommon { get; } = (ConsoleColor.Green, ConsoleColor.Black);

@@ -111,9 +111,9 @@ namespace XperiaRPG.Scripts.UI
             foreach (var choice in list)
             {
                 string bonus = null;
-                if (choice.AttributeBonus != null)
+                if (choice.AttBonus != null)
                 {
-                    bonus = choice.AttributeBonus.Bonus();
+                    bonus = choice.AttBonus.Bonus();
                 }
 
                 Console.Write($"{"(" + i + ")",-4}");

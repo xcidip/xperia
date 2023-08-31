@@ -127,7 +127,7 @@ namespace XperiaRPG.Scripts.Character.Player
 
             foreach (var i in whatOptionsHaveBonuses)
             {
-                var bonus = characterInfo[i]?.AttributeBonus;
+                var bonus = characterInfo[i]?.AttBonus;
                 
                 if (bonus == null) return;
                 var name = bonus.Name;

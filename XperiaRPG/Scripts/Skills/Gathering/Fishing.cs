@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Threading;
-using System.Timers;
 using XperiaRPG.Assets.Sprites;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
-using Timer = System.Threading.Timer;
 
-namespace XperiaRPG.Scripts.Skills
+namespace XperiaRPG.Scripts.Skills.Gathering
 {
     public static class Fishing
     {
-
-
-        public static void Start(Pond pond, Inventory inventory)
+        public static void Start(Pond pond, Inventory inventory, Character.Attributes.Skills skillList)
         {
             while (true)
             {
@@ -50,6 +44,8 @@ namespace XperiaRPG.Scripts.Skills
                 {
                     var caughtFish = pond.List[random.Next(pond.List.Count)];
                     Console.WriteLine($"Good job, you caught {caughtFish.Name}");
+                    Console.WriteLine($"You gained {caughtFish.XpGain}xp + bonus xp if you have a % bonus");
+                    skillList.AddXp("Fishing",caughtFish.XpGain);
                     inventory.AddItemStack(new ItemStack(1,caughtFish));
                 }
                 else
@@ -60,15 +56,6 @@ namespace XperiaRPG.Scripts.Skills
                 if (Choice.YesNoValidation() == 'n') return;
 
             }
-            
-
-           
-
-
-
-
-
-            // if done correctly 33% chance to catch and add to inventory
         }
 
         public static void Print()
@@ -88,35 +75,4 @@ namespace XperiaRPG.Scripts.Skills
             List = list;
         }   
     }
-
-    public class Fish : Item
-    {
-        public Fish(string name,string description, int price, (ConsoleColor Foreground, ConsoleColor Background) colors) 
-            : base(name, description, price, colors)
-        {
-        }
-
-        public override void Use(Player player)
-        {
-            // useless
-        }
-    }
-
-    public class FishItemList : ItemList
-    {
-        public FishItemList()
-        {
-            List = new List<Item>
-            {
-                new Fish("Shrimp", "Little shrimp, so easy to catch.", 15, Rarity.Common),
-                new Fish("Trout", "Trout, so easy to catch.", 20, Rarity.Common),
-                new Fish("Salmon", "Could be delicious if cooked.", 30, Rarity.Uncommon),
-                new Fish("Tuna", "Tuna, so tasty.",40, Rarity.Uncommon),
-                new Fish("Crayfish", $"Crusty Crayfish, not so easy to catch.", 45, Rarity.Rare),
-            };
-        }
-
-    }
-
-
 }

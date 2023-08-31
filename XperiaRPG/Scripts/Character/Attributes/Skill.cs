@@ -28,12 +28,12 @@ namespace XperiaRPG.Scripts.Character.Attributes
             new Skill("","PLAYER","PLR", 0, 0,"is used for overcoming gear, weapon,... requirements"),
                 
             new Skill("Crafting","Cooking","Coo", 0, 0, "is for cooking food that could heal you out of combat"),
-            new Skill("Crafting","Alchemy","Alc", 500, 0, "is about making potions"),
+            new Skill("Crafting","Alchemy","Alc", 0, 0, "is about making potions"),
             new Skill("Crafting","Lthrworking","Lth", 0, 0, "is used for creating leather items"),
             new Skill("Crafting","Tailoring","Tlr", 0, 0, "is used crafting cloth gear"),
             new Skill("Crafting","Smithing","Smt",0 , 0, "is used crafting plate gear and weapons"),
                 
-            new Skill("Gathering","Fishing","Fsh", 0, 0, "is pretty self explanatory, you can also cook the fish"),
+            new Skill("Gathering","Fishing","Fsh", 0, 100, "is pretty self explanatory, you can also cook the fish"),
             new Skill("Gathering","Herbalism","Hrb", 0,0, "is about gathering plants and flowers for alchemy"),
             new Skill("Gathering","Mining","Mng", 0, 0, "is used for getting resources"),
             new Skill("Gathering","Skinning","Skn", 0, 0, "is used for getting leather from animals for leatherworking"),
@@ -63,7 +63,10 @@ namespace XperiaRPG.Scripts.Character.Attributes
                 Choice.PressEnter();
                 return;
             }
-            Lookup(name).Xp += amount;
+
+            var bonus = (double)skill.PercentBonus / 100;
+
+            skill.Xp += amount + amount * bonus;
         }
         public void AddPercentBonus(string name, int amount)
         {

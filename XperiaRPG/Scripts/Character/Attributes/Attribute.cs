@@ -36,13 +36,13 @@ namespace XperiaRPG.Scripts.Character.Attributes
         }
     }
     
-    public class AttributeBonus
+    public class AttBonus
     {
         public string Name { get; set; }
         public int Amount { get; set; }
         public string Unit { get; set; }
 
-        public AttributeBonus(string name, int amount,string unit)
+        public AttBonus(string name, int amount,string unit)
         {
             Unit = unit;   
             Name = name;

@@ -13,7 +13,7 @@ namespace XperiaRPG.Scripts.Items
         public string WeaponType { get; set; } // Melee,Ranged,Magic,Tool
 
         public Weapon(int requiredLevel, GearSlot gearSlot, string weaponType, string name,int price,
-            string description, List<AttributeBonus> attributeBonusList, (ConsoleColor Foreground, ConsoleColor Background) colors)
+            string description, List<AttBonus> attributeBonusList, (ConsoleColor Foreground, ConsoleColor Background) colors)
             : base(requiredLevel, gearSlot, name, price,description, attributeBonusList, colors)
         {
             WeaponType = weaponType;
@@ -52,41 +52,5 @@ namespace XperiaRPG.Scripts.Items
             Console.WriteLine();
 
         }
-    }
-
-    public class WeaponItemList : ItemList
-    {
-
-
-        public WeaponItemList()
-        {
-            List = new List<Item>
-            {
-                new Weapon( 0, GearSlot.MainHand, "Melee", "Arnold's Sword",150, "Best of the swords",
-                    new List<AttributeBonus>()
-                    {
-                        new AttributeBonus("Strength", 4, "points"),
-                        new AttributeBonus("Defense", 2, "points"),
-                    }, Rarity.Common),
-                new Weapon(0, GearSlot.OffHand, "Melee", "Arnold's Iron Shield",150, "Best of the iron shields",
-                    new List<AttributeBonus>()
-                    {
-                        new AttributeBonus("Defense", 4, "points"),
-                        new AttributeBonus("NatureRes", 3, "points"),
-                    }, Rarity.Common),
-                new Weapon(0, GearSlot.MainHand, "Magic", "Arnold's Staff",150, "Best of the staffs",
-                    new List<AttributeBonus>()
-                    {
-                        new AttributeBonus("Intellect", 4, "points"),
-                        new AttributeBonus("Defense", 2, "points"),
-                    }, Rarity.Common),
-                new Weapon(0, GearSlot.OffHand, "Magic", "Arnold's Tome",150, "Best of the Tomes",
-                    new List<AttributeBonus>()
-                    {
-                        new AttributeBonus("Intellect", 5, "points"),
-                    }, Rarity.Common),
-            };
-        }
-
     }
 }
