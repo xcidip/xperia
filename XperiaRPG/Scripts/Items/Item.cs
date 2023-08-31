@@ -19,10 +19,11 @@ namespace XperiaRPG.Scripts.Items
         public int Price { get; set; }
         public GearSlot GearSlot { get; set; } // mount, pickaxe, head slot...
         public List<AttBonus> AttributeBonusList { get; set; }
-        public string Profession { get; set; }
         public ConsoleColor ForeColor { get; }
         public ConsoleColor BackColor { get; }
         public int HealValue { get; set; }
+        public string WeaponStyle { get; set; }  // Melee, Magic, Ranged
+        public string ArmorType { get; set; } // Plate, Cloth, Leather
 
         // protected = cannot be called outside of this class
         protected Item(string name, string description, int price,

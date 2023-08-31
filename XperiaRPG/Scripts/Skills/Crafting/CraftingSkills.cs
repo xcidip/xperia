@@ -14,7 +14,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         }
         public override void Print()
         {
-            SkillUtils.PrintCraftingMenu("Alchemy", 50, "{0,-20}", RecipeList);
+            SkillUtils.PrintCraftingMenu("Alchemy", RecipeList);
         }
     }
 
@@ -27,7 +27,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
 
         public override void Print()
         {
-            SkillUtils.PrintCraftingMenu("Cooking", 50, "{0,-20}", RecipeList);
+            SkillUtils.PrintCraftingMenu("Cooking", RecipeList);
         }
     }
     public class Tailoring : CraftingSkill
@@ -38,7 +38,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         }
         public override void Print()
         {
-            SkillUtils.PrintCraftingMenu("Tailoring", 50, "{0,-20}", RecipeList);
+            SkillUtils.PrintCraftingMenu("Tailoring",RecipeList);
         }
     }
 }

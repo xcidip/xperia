@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using XperiaRPG.Scripts.Attributes;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
 using XperiaRPG.Scripts.CharacterCreation;
@@ -12,8 +13,6 @@ namespace XperiaRPG.Scripts.Character.Player
     {
         #region Variables
 
-        public int LevelXp { get; set; }
-        public int Level { get; set; }
         public PlayerSetting[] CharacterInfo { get; set; }
         public Attributes.Skills Skills { get; set; }
         public Inventory.Inventory Inventory { get; set; }
@@ -21,41 +20,46 @@ namespace XperiaRPG.Scripts.Character.Player
         public CurrencyBag CurrencyBag { get; set; }
         public BattleAttributeList BattleAttributes { get; set; }
         public QuestLog QuestLog { get; set; }
-        
+
         #endregion
-        
+
         #region CharacterCreationOptions
 
         private static PlayerSetting ChooseRace()
         {
             var listOfOptions = new RaceList();
-            return Utility.PrintCharacterCreationSetting(listOfOptions," {0,-7} {1,-27} {4}");
+            return Utility.PrintCharacterCreationSetting(listOfOptions, " {0,-7} {1,-27} {4}");
         }
+
         private static PlayerSetting ChooseProfession()
         {
             var listOfOptions = new ProfessionList();
-            return Utility.PrintCharacterCreationSetting(listOfOptions," {0,-7} {1,-27} Wears: {2,-17} Uses: {4}");
+            return Utility.PrintCharacterCreationSetting(listOfOptions, " {0,-7} {1,-27} Wears: {2,-17} Uses: {4}");
         }
+
         private static PlayerSetting ChooseDifficulty()
         {
             var listOfOptions = new DifficultyList();
-            return Utility.PrintCharacterCreationSetting(listOfOptions," {0,-7} scaling: {3,-6} {4}");
+            return Utility.PrintCharacterCreationSetting(listOfOptions, " {0,-7} scaling: {3,-6} {4}");
         }
+
         private static PlayerSetting ChooseName()
         {
             return new Name(Choice.NameValidation());
         }
+
         private static PlayerSetting ChooseSuffix()
         {
             var listOfOptions = new SuffixList();
             return Utility.PrintCharacterCreationSetting(listOfOptions, " {0,-25} {1,-27} {4}");
         }
+
         private static PlayerSetting ChooseSexuality()
         {
             var listOfOptions = new SexualityList();
             return Utility.PrintCharacterCreationSetting(listOfOptions, " {0,-12} {1,-27} {4}");
         }
-        
+
         private static void PrintWhatToChange(IList<PlayerSetting> characterInfo)
         {
             Console.Clear();
@@ -64,19 +68,20 @@ namespace XperiaRPG.Scripts.Character.Player
             foreach (var option in options)
             {
                 Console.WriteLine(characterInfo[i] != null
-                    ? $"({i+1}) {option,-15} {characterInfo[i].Name}"
-                    : $"({i+1}) {option,-15} -");
+                    ? $"({i + 1}) {option,-15} {characterInfo[i].Name}"
+                    : $"({i + 1}) {option,-15} -");
                 i++;
             }
         }
+
         public static PlayerSetting[] WhatToChange()
         {
             var characterInfo = new PlayerSetting[6];
-            
+
             while (true)
             {
                 PrintWhatToChange(characterInfo);
-                
+
                 var choice = Choice.NumberRangeValidation(1, characterInfo.Length);
                 switch (choice)
                 {
@@ -108,48 +113,53 @@ namespace XperiaRPG.Scripts.Character.Player
                     characterInfo[5] == null) continue;
                 PrintWhatToChange(characterInfo);
                 Console.WriteLine("Is everything ok?");
-                if (Choice.YesNoValidation() == 'y') { break; }
+                if (Choice.YesNoValidation() == 'y')
+                {
+                    break;
+                }
             }
-    
+
             return characterInfo;
-            
+
         }
 
         #endregion
 
         // Stat, skill bonuses for character creation
-        private static void CharacterCreationBonuses(PlayerSetting[] characterInfo, Stats stats, Attributes.Skills skills)
+        private void CharacterCreationBonuses(PlayerSetting[] characterInfo, Stats stats,
+            Attributes.Skills skills)
         {
+            //todo instead use ChangeAttributeValue
             var whatOptionsHaveBonuses = new List<int>
-        {
-            0,1,4,5
-        };
-
-            foreach (var i in whatOptionsHaveBonuses)
             {
-                var bonus = characterInfo[i]?.AttBonus;
-                
+                0, 1, 4, 5
+            };
+
+            foreach (var index in whatOptionsHaveBonuses)
+            {
+                var bonus = characterInfo[index]?.AttBonus;
                 if (bonus == null) return;
-                var name = bonus.Name;
-                var amount = bonus.Amount;
-                var unit = bonus.Unit;
-
-                if (skills.Lookup(name) != null)
-                {
-                    if (unit == "%")
-                    {
-                        skills.AddPercentBonus(name, amount);
-                        return;
-                    }
-                    skills.AddXp(name, amount);
-                    return;
-                }
-
-                if (stats.Lookup(name) == null) return;
-                stats.AddPoints(name, amount);
-
+                ChangeAttributeValue(bonus, true);
             }
 
+        }
+        public void ChangeAttributeValue(AttBonus attBonus, bool addOrRemove)
+        {
+            var multiplier = 1;
+            if (!addOrRemove) multiplier = -1;
+
+            switch (attBonus.Unit)
+            {
+                case "points":
+                    Stats.AddPoints(attBonus.Name, attBonus.Amount * multiplier);
+                    break;
+                case "%":
+                    Skills.AddPercentBonus(attBonus.Name, attBonus.Amount * multiplier);
+                    break;
+                case "xp":
+                    Skills.AddXp(attBonus.Name, attBonus.Amount * multiplier);
+                    break;
+            }
         }
 
         public Player(PlayerSetting[] characterInfo)

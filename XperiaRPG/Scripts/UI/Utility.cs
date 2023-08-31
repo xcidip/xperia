@@ -55,7 +55,11 @@ namespace XperiaRPG.Scripts.UI
     }
     public static class Utility
     {
-        
+        public static void Error(string text)
+        {
+            Console.WriteLine($"Error: {text}");
+            Choice.PressEnter();
+        }
 
         
         public static void PrintAttributes(IEnumerable<Attribute> list, int lengthOfColumn, int columns,

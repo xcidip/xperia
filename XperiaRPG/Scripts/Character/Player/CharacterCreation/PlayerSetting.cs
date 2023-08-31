@@ -16,6 +16,7 @@ namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
         public AttBonus AttBonus { get; set; }
         public string HowToPlay { get; set; }
         public string ArmorType { get; set; }
+        public string WeaponStyle { get; set; }
         
         protected PlayerSetting(string name)
         {
@@ -24,12 +25,8 @@ namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
     }
     public abstract class ChoiceList
     {
-        public List<PlayerSetting> List { get; set; }
-   
-        protected ChoiceList()
-        {
-            List = new List<PlayerSetting>();
-        }
+        public List<PlayerSetting> List { get; set; } = new List<PlayerSetting>();
+
         public PlayerSetting Lookup(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));

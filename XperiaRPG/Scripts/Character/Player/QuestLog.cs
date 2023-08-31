@@ -90,36 +90,19 @@ namespace XperiaRPG.Scripts.Character.Player
             var quest = List[List.FindIndex(a => a.Name == name)];
             return quest.State == "finished";
         }
-        public void FinishQuest(string name)
-        {
-            List[List.FindIndex(a => a.Name == name)].State = "finished";
-        }
         public void GiveQuestReward(string name, Player player)
         {
             var quest = Lookup(name);
 
             // xp/points to skill/stat
-            if (quest.Reward.AttBonus != null)
-            {
-                var attName = quest.Reward.AttBonus.Name;
-                var attAmount = quest.Reward.AttBonus.Amount;
-
-                switch (quest.Reward.AttBonus.Unit)
-                {
-                    case "points":
-                        player.Stats.AddPoints(attName, attAmount);
-                        break;
-                    case "%":
-                        player.Skills.AddPercentBonus(attName, attAmount);
-                        break;
-                    case "xp":
-                        player.Skills.AddXp(attName,attAmount);
-                        break;
-                }
-            }
+            if (quest.Reward.AttBonus != null) player.ChangeAttributeValue(quest.Reward.AttBonus,true);
 
             // item 
             if (quest.Reward.ItemStack != null) player.Inventory.AddItemStack(quest.Reward.ItemStack);
+        }
+        public void FinishQuest(string name)
+        {
+            List[List.FindIndex(a => a.Name == name)].State = "finished";
         }
         public void HideQuest(string name)
         {

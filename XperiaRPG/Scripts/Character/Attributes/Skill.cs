@@ -33,7 +33,7 @@ namespace XperiaRPG.Scripts.Character.Attributes
             new Skill("Crafting","Tailoring","Tlr", 0, 0, "is used crafting cloth gear"),
             new Skill("Crafting","Smithing","Smt",0 , 0, "is used crafting plate gear and weapons"),
                 
-            new Skill("Gathering","Fishing","Fsh", 0, 100, "is pretty self explanatory, you can also cook the fish"),
+            new Skill("Gathering","Fishing","Fsh", 0, 0, "is pretty self explanatory, you can also cook the fish"),
             new Skill("Gathering","Herbalism","Hrb", 0,0, "is about gathering plants and flowers for alchemy"),
             new Skill("Gathering","Mining","Mng", 0, 0, "is used for getting resources"),
             new Skill("Gathering","Skinning","Skn", 0, 0, "is used for getting leather from animals for leatherworking"),
@@ -70,13 +70,6 @@ namespace XperiaRPG.Scripts.Character.Attributes
         }
         public void AddPercentBonus(string name, int amount)
         {
-            var skill = Lookup(name);
-            if (skill == null)
-            {
-                Console.WriteLine("skill doesn't exist");
-                Choice.PressEnter();
-                return;
-            }
             Lookup(name).PercentBonus += amount;
         }
         public void Explain()

@@ -49,63 +49,45 @@ namespace XperiaRPG.Scripts.Skills
 
     public static class SkillUtils
     {
-        public static void PrintMenuHeader(int columns,int lengthOfColumn, string header)
-        {
-            BorderUtility.PrintBorder(columns,lengthOfColumn);
-            Console.SetCursorPosition(5, Console.CursorTop - 1);
-            Console.WriteLine($"{header.ToUpper()}");
-        }
-
-        public static void PrintCraftingMenu(string header, int lengthOfColumn, string format,
-            RecipeList recipeList)
+        public static void PrintCraftingMenu(string header, RecipeList recipeList)
         {
             /*
-            +------------------------------------------------+------------------------------------------------+
-            | Cooked Shrimp    - 1x Shrimp 1x Knife          | Cooked Trout      - 1x Trout 1x Shrimp         |
-            | Cooked Trout     - 1x Trout 1x Shrimp          | Cooked Shrimp     - 1x Shrimp 1x Knife         |
-            +------------------------------------------------+------------------------------------------------+
+            +-COOKING------------------------------------------------------------------------+
+            | (1) Cooked Shrimp(10xp) = 1x Knife 1x Trout 1x Shrimp 1x Flour                 |
+            | (2) Cooked Trout(10xp) = 1x Knife 1x Trout 1x Shrimp 1x Flour                  |
+            +--------------------------------------------------------------------------------+
              */
-            var list = recipeList.List;
-            var numOfItems = list.Count();
+            if (recipeList.List.Count == 0) { Utility.Error("No recipes!"); return; }
 
-            if (numOfItems == 0)
-            {
-                Console.WriteLine(
-                    "+-------------------------------+\n" +
-                    "|     No recipes available      |\n" +
-                    $"+------------------------------+{header.ToUpper()}"
-                );
-                return;
-            }
+            const int columnsLength = 85;
+            var columns = (int)1;
+            if (GlobalVariables.Columns >= 4) columns = 2;
 
-            //top
-            PrintMenuHeader(GlobalVariables.Columns,lengthOfColumn, header);
+            BorderUtility.PrintHeaderBorder(header, columns,columnsLength);
 
             var i = 0;
-
-            foreach (var recipe in list)
+            foreach (var recipe in recipeList.List)
             {
-                Console.Write($"{"| (" + (i + 1) + ") ",-4}");
-                Console.Write(format,
-                    recipe.Name); //0
-                Console.Write("- ");
+                Console.Write($"{"| (" + (i + 1) + ") ",-4}"); // (1)
+                
                 var itemsNeeded = recipe.List.Aggregate("", (current, item) => current + $"{item.Quantity}x {item.Name} ");
-                Console.Write($"{itemsNeeded,-23}");
+                Console.Write($"{recipe.Result.Name + "(" + recipe.Xp + "xp) = " + itemsNeeded,-(columnsLength-5)}");
                 i++;
-                if (i % GlobalVariables.Columns != 0 && i != numOfItems) continue;
 
-                var remainingItemsInRow = i % GlobalVariables.Columns; 
-                var blankSpaces = remainingItemsInRow == 0 ? 0 : GlobalVariables.Columns - remainingItemsInRow;
+                if (i % columns != 0 && i != recipeList.List.Count) continue;
+
+                var remainingItemsInRow = i % columns;
+                var blankSpaces = remainingItemsInRow == 0 ? 0 : columns - remainingItemsInRow;
 
                 // Print the blank spaces for the remaining items in the row
                 for (var j = 0; j < blankSpaces; j++)
                 {
-                    Console.Write($"|{new string(' ', lengthOfColumn)}");
+                    Console.Write($"|{new string(' ', columnsLength)}");
                 }
 
                 Console.WriteLine("|");
             }
-            BorderUtility.PrintBorder(GlobalVariables.Columns,lengthOfColumn);
+            BorderUtility.PrintBorder(columns, columnsLength);
         }
 
     }

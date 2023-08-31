@@ -64,14 +64,13 @@
     <Compile Include="Scripts\Character\Player\Inventory\Inventory.cs" />
     <Compile Include="Scripts\Character\Player\Player.cs" />
     <Compile Include="Scripts\Character\Player\QuestLog.cs" />
-    <Compile Include="Scripts\Items\Armor.cs" />
     <Compile Include="Scripts\Items\Consumable.cs" />
-    <Compile Include="Scripts\Items\Equipable.cs" />
+    <Compile Include="Scripts\Items\GearItems.cs" />
     <Compile Include="Scripts\Items\Item.cs" />
     <Compile Include="Scripts\Items\ItemLists.cs" />
     <Compile Include="Scripts\Items\MiscItems.cs" />
     <Compile Include="Scripts\Items\ItemRarity.cs" />
-    <Compile Include="Scripts\Items\Weapon.cs" />
+    <Compile Include="Scripts\Misc\Checks.cs" />
     <Compile Include="Scripts\Misc\GlobalVariables.cs" />
     <Compile Include="Scripts\Skills\Crafting\Crafting.cs" />
     <Compile Include="Scripts\Skills\Crafting\CraftingSkills.cs" />
@@ -79,7 +78,7 @@
     <Compile Include="Scripts\Skills\Gathering\Fishing.cs" />
     <Compile Include="Scripts\Skills\SkillUtility.cs" />
     <Compile Include="Scripts\UI\Action.cs" />
-    <Compile Include="Scripts\UI\Choice.cs" />
+    <Compile Include="Scripts\Misc\Choice.cs" />
     <Compile Include="Scripts\UI\InventoryUtils.cs" />
     <Compile Include="Scripts\UI\MainMenu.cs" />
     <Compile Include="Scripts\UI\Utility.cs" />

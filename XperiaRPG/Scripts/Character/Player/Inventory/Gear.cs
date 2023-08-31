@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using XperiaRPG.Scripts.Attributes;
 using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Character.Player.Inventory
@@ -26,77 +27,39 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
 
         public void Equip(Item item, Player player)
         {
-            var statList = player.Stats;
-            var skillList = player.Skills;
-            var characterInfo = player.CharacterInfo;
-            var inventory = player.Inventory;
+            if (Checks.EquipCheck(player, item)) return;
 
-            if (player.Level < item.RequiredLevel)
-            {
-                Console.WriteLine("Player level too low. {0} level required!", item.RequiredLevel);
-                Choice.PressEnter();
-                return;
-            }
-
-            if (item.Profession != "all")
-            {
-                if (characterInfo[1].Name != item.Profession)
-                {
-                    Console.WriteLine("Wrong item - Only {0} can equip this", item.Profession);
-                    Choice.PressEnter();
-                    return;
-                }
-            }
 
             const bool addRemove = true;
+            
+            // unequip
             UnequipArmor(item.GearSlot, player);
+            
+            // equip
             _gear[item.GearSlot] = item;
-            AddBonus(addRemove, item, statList, skillList);
+            
+            // add bonus
+            AddBonus(player,item, true);
             Console.WriteLine(item.Name + " Equipped!");
-            inventory.RemoveItem(item); // Remove the armor from ItemInventory
+            
+            // Remove from Inventory
+            player.Inventory.RemoveItem(item); 
             Choice.PressEnter();
         }
-
         private void UnequipArmor(GearSlot gearSlot, Player player)
         {
-            var inventory = player.Inventory;
-            var statList = player.Stats;
-            var skillList = player.Skills;
-            const bool addRemove = false;
             if (!_gear.TryGetValue(gearSlot, out var armorItem)) return; // if not present return;
-            if (armorItem != null) inventory.AddItemStack(new ItemStack(1,armorItem)); // if present put back to inventory
-            _gear.Remove(gearSlot);
-            AddBonus(addRemove, armorItem, statList, skillList);
+            if (armorItem != null) player.Inventory.AddItemStack(new ItemStack(1,armorItem)); // if present put back to inventory
+            _gear.Remove(gearSlot); // remove from gear
+            AddBonus(player,armorItem,false); // remove bonus
             Console.WriteLine($"Unequipped item from {gearSlot} slot");
         }
 
-        private static void AddBonus(bool addRemove, Item item, Stats stats, Attributes.Skills skills)
+        private static void AddBonus(Player player, Item item, bool addOrRemove)
         {
-            var i = 1;
-            if (addRemove == false) i = -1;
-
-            if (item.AttributeBonusList == null) return;
-
-            var bonusList = item.AttributeBonusList;
-            foreach (var bonus in bonusList)
+            foreach (var bonus in item.AttributeBonusList)
             {
-                var name = bonus.Name;
-                var amount = bonus.Amount * i;
-                var unit = bonus.Unit;
-
-                if (skills.Lookup(name) != null)
-                {
-                    if (unit == "%")
-                    {
-                        skills.AddPercentBonus(name, amount);
-                        return;
-                    }
-                    skills.AddXp(name, amount);
-                    return;
-                }
-
-                if (stats.Lookup(name) == null) return;
-                stats.AddPoints(name, amount);
+                player.ChangeAttributeValue(bonus,addOrRemove);
             }
         }
 
@@ -156,11 +119,8 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         {
             while (true)
             {
-                var statList = player.Stats;
-                var skillList = player.Skills;
-
                 // (1) print all armor with numbers
-                Print(skillList, statList);
+                Print(player.Skills, player.Stats);
 
                 // (2) choose which item to interact with
                 Console.WriteLine($"Which slot?" +

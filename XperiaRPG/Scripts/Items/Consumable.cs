@@ -51,25 +51,8 @@ namespace XperiaRPG.Scripts.Items
         }
 
         public abstract override void Use(Player player);
-
-        public override void Examine()
-        {
-            Console.Write($"Name: {Name}\n" +
-                          $"Description: {Description}\n" +
-                          $"Required level to equip: {RequiredLevel}\n" +
-                          $"Effect: {Effect}\n" +
-                          $"Potency: {Potency}" +
-                          $"It goes in {GearSlot} slot and only {Profession} profession can equip it\n" +
-                          $"It sells for: {Price}gp\n" +
-                          $"Bonuses: ");
-            foreach (var attributeBonus in AttributeBonusList)
-            {
-                Console.Write($"{attributeBonus.Bonus()}, ");
-            }
-
-            Console.WriteLine();
-
-        }
+        
+        // todo examine()
     }
 
     public class HealingPotion : Potion

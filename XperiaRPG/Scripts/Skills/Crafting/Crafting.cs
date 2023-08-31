@@ -20,7 +20,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
                 // count how many of that item is in the inventory
                 var itemNum = inv.List.Count(item => item.Name == stack.Name && item.Name != null);
 
-                // if you dont have the required item in your inventory at all
+                // if you don't have the required item in your inventory at all
                 if (itemNum == 0)
                 {
                     Console.WriteLine($"You don't have: {stack.Name}"); 
@@ -72,7 +72,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
         {
             Console.WriteLine("What do you want to craft 0 - EXIT");
             var choice = Choice.NumberRangeValidation(0, RecipeList.List.Count);
-            if (choice == 0) return;
+            if (choice == 0) { Console.Clear(); return;}
             Craft(RecipeList.List[choice - 1], inv,skillList);
         }
 
