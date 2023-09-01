@@ -46,7 +46,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
     {
         public Smithing()
         {
-            RecipeList = new TailoringRecipeList();
+            RecipeList = new SmithingRecipeList();
         }
         public override void Print()
         {
@@ -57,7 +57,7 @@ namespace XperiaRPG.Scripts.Skills.Crafting
     {
         public Lthrworking()
         {
-            RecipeList = new TailoringRecipeList();
+             RecipeList = new LthrworkingRecipeList();
         }
         public override void Print()
         {

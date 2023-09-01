@@ -18,8 +18,6 @@ namespace XperiaRPG
     {
         public static void Main()
         {
-            var guessNumber = new GuessNumber();
-
             #region Disclaimer
             Console.WriteLine($"Hey, {Environment.UserName}");
             Console.WriteLine("Make the game fullscreen please");
@@ -42,9 +40,6 @@ namespace XperiaRPG
             /* for final build
             MainMenu.Welcome(200); // Welcoming animation
             var choice = Choice.NumberRangeValidation(1, 3);
-
-
-
             switch (choice)
             {
                 case 1: // make new character
@@ -91,12 +86,12 @@ namespace XperiaRPG
             */
             #endregion
             #region NPC test
-            /*
+            
             var npcList = new NpcList();
             var npc = npcList.Lookup("QuestTestNpc");
             npc.Talk(player);
 
-            */
+            
             #endregion
             #region crafting test
             // tailoring crafting test
@@ -123,6 +118,9 @@ namespace XperiaRPG
             #endregion
 
             player.Action();
+
+
+            GuessNumber.Play();
 
             Console.ReadLine();
 

@@ -16,24 +16,53 @@ using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Character.Player
 {
+    public class Quest
+    {
+        #region Variables
+        public string Name { get; set; }
+        public string Description { get; set; } // what is this quest about
+        public int MinLevel { get; set; } // minimal level to start the quest
+        public int RecommendedLevel { get; set; } // recommended level to complete the level
+        public string State { get; set; } // undelivered, started, unstarted, hidden
+        public string FromWho { get; set; } // who to find when wanting to deliver the quest
+        public List<Objective> Objectives { get; set; } // list of things to do
+        public string Type { get; set; } // fetch/kill/delivery/puzzle/hybrid/typing/...
+        public Reward Reward { get; set; } // what you get from quest items/skills xp/stats
+        public List<SkillRequirement> SkillRequirements { get; set; } // skills needed to start the quest
+        #endregion
+        
+        public Quest(string name, string description, string type, string fromWho, int minLevel,
+            int recommendedLevel, List<Objective> objectives, Reward reward,List<SkillRequirement> skillRequirements)
+        {
+            Name = name;
+            Description = description;
+            Type = type;
+            FromWho = fromWho;
+            MinLevel = minLevel;
+            RecommendedLevel = recommendedLevel;
+            State = "unstarted";
+            Objectives = objectives;
+            Reward = reward;
+            SkillRequirements = skillRequirements;
+        }
+    }
     public class QuestLog
     {
         #region Variables
         private List<Quest> List { get; }
-        private QuestDifficultyList QuestDifficultyList { get; set; }
         private FishItemList FishItemList { get; set; }
         private ArmorItemList ArmorItemList { get; set; }
         #endregion
 
+        #region Quest Log
         public QuestLog()
         {
-            QuestDifficultyList = new QuestDifficultyList();
             FishItemList = new FishItemList();
             ArmorItemList = new ArmorItemList();
             List = new List<Quest>
             {
                 new Quest("First Quest", "Kill 10 wolves around here", "kill",
-                    "Norwyn", "Norwyn", 0, 1, QuestDifficultyList.Lookup("Easy"), "unstarted",
+                    "Norwyn", 0, 1,
                     new List<Objective>
                     {
                         new KillObjective("wolf", 10),
@@ -41,10 +70,10 @@ namespace XperiaRPG.Scripts.Character.Player
                     new Reward
                     {
                         AttBonus = new AttBonus("Strength",2,"points")
-                    }
+                    },
+                    new List<SkillRequirement>()
                     ),
-                new Quest("Second Quest", "Bring me 5 trouts", "fetch", "Norwyn", "Norwyn", 0, 2,
-                    QuestDifficultyList.Lookup("Easy"), "unstarted",
+                new Quest("Second Quest", "Bring me 5 trouts", "fetch",  "Norwyn", 0, 2,
                     new List<Objective>
                     {
                         new GatherObjective(new ItemStack(5, FishItemList.Lookup("Trout"))),
@@ -52,10 +81,11 @@ namespace XperiaRPG.Scripts.Character.Player
                     new Reward
                     {
                         ItemStack = new ItemStack(1,ArmorItemList.Lookup("Wizard's Hat")),
-                    }
+                    },
+                    new List<SkillRequirement>()
                     ),
-                new Quest("Third Quest", "Deliver these items to their owners", "delivery", "Norwyn", "these people", 0,
-                    0, QuestDifficultyList.Lookup("Easy"), "unstarted",
+                new Quest("Third Quest", "Deliver these items to their owners", "delivery", "these people", 0,
+                    0,
                     new List<Objective>
                     {
                         new DeliveryObjective(new ItemStack(1, FishItemList.Lookup("Trout")), "Dubois"),
@@ -64,17 +94,24 @@ namespace XperiaRPG.Scripts.Character.Player
                     new Reward
                     {
                         ItemStack = new ItemStack(5, FishItemList.Lookup("Trout")),
+                    },
+                    new List<SkillRequirement>
+                    {
+                        new SkillRequirement("Fishing",5),
                     }
                     ),
                 // quest ideas: 
                 // receive a sword and kill a boss with it, remove sword after completing
             };
         }
+        #endregion
 
         #region Methods
-        public void StartQuest(string name)
+
+        #region Quest State
+        public void StartQuest(string name,Player player)
         {
-            var quest = List[List.FindIndex(a => a.Name == name)];
+            var quest = Lookup(name);
             if (quest.State == "started" || quest.State == "finished")
             {
                 Console.WriteLine("Quest already started!");
@@ -82,31 +119,75 @@ namespace XperiaRPG.Scripts.Character.Player
                 return;
             }
 
-            quest.State = "started";
-            Console.WriteLine($"Quest started: \"{name}\" !");
+            if (QuestRequirementCheck(name, player))
+            {
+                Console.WriteLine("Not eligible for quest");
+            }
+            else
+            {
+                quest.State = "started";
+                Console.WriteLine($"Quest started: \"{name}\" !");
+            }
+            Choice.PressEnter();
+        }
+        public void FinishQuest(string name)
+        {
+            Lookup(name).State = "undelivered";
         }
         public bool IsQuestFinished(string name)
         {
-            var quest = List[List.FindIndex(a => a.Name == name)];
-            return quest.State == "finished";
+            return Lookup(name).State == "undelivered";
+        }
+        public void HideQuest(string name)
+        {
+            Lookup(name).State = "hidden";
+        }
+        #endregion
+
+        #region Quest Completion
+        public void CheckQuestCompletion(string name, Player player) // check for completed objectives
+        {
+            // todo
         }
         public void GiveQuestReward(string name, Player player)
         {
             var quest = Lookup(name);
 
             // xp/points to skill/stat
-            if (quest.Reward.AttBonus != null) player.ChangeAttributeValue(quest.Reward.AttBonus,true);
+            if (quest.Reward.AttBonus != null) player.ChangeAttributeValue(quest.Reward.AttBonus, true);
 
             // item 
             if (quest.Reward.ItemStack != null) player.Inventory.AddItemStack(quest.Reward.ItemStack);
+
+            // hide quest from quest log
+            HideQuest(name);
         }
-        public void FinishQuest(string name)
+
+        #endregion
+        public void QuestNpc(string questName, Player player)
         {
-            List[List.FindIndex(a => a.Name == name)].State = "finished";
+            if (player.QuestLog.IsQuestFinished(questName))
+            {
+                // todo remove quest items from inventory
+                player.QuestLog.GiveQuestReward(questName, player);
+                return;
+            }
+            player.QuestLog.StartQuest(questName,player);
         }
-        public void HideQuest(string name)
+        public bool QuestRequirementCheck(string questName, Player player)
         {
-            List[List.FindIndex(a => a.Name == name)].State = "hidden";
+            var everythingOkay = true;
+            foreach (var requirement in Lookup(questName).SkillRequirements)
+            {
+                var yourSkill = player.Skills.Lookup(requirement.SkillName);
+                if (yourSkill.Level < requirement.Value)
+                {
+                    Console.WriteLine($"{yourSkill.Value} {requirement.SkillName} is too low you need at least: {requirement.Value}");
+                    everythingOkay = false;
+                }
+                if (!everythingOkay) Choice.PressEnter();
+            }
+            return everythingOkay;
         }
         public Quest Lookup(string name)
         {
@@ -119,41 +200,7 @@ namespace XperiaRPG.Scripts.Character.Player
         }
         #endregion
     }
-
-    public class Quest
-    {
-        public string Name { get; set; }
-        public string Description { get; set; } // what is this quest about
-        public int MinLevel { get; set; } // min level to be able to take the quest
-        public int RecommendedLevel { get; set; } // recommended level to complete the level
-
-        public QuestDifficulty QuestDifficulty { get; set; } // easy(green)/medium(yellow)/hard(red)/insane(white black)
-
-        // recommended level                                       -3          -2 - +2     +3 - +5          +6
-        public string State { get; set; } // finished, started, unstarted, hidden
-        public string FromWho { get; set; } // whoToFind gave you the quest
-        public string ToWho { get; set; } // whoToFind to go to to complete the quest
-        public List<Objective> Objectives { get; set; } // list of things to do
-        public string Type { get; set; } // fetch/kill/delivery/puzzle/hybrid/typing/...
-        public Reward Reward { get; set; }
-
-        public Quest(string name, string description, string type, string fromWho, string toWho, int minLevel,
-            int recommendedLevel, QuestDifficulty questDifficulty, string state, List<Objective> objectives, Reward reward)
-        {
-            Name = name;
-            Description = description;
-            Type = type;
-            FromWho = fromWho;
-            ToWho = toWho;
-            MinLevel = minLevel; 
-            RecommendedLevel = recommendedLevel;
-            QuestDifficulty = questDifficulty;
-            State = state;
-            Objectives = objectives;
-            Reward = reward;
-        }
-    }
-
+    
     public class Reward
     {
         public ItemStack ItemStack { get; set; }
@@ -227,25 +274,6 @@ namespace XperiaRPG.Scripts.Character.Player
             LevelDiffTop = levelDiffTop;
             ForegroundColor = foregroundColor;
             BackgroundColor = backgroundColor;
-        }
-    }
-
-
-    public class QuestDifficultyList
-    {
-        public List<QuestDifficulty> List { get; set; } = new List<QuestDifficulty>
-        {
-            new QuestDifficulty("Easy",-99,-3,ConsoleColor.Green,ConsoleColor.Yellow),
-            new QuestDifficulty("Medium",-2,2,ConsoleColor.Green,ConsoleColor.Yellow),
-            new QuestDifficulty("Hard",3,5,ConsoleColor.Green,ConsoleColor.Yellow),
-            new QuestDifficulty("Insane",6,8,ConsoleColor.Green,ConsoleColor.Yellow),
-            new QuestDifficulty("Leeroy",9,99,ConsoleColor.Green,ConsoleColor.Yellow),
-        };
-
-        public QuestDifficulty Lookup(string name)
-        {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-            return List.FirstOrDefault(a => a?.Name == name);
         }
     }
 }

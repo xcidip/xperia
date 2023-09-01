@@ -86,4 +86,16 @@ namespace XperiaRPG.Scripts.Character.Attributes
             Utility.PrintAttributes(attributeList,42,GlobalVariables.Columns,"skills", "| {0,-12} LVL: {1,-3} {4,-6} XP: {2,-8}");
         }
     }
+
+    public class SkillRequirement
+    {
+        public string SkillName { get; set; }
+        public int Value { get; set; }
+
+        public SkillRequirement(string skillName, int value)
+        {
+            SkillName = skillName;
+            Value = value;
+        }
+    }
 }

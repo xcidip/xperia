@@ -32,58 +32,60 @@ namespace XperiaRPG.Scripts.Character.NPC
 
         public void Talk(Player.Player player)
         {
-            var currentNode = DialogTree; // Start with the initial dialog node
-
             while (true)
             {
-                Console.Clear(); // Clear the console for a clean display
-
-                Console.WriteLine($"{currentNode?.Text}\n"); // Display the current dialog text
-
-
-                // Display action responses if they exist
-                if (currentNode?.ActionResponses != null)
+                var currentNode = DialogTree; // Start with the initial dialog node
+                while (true)
                 {
-                    for (var i = 0; i < currentNode.ActionResponses.Count; i++)
+                    Console.Clear();
+
+                    // Display the current dialog text
+                    Console.WriteLine($"{currentNode?.Text}\n");
+                    
+                    var questionCount = 0; // number of the question
+
+                    // Display action responses if they exist
+                    if (currentNode?.ActionResponses != null)
                     {
-                        Console.WriteLine($"({i+1}) {currentNode.ActionResponses[i].Item1}"); // Display action response options
+                        foreach (var response in currentNode.ActionResponses)
+                        {
+                            Console.WriteLine($"({questionCount+1}) {response.Item1}"); // Display action response options
+                            questionCount++;
+                        }
                     }
-                }
-                // Display dialogue responses if they exist
-                if (currentNode?.DialogResponses != null)
-                {
-                    for (var i = 0; i < currentNode.DialogResponses.Count; i++)
+                    // Display dialogue responses if they exist
+                    if (currentNode?.DialogResponses != null)
                     {
-                        Console.WriteLine($"({i + 1}) {currentNode.DialogResponses[i].Item1}"); // Display dialogue response options
+                        foreach (var response in currentNode.DialogResponses)
+                        {
+                            Console.WriteLine($"({questionCount+1}) {response.Item1}"); // Display action response options
+                            questionCount++;
+                        }
                     }
-                }
 
+                    // if there were no available questions
+                    if (questionCount <= 0)
+                    {
+                        Console.WriteLine("\nBadly programmed conversation."); // If there are no responses, end the conversation
+                        break;
+                    }
 
-                // Calculate the total number of available responses
-                var totalResponses = (currentNode?.ActionResponses?.Count ?? 0) + (currentNode?.DialogResponses?.Count ?? 0);
-                if (totalResponses == 0)
-                {
-                    Console.WriteLine("\nEnd of conversation."); // If there are no responses, end the conversation
-                    return;
-                }
-
-                var choice = Choice.NumberRangeValidation(1, totalResponses); // Get the user's choice
-
-                if (choice <= (currentNode?.ActionResponses?.Count ?? 0))
-                {
-                    // Execute the associated action when an action response is selected
-                    currentNode?.ActionResponses?[choice - 1].Item2.Invoke(player);
-                }
-                else
-                {
+                    // Depending on choice do the latter
+                    var choice = Choice.NumberRangeValidation(1, questionCount); // Get the user's choice
+                    if (choice <= (currentNode?.ActionResponses?.Count ?? 0))
+                    {
+                        // Execute the associated action when an action response is selected
+                        currentNode?.ActionResponses?[choice - 1].Item2.Invoke(player);
+                        break;
+                    }
                     // Move to the next dialog node when a dialogue response is selected
-                    currentNode = currentNode?.DialogResponses?[choice - currentNode.ActionResponses.Count - 1].Item2;
+                    if (currentNode?.ActionResponses != null) 
+                        currentNode = currentNode?.DialogResponses?[choice - currentNode.ActionResponses.Count - 1].Item2;
                 }
-
-                Console.WriteLine("talk more?"); //todo
-                Console.ReadLine();
-                return;
+                Console.WriteLine("Talk again?");
+                if (Choice.YesNoValidation() == 'n') return;
             }
+            
         }
     }
 }
@@ -139,19 +141,12 @@ public class NpcList
                     {
                         ("First Quest", (Player player) =>
                         {
-                            var questName = "First Quest";
-                            if (player.QuestLog.IsQuestFinished("First Quest"))
-                            {
-
-                            }
-                            else
-                            {
-                                player.QuestLog.StartQuest("First Quest");
-                            }
-
-                            Choice.PressEnter();
+                            player.QuestLog.QuestNpc("First Quest",player);
                         }),
-                        // Add more action responses
+                        ("Second Quest", (Player player) =>
+                        {
+                            player.QuestLog.QuestNpc("Second Quest",player);
+                        }),
                     },
                     DialogResponses = new List<(string, DialogNode)>
                     {

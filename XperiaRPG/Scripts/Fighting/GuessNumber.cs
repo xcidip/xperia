@@ -7,9 +7,9 @@ using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG.Scripts.Fighting
 {
-    public class GuessNumber
+    public static class GuessNumber
     {
-        public GuessNumber()
+        public static int Play()
         {
             var random = new Random();
             var secretNumber = random.Next(1, 100); // Generates a random secretNumber between 1 and 100
@@ -42,8 +42,9 @@ namespace XperiaRPG.Scripts.Fighting
                 HighOrLow(secretNumber, guess);
                 Choice.PressEnter();
             }
+            return attempts;
         }
-        public void HighOrLow(int secretNumber, int guess)
+        public static void HighOrLow(int secretNumber, int guess)
         {
             if (guess < secretNumber) { Console.WriteLine("Too low! Try again."); return; }
             Console.WriteLine("Too high! Try again.");
