@@ -166,7 +166,7 @@ namespace XperiaRPG.Scripts.Character.Player
         #endregion
         public void QuestNpc(string questName, Player player)
         {
-            if (player.QuestLog.IsQuestFinished(questName))
+            if (player.QuestLog.IsQuestFinished(questName) && QuestRequirementCheck(questName,player))
             {
                 // todo remove quest items from inventory
                 player.QuestLog.GiveQuestReward(questName, player);
