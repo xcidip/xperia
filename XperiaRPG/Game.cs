@@ -37,7 +37,7 @@ namespace XperiaRPG
 
             #region MainMenu
 
-            /* for final build
+            ///* for final build
             MainMenu.Welcome(200); // Welcoming animation
             var choice = Choice.NumberRangeValidation(1, 3);
             switch (choice)
@@ -50,7 +50,7 @@ namespace XperiaRPG
                 default:
                     break;
             }
-            */
+            //*/
 
             #endregion
 
@@ -70,10 +70,10 @@ namespace XperiaRPG
             var player = new Player(characterInfo);
 
             #region Travel test
-            //Traveling.Travel(10);
+            Traveling.Travel(10);
             #endregion
             #region Fishing
-            /*
+            
             var fishItemList = new FishItemList();
 
             var pond = new Pond(0, new List<Fish>
@@ -83,7 +83,7 @@ namespace XperiaRPG
             });
 
             Fishing.Start(pond, player.Inventory, player.Skills);
-            */
+            
             #endregion
             #region NPC test
             
