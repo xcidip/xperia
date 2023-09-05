@@ -55,7 +55,7 @@ namespace XperiaRPG
             #endregion
 
             #region Demo Character (not creating it everytime XD)
-            ///*
+            /*
             characterInfo = new PlayerSetting[6];
             characterInfo[0] = new RaceList().Lookup("Human");
             characterInfo[1] = new ProfessionList().Lookup("Mage");
@@ -63,7 +63,7 @@ namespace XperiaRPG
             characterInfo[3] = new Name("TestMan");
             characterInfo[4] = new SuffixList().Lookup("the Tough guy");
             characterInfo[5] = new SexualityList().Lookup("Celibacy");
-            //*/
+            */
             #endregion
 
             // create player
