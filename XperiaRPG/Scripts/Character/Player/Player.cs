@@ -124,8 +124,7 @@ namespace XperiaRPG.Scripts.Character.Player
         #endregion
 
         // Stat, skill bonuses for character creation
-        private void CharacterCreationBonuses(PlayerSetting[] characterInfo, Stats stats,
-            Attributes.Skills skills)
+        private void CharacterCreationBonuses(PlayerSetting[] characterInfo, Stats stats, Attributes.Skills skills)
         {
             //todo instead use ChangeAttributeValue
             var whatOptionsHaveBonuses = new List<int>
@@ -197,7 +196,49 @@ namespace XperiaRPG.Scripts.Character.Player
             ActionUtility.Action(this);
         }
 
+
+        public bool CheckRequirements(List<Requirement> requirements)
+        {
+            var notMetRequirements = "";
+            var meetingRequirements = true;
+
+            foreach (var item in requirements) 
+            {
+                if (Stats.Lookup(item.Name) != null)
+                {
+                    if (item.RequiredValue >= Stats.Lookup(item.Name).Value)
+                    {
+                        notMetRequirements += $"{item.Name} is too low, you need atleast {item.RequiredValue}\n";
+                        meetingRequirements = false;
+                    }
+                }
+                if (Skills.Lookup(item.Name) != null)
+                {
+                    if (item.RequiredValue <= Skills.Lookup(item.Name).Value)
+                    {
+                        notMetRequirements += $"{item.Name} is too low, you need atleast {item.RequiredValue}\n";
+                        meetingRequirements = false;
+                    }
+                }
+            }
+
+            Console.WriteLine(notMetRequirements);
+
+            return meetingRequirements;
+        }
+
+
     }
-    
+    public class Requirement
+    {
+        public string Name { get; set; }
+        public int RequiredValue { get; set; }
+
+        public Requirement(string name, int value)
+        {
+            Name = name;
+            RequiredValue = value;
+        }
+    }
     
 }

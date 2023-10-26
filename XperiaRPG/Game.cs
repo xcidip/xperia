@@ -69,6 +69,11 @@ namespace XperiaRPG
             // create player
             var player = new Player(characterInfo);
 
+
+
+            Cutscenes.Intro();
+
+
             #region Travel test
             //Traveling.Travel(10);
             #endregion
@@ -86,7 +91,6 @@ namespace XperiaRPG
             */
             #endregion
             #region NPC test
-            
             var npcList = new NpcList();
             var npc = npcList.Lookup("Norwyn");
             npc.Talk(player);

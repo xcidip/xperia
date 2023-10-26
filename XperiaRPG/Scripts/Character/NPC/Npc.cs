@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XperiaRPG.Scripts.Character;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.NPC;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
 
@@ -15,6 +17,7 @@ namespace XperiaRPG.Scripts.Character.NPC
     public class DialogNode
     {
         public string Text { get; set; }
+        public List<Requirement> Requirements { get; set; } // skill requirements for selecting that option
         public List<(string, ActionDelegate)> ActionResponses { get; set; } // Text + Quest giving for example
         public List<(string, DialogNode)> DialogResponses { get; set; } // Text + new dialog
     }
@@ -89,7 +92,7 @@ namespace XperiaRPG.Scripts.Character.NPC
                     // Move to the next dialog node when a dialogue response is selected
                     if (ListOfDialogResponses.Contains(choice))
                     {
-                        dialog = dialog?.DialogResponses?[choice - 1].Item2;
+                        dialog = dialog?.DialogResponses?[choice - 1].Item2;                       
                     }
                 }
                 Console.WriteLine("\nTalk again?");
@@ -100,21 +103,6 @@ namespace XperiaRPG.Scripts.Character.NPC
             }
         }
     }
-
-    /*
-    
-
-        
-            
-
-        What am I doing here?
-            Looks like you just spawned in, well welcome to the planet xperia" +
-            "it is an RPG world filled with creatures, quests and most of all grind. jk
-
-        "Goodbye!"
-
-     */
-
     
     public class NpcList
     {
@@ -125,34 +113,26 @@ namespace XperiaRPG.Scripts.Character.NPC
             {
                 new Npc("Norwyn", new DialogNode
                     {
-                        Text = "Hey there, I am Norwyn and i will guide you through the tutorial!",
+                        Text = "Hey there, I am Norwyn and i will guide you through the basics of how to survive here!",
                         DialogResponses = new List<(string, DialogNode)>
                         {
                             ("Tell me about this place.",new DialogNode
                             {
-                                Text = "Well, this place is just an ordinary island with few things going on. You can learn skills to start your journey on the planet xperia and basic things like killing enemies and crafting your first weapon and armor",
-                                DialogResponses = new List<(string,DialogNode)>
-                                {
-
-                                }
+                                Text = "Well, this place is just an ordinary island with few things going on. You can learn skills to start your journey on the planet xperia and learn basic things like killing enemies and crafting your first weapon and armor",
                             }),
 
                             ("What am I doing here?",new DialogNode
                             {
                                 Text = "Looks like you just spawned in, well welcome to the planet xperia it is an RPG world filled with creatures, quests and most of all grind. jk",
-                                DialogResponses = new List<(string,DialogNode)>
-                                {
-
-                                }
                             }),
                         },
                         ActionResponses = new List<(string, ActionDelegate)>
                         {
-                            ("Action delegate test!", (Player.Player player) =>
+                            ("Lets start!", (Player.Player player) =>
                             {
                                 Console.WriteLine("delagate test is working");
-                            }
-                            )
+                            }),
+                            ("Goodbye!",(Player.Player player) => {})
                         }
 
                         

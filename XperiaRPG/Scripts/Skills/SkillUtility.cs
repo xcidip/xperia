@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Misc;
@@ -89,7 +90,6 @@ namespace XperiaRPG.Scripts.Skills
             }
             BorderUtility.PrintBorder(columns, columnsLength);
         }
-
     }
 
     public static class Traveling

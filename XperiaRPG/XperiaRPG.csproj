@@ -73,6 +73,7 @@
     <Compile Include="Scripts\Items\ItemRarity.cs" />
     <Compile Include="Scripts\Misc\Checks.cs" />
     <Compile Include="Scripts\Misc\GlobalVariables.cs" />
+    <Compile Include="Scripts\Misc\QuestsMisc.cs" />
     <Compile Include="Scripts\Skills\Crafting\Crafting.cs" />
     <Compile Include="Scripts\Skills\Crafting\CraftingSkills.cs" />
     <Compile Include="Scripts\Skills\Crafting\RecipeLists.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Scripts\Skills\SkillUtility.cs" />
     <Compile Include="Scripts\UI\Action.cs" />
     <Compile Include="Scripts\Misc\Choice.cs" />
+    <Compile Include="Scripts\UI\Cutscenes.cs" />
     <Compile Include="Scripts\UI\InventoryUtils.cs" />
     <Compile Include="Scripts\UI\MainMenu.cs" />
     <Compile Include="Scripts\UI\Utility.cs" />

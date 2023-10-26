@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Misc;
 using XperiaRPG.Scripts.Skills;
 using XperiaRPG.Scripts.UI;
@@ -87,15 +88,4 @@ namespace XperiaRPG.Scripts.Character.Attributes
         }
     }
 
-    public class SkillRequirement
-    {
-        public string SkillName { get; set; }
-        public int Value { get; set; }
-
-        public SkillRequirement(string skillName, int value)
-        {
-            SkillName = skillName;
-            Value = value;
-        }
-    }
 }
