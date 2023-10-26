@@ -36,8 +36,8 @@ namespace XperiaRPG
             #endregion
 
             #region MainMenu
-
-            ///* for final build
+            
+            /* for final build
             MainMenu.Welcome(200); // Welcoming animation
             var choice = Choice.NumberRangeValidation(1, 3);
             switch (choice)
@@ -50,12 +50,12 @@ namespace XperiaRPG
                 default:
                     break;
             }
-            //*/
+            */
 
             #endregion
 
             #region Demo Character (not creating it everytime XD)
-            /*
+            
             characterInfo = new PlayerSetting[6];
             characterInfo[0] = new RaceList().Lookup("Human");
             characterInfo[1] = new ProfessionList().Lookup("Mage");
@@ -63,17 +63,17 @@ namespace XperiaRPG
             characterInfo[3] = new Name("TestMan");
             characterInfo[4] = new SuffixList().Lookup("the Tough guy");
             characterInfo[5] = new SexualityList().Lookup("Celibacy");
-            */
+            
             #endregion
 
             // create player
             var player = new Player(characterInfo);
 
             #region Travel test
-            Traveling.Travel(10);
+            //Traveling.Travel(10);
             #endregion
             #region Fishing
-            
+            /*
             var fishItemList = new FishItemList();
 
             var pond = new Pond(0, new List<Fish>
@@ -83,17 +83,18 @@ namespace XperiaRPG
             });
 
             Fishing.Start(pond, player.Inventory, player.Skills);
-            
+            */
             #endregion
             #region NPC test
             
             var npcList = new NpcList();
-            var npc = npcList.Lookup("QuestTestNpc");
+            var npc = npcList.Lookup("Norwyn");
             npc.Talk(player);
 
-            
+
             #endregion
             #region crafting test
+            /*
             // tailoring crafting test
             var materialItemList = new MaterialItemList();
             player.Inventory.AddItemStack(new ItemStack(4, materialItemList.Lookup("Linen cloth")));
@@ -114,14 +115,15 @@ namespace XperiaRPG
             player.Inventory.AddItem(toolDatabase.Lookup("Arnold's FishingRod"));
             player.Inventory.AddItem(toolDatabase.Lookup("Arnold's Horse"));
             player.Inventory.AddItem(armorDatabase.Lookup("Arnold's test"));
-
+            */
             #endregion
 
             player.Action();
 
 
-            GuessNumber.Play();
+            //GuessNumber.Play();
 
+            Console.WriteLine("End of program!");
             Console.ReadLine();
 
         }

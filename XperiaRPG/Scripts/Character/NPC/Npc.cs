@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XperiaRPG.Scripts.Character;
 using XperiaRPG.Scripts.Character.NPC;
-using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.UI;
 
@@ -32,156 +32,140 @@ namespace XperiaRPG.Scripts.Character.NPC
 
         public void Talk(Player.Player player)
         {
+            // start new conversation or again start the same
             while (true)
             {
-                var currentNode = DialogTree; // Start with the initial dialog node
+                Console.Clear();
+                var dialog = DialogTree;
+
+                // one conversation
                 while (true)
                 {
-                    Console.Clear();
 
-                    // Display the current dialog text
-                    Console.WriteLine($"{currentNode?.Text}\n");
-                    
-                    var questionCount = 0; // number of the question
+                    Console.WriteLine($"{Name}:\n{dialog.Text}");
 
-                    // Display action responses if they exist
-                    if (currentNode?.ActionResponses != null)
+                    var numOfOptions = 0;
+
+                    var ListOfDialogResponses = new List<int>();
+                    var ListOfActionResponses = new List<int>();
+
+                    // if DialogResponses exists show dialog options
+                    if (dialog.DialogResponses != null)
                     {
-                        foreach (var response in currentNode.ActionResponses)
+                        foreach (var option in dialog.DialogResponses)
                         {
-                            Console.WriteLine($"({questionCount+1}) {response.Item1}"); // Display action response options
-                            questionCount++;
-                        }
-                    }
-                    // Display dialogue responses if they exist
-                    if (currentNode?.DialogResponses != null)
-                    {
-                        foreach (var response in currentNode.DialogResponses)
-                        {
-                            Console.WriteLine($"({questionCount+1}) {response.Item1}"); // Display action response options
-                            questionCount++;
+                            Console.WriteLine($"({numOfOptions + 1}) {option.Item1}");
+                            numOfOptions++;
+                            ListOfDialogResponses.Add(numOfOptions);
                         }
                     }
 
-                    // if there were no available questions
-                    if (questionCount <= 0)
+                    // if ActionResponses exists show action options
+                    if (dialog.ActionResponses != null)
                     {
-                        Console.WriteLine("\nBadly programmed conversation."); // If there are no responses, end the conversation
+                        foreach (var option in dialog.ActionResponses)
+                        {
+                            Console.WriteLine($"({numOfOptions + 1}) {option.Item1}");
+                            numOfOptions++;
+                            ListOfActionResponses.Add(numOfOptions);
+                        }
+                    }
+
+                    if (numOfOptions == 0)
+                    {
                         break;
                     }
 
-                    // Depending on choice do the latter
-                    var choice = Choice.NumberRangeValidation(1, questionCount); // Get the user's choice
-                    if (choice <= (currentNode?.ActionResponses?.Count ?? 0))
+                    // choose what option
+                    var choice = Choice.NumberRangeValidation(1, numOfOptions);
+
+                    // Execute the associated action when an action response is selected
+                    if (ListOfActionResponses.Contains(choice))
                     {
-                        // Execute the associated action when an action response is selected
-                        currentNode?.ActionResponses?[choice - 1].Item2.Invoke(player);
+                        dialog?.ActionResponses?[choice - 1 - ListOfDialogResponses.Count].Item2.Invoke(player); //invoke the delegate
                         break;
                     }
+
                     // Move to the next dialog node when a dialogue response is selected
-                    if (currentNode?.ActionResponses != null) 
-                        currentNode = currentNode?.DialogResponses?[choice - currentNode.ActionResponses.Count - 1].Item2;
+                    if (ListOfDialogResponses.Contains(choice))
+                    {
+                        dialog = dialog?.DialogResponses?[choice - 1].Item2;
+                    }
                 }
-                Console.WriteLine("Talk again?");
-                if (Choice.YesNoValidation() == 'n') return;
+                Console.WriteLine("\nTalk again?");
+                if (Choice.YesNoValidation() == 'n')
+                {
+                    return;
+                }
             }
-            
         }
     }
-}
-public class NpcList
-{
-    public readonly List<Npc> List;
-    public NpcList()
+
+    /*
+    
+
+        
+            
+
+        What am I doing here?
+            Looks like you just spawned in, well welcome to the planet xperia" +
+            "it is an RPG world filled with creatures, quests and most of all grind. jk
+
+        "Goodbye!"
+
+     */
+
+    
+    public class NpcList
     {
-        List = new List<Npc>
+        public readonly List<Npc> List;
+        public NpcList()
+        {
+            List = new List<Npc>
             {
-                /*
                 new Npc("Norwyn", new DialogNode
-                {
-                    Text = "Hey there, I am Norwyn and i will guide you through the tutorial",
-                    Responses = new List<DialogNode>
                     {
-                        new DialogNode
-                        { 
-                            Text = "Tell me about this place",
-                            Responses = new List<DialogNode>
+                        Text = "Hey there, I am Norwyn and i will guide you through the tutorial!",
+                        DialogResponses = new List<(string, DialogNode)>
+                        {
+                            ("Tell me about this place.",new DialogNode
                             {
-                                new DialogNode
+                                Text = "Well, this place is just an ordinary island with few things going on. You can learn skills to start your journey on the planet xperia and basic things like killing enemies and crafting your first weapon and armor",
+                                DialogResponses = new List<(string,DialogNode)>
                                 {
-                                    Text = "\tWell, this place is just an ordinary island with few things going on\n" +
-                                    "\tyou can learn skills to start your journey on the planet xperia and basic things\n" +
-                                    "\tlike killing enemies and crafting your first weapon and armor",
+
                                 }
-                            }
-                        },
-                        new DialogNode
-                        {
-                            Text = "What am I doing here?",
-                            Responses = new List<DialogNode>
+                            }),
+
+                            ("What am I doing here?",new DialogNode
                             {
-                                new DialogNode
+                                Text = "Looks like you just spawned in, well welcome to the planet xperia it is an RPG world filled with creatures, quests and most of all grind. jk",
+                                DialogResponses = new List<(string,DialogNode)>
                                 {
-                                    Text = "Looks like you just spawned in, well welcome to the planet xperia" +
-                                    "it is an RPG world filled with creatures, quests and most of all grind. jk",
+
                                 }
-                            }
+                            }),
                         },
-                        new DialogNode
+                        ActionResponses = new List<(string, ActionDelegate)>
                         {
-                            Text = "Goodbye!"
-                        },
-                    },
-                }),
-                */
-                new Npc("QuestTestNpc", new DialogNode
-                {
-                    Text = "Welcome to the adventure!",
-                    ActionResponses = new List<(string, ActionDelegate)>
-                    {
-                        ("First Quest", (Player player) =>
-                        {
-                            player.QuestLog.QuestNpc("First Quest",player);
-                        }),
-                        ("Second Quest", (Player player) =>
-                        {
-                            player.QuestLog.QuestNpc("Second Quest",player);
-                        }),
-                    },
-                    DialogResponses = new List<(string, DialogNode)>
-                    {
-                        ("Tell me more about combat", new DialogNode
-                        {
-                            Text = "Combat in this world is...",
-                            ActionResponses = new List<(string, ActionDelegate)>
+                            ("Action delegate test!", (Player.Player player) =>
                             {
-                                ("Ask about combat skills", (Player player) =>
-                                {
-                                    Console.WriteLine("You can improve your combat skills by...");
-                                }),
-                                // Add more action responses within the nested dialog
-                            },
-                            DialogResponses = new List<(string, DialogNode)>
-                            {
-                                // Add more responses or end the conversation
+                                Console.WriteLine("delagate test is working");
                             }
-                        }),
-                        // Add more dialog responses
+                            )
+                        }
+
+                        
                     }
-                }),
+                ),
+            };
+    
+        }
 
-
-
-
-
-
-
-    };
+        public Npc Lookup(string name)
+        {
+            return List.FirstOrDefault(x => x.Name == name);
+        }
     }
-    public Npc Lookup(string name)
-    {
-        if (name == null) throw new ArgumentNullException(nameof(name));
-        return List.FirstOrDefault(a => a?.Name == name);
-    }
+    
 }
-

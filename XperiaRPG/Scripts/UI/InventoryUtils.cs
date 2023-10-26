@@ -14,7 +14,7 @@ namespace XperiaRPG.Scripts.UI
         public static void ItemExamine(Item item)
         {
             Console.Clear();
-            item.Examine();
+            item?.Examine();
             Choice.PressEnter();
         }
 
