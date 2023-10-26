@@ -5,6 +5,7 @@ using XperiaRPG.Assets.Sprites;
 using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
+using XperiaRPG.Scripts.Characters;
 using XperiaRPG.Scripts.Fighting;
 using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Misc;
@@ -71,7 +72,7 @@ namespace XperiaRPG
 
 
 
-            Cutscenes.Intro();
+            //Cutscenes.Intro();
 
 
             #region Travel test
@@ -91,10 +92,11 @@ namespace XperiaRPG
             */
             #endregion
             #region NPC test
+            /*
             var npcList = new NpcList();
             var npc = npcList.Lookup("Norwyn");
             npc.Talk(player);
-
+            */
 
             #endregion
             #region crafting test
@@ -122,10 +124,27 @@ namespace XperiaRPG
             */
             #endregion
 
-            player.Action();
+
 
 
             //GuessNumber.Play();
+
+
+            #region Quest testing
+            /*
+            player.QuestLog.StartQuestByID(1,player);
+            player.QuestLog.StartQuestByID(2, player);
+            */
+
+            #endregion
+
+            //player.Action();
+
+            var enemyList = new EnemyList();
+            var rat = enemyList.Lookup("Rat");
+
+            Console.WriteLine(rat.Name + rat.Race.Name + rat.Profession.Name);
+
 
             Console.WriteLine("End of program!");
             Console.ReadLine();

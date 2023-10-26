@@ -58,7 +58,7 @@ namespace XperiaRPG.Scripts.Skills
             | (2) Cooked Trout(10xp) = 1x Knife 1x Trout 1x Shrimp 1x Flour                  |
             +--------------------------------------------------------------------------------+
              */
-            if (recipeList.List.Count == 0) { Utility.Error("No recipes!"); return; }
+            if (recipeList.List.Count == 0) { Console.WriteLine("No recipes!"); return; }
 
             const int columnsLength = 85;
             var columns = (int)1;

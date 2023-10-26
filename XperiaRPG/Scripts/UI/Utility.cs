@@ -2,9 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using XperiaRPG.Scripts.Character.Attributes;
 using XperiaRPG.Scripts.Character.NPC;
+using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
 using XperiaRPG.Scripts.Character.Player.Inventory;
+using XperiaRPG.Scripts.Items;
+using XperiaRPG.Scripts.Misc;
 using Attribute = XperiaRPG.Scripts.Character.Attributes.Attribute;
 using Console = System.Console;
 
@@ -54,14 +58,7 @@ namespace XperiaRPG.Scripts.UI
         }
     }
     public static class Utility
-    {
-        public static void Error(string text)
-        {
-            Console.WriteLine($"Error: {text}");
-            Choice.PressEnter();
-        }
-
-        
+    {        
         public static void PrintAttributes(IEnumerable<Attribute> list, int lengthOfColumn, int columns,
             string headerName, string format)
         {
@@ -100,10 +97,59 @@ namespace XperiaRPG.Scripts.UI
             BorderUtility.PrintBorder(columns, lengthOfColumn);
         }
 
-        public static void PrintQuestLog()
+        public static void PrintQuestLog(List<Quest> List)
         {
             BorderUtility.PrintHeaderBorder("quest log",1,60);
-            //todo
+            foreach (var quest in List)
+            {
+                // display only unifinished quests
+                if (quest.State == "started" || quest.State == "undelivered")
+                {
+                    Console.WriteLine($"Name: {quest.Name}\nDescription: {quest.Description} \nFrom: {quest.FromWho} \nMinLevel: {quest.MinLevel} RecommendedLvl {quest.RecommendedLevel} \nState: {quest.State}");
+
+                    Console.WriteLine("Objectives:");
+                    foreach (var objective in quest.Objectives)
+                    {
+                        switch (objective)
+                        {
+                            case KillObjective killObjective:
+                                Console.Write("\tKill these: ");
+                                Console.WriteLine($"{killObjective.HowManyToKill}x {killObjective.EnemyToKill}");
+                                break;
+                            case GatherObjective gatherObjective:
+                                Console.Write("\tBring me this: ");
+                                Console.WriteLine($"{gatherObjective.ItemStack.Quantity}x {gatherObjective.ItemStack.Name}");
+                                break;
+                            case DeliveryObjective deliveryObjective:
+                                Console.Write("\tDeliver these: ");
+                                Console.WriteLine($"{deliveryObjective.ItemStack.Quantity}x {deliveryObjective.ItemStack.Name} to {deliveryObjective.DeliverTo}");
+                                break;
+                            case SearchObjective searchObjective:
+                                Console.Write("\tFind this person: ");
+                                Console.WriteLine($"{searchObjective.WhoToFind}");
+                                break;
+                        }                     
+                    }
+                    Console.WriteLine("Reward: ");
+                    if (quest.Reward.Items != null)
+                    {
+                        Console.WriteLine("Items: ");
+                        foreach (var item in quest.Reward.Items)
+                        {
+                            Console.WriteLine($"\t\t{item.Quantity}x {item.Name}");
+                        }
+                    }
+                    if (quest.Reward.AttBonuses != null)
+                    {
+                        Console.WriteLine("\tAttribute bonuses: ");
+                        foreach (var attBonus in quest.Reward.AttBonuses)
+                        {
+                            Console.WriteLine($"\t\t+{attBonus.Amount} {attBonus.Unit} to {attBonus.Name}");
+                        }
+                    }
+                }
+                
+            }
         }
 
         public static PlayerSetting PrintCharacterCreationSetting(ChoiceList choiceList, string format)

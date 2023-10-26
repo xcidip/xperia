@@ -58,7 +58,19 @@ namespace XperiaRPG.Scripts.Character.Attributes
                 Console.WriteLine($"{stat.ShortName} - {stat.Name} - {stat.Description}");
             }
         }
+        public int CombatLevel()
+        {
+            var combatLevel = 0;
 
+            foreach (var stat in List)
+            {
+                combatLevel += stat.Level;
+            }
+
+            combatLevel /= List.Count;
+
+            return combatLevel;
+        }
         public void Print()
         {
             var attributeList = List.Cast<Attribute>().ToList();

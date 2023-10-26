@@ -20,6 +20,7 @@ namespace XperiaRPG.Scripts.Character.Player
     public class Quest
     {
         #region Variables
+        public int Quest_ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; } // what is this quest about
         public int MinLevel { get; set; } // minimal level to start the quest
@@ -32,9 +33,10 @@ namespace XperiaRPG.Scripts.Character.Player
         public List<Requirement> Requirements { get; set; } // skills needed to start the quest
         #endregion
         
-        public Quest(string name, string description, string type, string fromWho, int minLevel,
+        public Quest(int quest_ID, string name, string description, string type, string fromWho, int minLevel,
             int recommendedLevel, List<Objective> objectives, Reward reward,List<Requirement> requirements)
         {
+            Quest_ID = quest_ID;
             Name = name;
             Description = description;
             Type = type;
@@ -42,8 +44,8 @@ namespace XperiaRPG.Scripts.Character.Player
             MinLevel = minLevel;
             RecommendedLevel = recommendedLevel;
             State = "unstarted";
-            Objectives = objectives;
-            Reward = reward;
+            Objectives = objectives; // list
+            Reward = reward; // list
             Requirements = requirements;
         }
     }
@@ -62,7 +64,7 @@ namespace XperiaRPG.Scripts.Character.Player
             ArmorItemList = new ArmorItemList();
             List = new List<Quest>
             {
-                new Quest("Wolf Trouble in the Woods", "Kill 10 wolves around here", "kill",
+                new Quest(1,"Wolf Trouble in the Woods", "Kill 10 wolves around here", "kill",
                     "Norwyn", 0, 1,
                     new List<Objective>
                     {
@@ -70,22 +72,29 @@ namespace XperiaRPG.Scripts.Character.Player
                     }, 
                     new Reward
                     {
-                        AttBonus = new AttBonus("Strength",2,"points")
+                        AttBonuses = new List<AttBonus>
+                        {
+                            new AttBonus("Strength",2,"points")
+                        }
                     },
                     new List<Requirement>()
                     ),
-                new Quest("The Five Fish Frenzy", "Bring me 5 trouts", "fetch",  "Norwyn", 0, 2,
+                new Quest(2,"The Five Fish Frenzy", "Bring me 5 trouts", "fetch",  "Norwyn", 0, 2,
                     new List<Objective>
                     {
                         new GatherObjective(new ItemStack(5, FishItemList.Lookup("Trout"))),
                     },
                     new Reward
                     {
-                        ItemStack = new ItemStack(1,ArmorItemList.Lookup("Wizard's Hat")),
+                        Items = new List<ItemStack>
+                        {
+                            new ItemStack(1,ArmorItemList.Lookup("Wizard's Hat")),
+                            new ItemStack(1,ArmorItemList.Lookup("Wizard's Skirt")),
+                        }
                     },
                     new List<Requirement>()
                     ),
-                new Quest("Third Quest", "Deliver these items to their owners", "delivery", "these people", 0,
+                new Quest(3,"Third Quest", "Deliver these items to their owners", "delivery", "these people", 0,
                     0,
                     new List<Objective>
                     {
@@ -94,7 +103,11 @@ namespace XperiaRPG.Scripts.Character.Player
                     },
                     new Reward
                     {
-                        ItemStack = new ItemStack(5, FishItemList.Lookup("Trout")),
+                        Items = new List<ItemStack>
+                        {
+                            new ItemStack(5, FishItemList.Lookup("Trout")),
+                        }
+                        
                     },
                     new List<Requirement>
                     {
@@ -110,9 +123,16 @@ namespace XperiaRPG.Scripts.Character.Player
         #region Methods
 
         #region Quest State
-        public void StartQuest(string name,Player player)
+        public void StartQuestByName(string name,Player player)
         {
-            var quest = Lookup(name);
+            StartQuest(LookupByName(name), player);
+        }
+        public void StartQuestByID(int quest_ID, Player player)
+        {
+            StartQuest(LookupByID(quest_ID), player);
+        }
+        public void StartQuest(Quest quest, Player player)
+        {
             switch (quest.State)
             {
                 case "started":
@@ -124,29 +144,30 @@ namespace XperiaRPG.Scripts.Character.Player
                     Choice.PressEnter();
                     return;
                 default:
-                    if (QuestRequirementCheck(name, player))
+                    if (!QuestRequirementCheck(quest.Name, player))
                     {
                         Console.WriteLine("Not eligible for quest");
                         Choice.PressEnter();
                         return;
                     }
                     quest.State = "started";
-                    Console.WriteLine($"Quest started: \"{name}\" !");
+                    Console.WriteLine($"Quest started: \"{quest.Name}\" !");
                     Choice.PressEnter();
                     return;
             }
         }
+
         public void FinishQuest(string name) // completes the quest, but marks it as undelivered and waiting to deliver
         {
-            Lookup(name).State = "undelivered";
+            LookupByName(name).State = "undelivered";
         }
         public bool IsQuestFinished(string name)
         {
-            return Lookup(name).State == "undelivered";
+            return LookupByName(name).State == "undelivered";
         }
         public void HideQuest(string name)
         {
-            Lookup(name).State = "hidden";
+            LookupByName(name).State = "hidden";
         }
         #endregion
 
@@ -157,14 +178,25 @@ namespace XperiaRPG.Scripts.Character.Player
         }
         public void GiveQuestReward(string name, Player player)
         {
-            var quest = Lookup(name);
+            var quest = LookupByName(name);
 
             // xp/points to skill/stat
-            if (quest.Reward.AttBonus != null) player.ChangeAttributeValue(quest.Reward.AttBonus, true);
+            if (quest.Reward.AttBonuses != null)
+            {
+                foreach (var AttBonus in quest.Reward.AttBonuses)
+                {
+                    player.ChangeAttributeValue(AttBonus, true);
+                }
+            }
 
             // item 
-            if (quest.Reward.ItemStack != null) player.Inventory.AddItemStack(quest.Reward.ItemStack);
-
+            if (quest.Reward.Items != null)
+            {
+                foreach (var ItemStack in quest.Reward.Items)
+                {
+                    player.Inventory.AddItemStack(ItemStack);
+                }
+            }
             // hide quest from quest log
             HideQuest(name);
         }
@@ -179,14 +211,14 @@ namespace XperiaRPG.Scripts.Character.Player
                 player.QuestLog.GiveQuestReward(questName, player);
                 return;
             }
-            player.QuestLog.StartQuest(questName,player);
+            player.QuestLog.StartQuest(LookupByName(questName),player);
         }
 
 
         public bool QuestRequirementCheck(string questName, Player player)
         {
             var everythingOkay = true;
-            foreach (var requirement in Lookup(questName).Requirements)
+            foreach (var requirement in LookupByName(questName).Requirements)
             {
                 var yourSkill = player.Skills.Lookup(requirement.Name);
                 if (yourSkill.Level < requirement.RequiredValue)
@@ -199,14 +231,19 @@ namespace XperiaRPG.Scripts.Character.Player
             return everythingOkay;
         }
 
-        public Quest Lookup(string name)
+        public Quest LookupByName(string name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
             return List.Find(a => a?.Name == name);
         }
+        public Quest LookupByID(int quest_ID)
+        {
+            if (quest_ID < 0) throw new ArgumentNullException(nameof(quest_ID));
+            return List.Find(a => a?.Quest_ID == quest_ID);
+        }
         public void Print()
         {
-            Utility.PrintQuestLog();
+            Utility.PrintQuestLog(List);
         }
         #endregion
     }

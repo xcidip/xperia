@@ -10,8 +10,8 @@ namespace XperiaRPG.Scripts.Misc
 {
     public class Reward
     {
-        public ItemStack ItemStack { get; set; }
-        public AttBonus AttBonus { get; set; }
+        public List<ItemStack> Items { get; set; }
+        public List<AttBonus> AttBonuses { get; set; }
     }
 
     public abstract class Objective
