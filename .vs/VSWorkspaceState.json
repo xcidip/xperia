@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\XperiaRPG"
+    "\\XperiaRPG",
+    "\\XperiaRPG\\Scripts",
+    "\\XperiaRPG\\Scripts\\Character",
+    "\\XperiaRPG\\Scripts\\Character\\Player"
   ],
   "SelectedNode": "\\XperiaRPG.sln",
   "PreviewInSolutionExplorer": false

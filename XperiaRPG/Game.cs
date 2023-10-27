@@ -143,7 +143,16 @@ namespace XperiaRPG
             var enemyList = new EnemyList();
             var rat = enemyList.Lookup("Rat");
 
-            Console.WriteLine(rat.Name + rat.Race.Name + rat.Profession.Name);
+            //Console.WriteLine(rat.Name + rat.Race.Name + rat.Profession.Name);
+
+            //FightingStyles.TypeAttack();
+            //FightingStyles.SliderAttack(100);
+            //FightingStyles.MemoryAttack(2, 3000);
+            //FightingStyles.DiceAttack();
+            //Cutscenes.FightWon();
+            //Cutscenes.NewLevel("Fishing", 99);
+
+            Fight.Start(player, rat);
 
 
             Console.WriteLine("End of program!");

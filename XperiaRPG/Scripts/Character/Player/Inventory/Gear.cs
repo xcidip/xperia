@@ -28,9 +28,6 @@ namespace XperiaRPG.Scripts.Character.Player.Inventory
         public void Equip(Item item, Player player)
         {
             if (Checks.EquipCheck(player, item)) return;
-
-
-            const bool addRemove = true;
             
             // unequip
             UnequipArmor(item.GearSlot, player);

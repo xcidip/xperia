@@ -16,6 +16,7 @@ namespace XperiaRPG.Scripts.Character.Player.CharacterCreation
         public string HowToPlay { get; set; }
         public string ArmorType { get; set; }
         public string WeaponStyle { get; set; }
+        public string MainStat { get; set; }
         
         protected PlayerSetting(string name)
         {

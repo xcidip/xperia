@@ -76,7 +76,8 @@ namespace XperiaRPG.Scripts.UI
                     attribute.Level, //1
                     attribute.Xp, //2
                     attribute.Points, //3
-                    "+" + attribute.PercentBonus + "%" //4
+                    "+" + attribute.PercentBonus + "%", //4
+                    attribute.Value //5
                 );
 
                 i++;

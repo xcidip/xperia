@@ -20,6 +20,7 @@ namespace XperiaRPG.Scripts.Character.Attributes
     public class Stats
     {
         private List<Stat> List { get; }
+        private List<Stat> CombatList { get; }
 
         public Stats(int stamina, int defense, int natureRes, int frostRes, int fireRes, int strength,int intellect, int agility, int luck)
         {
@@ -38,7 +39,7 @@ namespace XperiaRPG.Scripts.Character.Attributes
                 new Stat("FireRes","FiR", fireRes,"is for increasing resistance against fire attacks"),
                 
                 //both
-                new Stat("Luck","Lck", luck,"is for increasing critical rate of your attacks"),
+                new Stat("Luck","Lck", luck,"is for increasing luck for drop rate of items"),
             };
         }
 
@@ -51,6 +52,7 @@ namespace XperiaRPG.Scripts.Character.Attributes
         {
             Lookup(name).Points += amount;
         }
+
         public void Explain()
         {
             foreach (var stat in List)

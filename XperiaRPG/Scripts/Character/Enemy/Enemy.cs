@@ -11,12 +11,21 @@ namespace XperiaRPG.Scripts.Characters
         public string Name { get; set; }
         public PlayerSetting Profession { get; set; }
         public PlayerSetting Race { get; set; }
-        public Enemy(string name, PlayerSetting profession, PlayerSetting race, Stats stats) 
+        public string PrefferedFightingStyle { get; set; } // Dice/Memory/Slider/Typing
+        public CombatStatList CombatStats { get; set; }
+        public Enemy(string name, PlayerSetting profession, PlayerSetting race, Stats stats, string fightingStyle) 
         {
             Name = name;
             Profession = profession;
             Race = race;
-            
+            PrefferedFightingStyle = fightingStyle;
+            Stats = stats;
+            CombatStats = new CombatStatList(stats,Profession.MainStat);
+        }
+
+        public void DecreaseHP(int amount)
+        {
+            CombatStats.DecreaseHP(amount);
         }
 
     }
@@ -32,9 +41,9 @@ namespace XperiaRPG.Scripts.Characters
             EnemyRaceList = new EnemyRaceList();
             List = new List<Enemy>
             {
-                new Enemy("Rat",ProfessionList.Lookup("Warrior"),EnemyRaceList.Lookup("Rodent"),new Stats(1,1,1,1,1,1,1,1,1)),
-                new Enemy("Skeleton mage",ProfessionList.Lookup("Mage"),EnemyRaceList.Lookup("Undead"),new Stats(1,1,1,1,1,1,1,1,1)),
-                new Enemy("Small goblin",ProfessionList.Lookup("Hunter"),EnemyRaceList.Lookup("Goblin"),new Stats(1,1,1,1,1,1,1,1,1)),
+                new Enemy("Rat",ProfessionList.Lookup("Warrior"),EnemyRaceList.Lookup("Rodent"),new Stats(10,2,1,1,1,2,1,1,1), "Dice"),
+                new Enemy("Skeleton mage",ProfessionList.Lookup("Mage"),EnemyRaceList.Lookup("Undead"),new Stats(1,1,1,1,1,1,1,1,1), "Slider"),
+                new Enemy("Small goblin",ProfessionList.Lookup("Hunter"),EnemyRaceList.Lookup("Goblin"),new Stats(1,1,1,1,1,1,1,1,1), "Typing"),
             };
 
         }

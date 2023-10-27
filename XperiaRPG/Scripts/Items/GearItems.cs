@@ -46,7 +46,6 @@ namespace XperiaRPG.Scripts.Items
 
     public class Armor : Equipable
     {
-        public string ArmorType { get; set; }
 
         public Armor(int requiredLevel, GearSlot gearSlot, string armorType, string name, int price, string description,
             List<AttBonus> attributeBonusList, (ConsoleColor Foreground, ConsoleColor Background) colors)
@@ -58,7 +57,7 @@ namespace XperiaRPG.Scripts.Items
 
     public class Weapon : Equipable
     {
-        public string WeaponStyle { get; set; } // Melee,Ranged,Magic,Tool
+        // Melee,Ranged,Magic,Tool
 
         public Weapon(int requiredLevel, GearSlot gearSlot, string weaponStyle, string name, int price,
             string description, List<AttBonus> attributeBonusList, (ConsoleColor Foreground, ConsoleColor Background) colors)
