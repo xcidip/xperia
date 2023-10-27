@@ -39,7 +39,7 @@ namespace XperiaRPG.Scripts.Fighting
                         hit = FightingStyles.SliderAttack(100);
                         break;
                     case "Memory":
-                        hit = FightingStyles.MemoryAttack(5, 10000);
+                        hit = FightingStyles.MemoryAttack(3, 5000);
                         break;
                     case "Typing":
                         hit = FightingStyles.TypingAttack();
@@ -58,6 +58,11 @@ namespace XperiaRPG.Scripts.Fighting
                         );
                     Console.WriteLine($"You dealt: {damage} points of damage");
                     enemy.DecreaseHP(damage);
+                    if (enemy.CombatStats.Lookup("Health").Value <= 0)
+                    {
+                        Console.WriteLine("player has won the fight");
+                        break;
+                    }
                 }
 
                 // pause
@@ -70,11 +75,17 @@ namespace XperiaRPG.Scripts.Fighting
                         (int)enemy.CombatStats.Lookup("MinDmg").Value,
                         (int)enemy.CombatStats.Lookup("MaxDmg").Value
                     );
-                    Console.WriteLine($"Enemy dealt: {damage} points of damage");
                     player.CombatStats.DecreaseHP(damage);
+                    Console.WriteLine($"Enemy dealt: {damage} points of damage");
+                    if (player.CombatStats.Lookup("Health").Value <= 0)
+                    {
+                        Console.WriteLine("enemy has won the fight");
+                        break;
+                    }
+                    Choice.PressEnter();
                 }
             } 
-            while (player.CombatStats.Lookup("Health").Value < 0 || enemy.CombatStats.Lookup("Health").Value < 0) ;
+            while (true) ;
 
 
 

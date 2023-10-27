@@ -12,6 +12,7 @@ namespace XperiaRPG.Scripts.Fighting
 {
     public static class FightingStyles
     {
+        // works
         public static bool TypingAttack()
         {
             
@@ -52,11 +53,20 @@ namespace XperiaRPG.Scripts.Fighting
             }
 
             // Displaying the time taken
+            if (stopwatch.Elapsed.TotalMilliseconds > 4000)
+            {
+                Console.WriteLine("Too bad");
+                Console.WriteLine("Time taken: " + stopwatch.Elapsed.TotalSeconds + " seconds");
+                return false;
+            } 
+            
             Console.WriteLine("Nice!");
             Console.WriteLine("Time taken: " + stopwatch.Elapsed.TotalSeconds + " seconds");
             return true;
+            
         }
 
+        // works
         public static bool SliderAttack(int speed)
         {
             var hit = false;
@@ -117,6 +127,7 @@ namespace XperiaRPG.Scripts.Fighting
             return hit;
         }
 
+        // works
         public static bool MemoryAttack(int numOfWords, int timeLimit)
         {
             var List = new List<string>
@@ -160,11 +171,14 @@ namespace XperiaRPG.Scripts.Fighting
             return true;
         }
 
+        //works
         public static bool DiceAttack()
         {
+            var rand = new Random();
+
             while (true)
             {
-                var rand = new Random();
+                
                 var playerRoll = rand.Next(1, 7);
                 var enemyRoll = rand.Next(1, 7);
 

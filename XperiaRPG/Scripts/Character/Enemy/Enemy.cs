@@ -42,8 +42,8 @@ namespace XperiaRPG.Scripts.Characters
             List = new List<Enemy>
             {
                 new Enemy("Rat",ProfessionList.Lookup("Warrior"),EnemyRaceList.Lookup("Rodent"),new Stats(10,2,1,1,1,2,1,1,1), "Dice"),
-                new Enemy("Skeleton mage",ProfessionList.Lookup("Mage"),EnemyRaceList.Lookup("Undead"),new Stats(1,1,1,1,1,1,1,1,1), "Slider"),
-                new Enemy("Small goblin",ProfessionList.Lookup("Hunter"),EnemyRaceList.Lookup("Goblin"),new Stats(1,1,1,1,1,1,1,1,1), "Typing"),
+                new Enemy("Skeleton mage",ProfessionList.Lookup("Mage"),EnemyRaceList.Lookup("Undead"),new Stats(10,2,1,1,1,2,5,1,1), "Slider"),
+                new Enemy("Small goblin",ProfessionList.Lookup("Hunter"),EnemyRaceList.Lookup("Goblin"),new Stats(10,2,1,1,1,2,1,4,1), "Typing"),
             };
 
         }

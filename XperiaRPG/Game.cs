@@ -141,7 +141,11 @@ namespace XperiaRPG
             //player.Action();
 
             var enemyList = new EnemyList();
-            var rat = enemyList.Lookup("Rat");
+            var enemy1 = enemyList.Lookup("Rat");
+            var enemy2 = enemyList.Lookup("Skeleton mage");
+            var enemy3 = enemyList.Lookup("Small goblin");
+
+
 
             //Console.WriteLine(rat.Name + rat.Race.Name + rat.Profession.Name);
 
@@ -152,7 +156,7 @@ namespace XperiaRPG
             //Cutscenes.FightWon();
             //Cutscenes.NewLevel("Fishing", 99);
 
-            Fight.Start(player, rat);
+            Fight.Start(player, enemy3);
 
 
             Console.WriteLine("End of program!");
