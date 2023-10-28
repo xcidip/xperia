@@ -8,6 +8,7 @@ namespace XperiaRPG.Scripts.Character.Attributes
         public string Name { get; }
         public int Points { get; set; }
         public int Level { get; set; }
+        private int PreviousLevel { get; set; } = 0;
 
         private double _xp;
         public double Xp
@@ -21,6 +22,12 @@ namespace XperiaRPG.Scripts.Character.Attributes
                 }
                 _xp = value;
                 Level = MathUtility.ConvertXpToLevel(_xp);
+
+                if (Level > PreviousLevel)
+                {
+                    Cutscenes.NewLevel(Name, Level);
+                    PreviousLevel = Level;
+                }
 
             }
         }

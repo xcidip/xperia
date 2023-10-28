@@ -14,11 +14,9 @@ namespace XperiaRPG.Scripts.Character.Attributes
         public string Type { get; }
 
         
-        public Skill(string type,string name, string shortName, int xp, int percentBonus, string description) : base(name, shortName, description)
+        public Skill(string type,string name, string shortName, string description) : base(name, shortName, description)
         {
-            PercentBonus = percentBonus;
             Type = type;
-            Xp = xp;
         }
     }
 
@@ -26,23 +24,23 @@ namespace XperiaRPG.Scripts.Character.Attributes
     {
         private List<Skill> List { get; } = new List<Skill>
         {
-            new Skill("","PLAYER","PLR", 0, 0,"is used for overcoming gear, weapon,... requirements"),
+            new Skill("","PLAYER","PLR", "is used for overcoming gear, weapon,... requirements"),
                 
-            new Skill("Crafting","Cooking","Coo", 0, 0, "is for cooking food that could heal you out of combat"),
-            new Skill("Crafting","Alchemy","Alc", 0, 0, "is about making potions"),
-            new Skill("Crafting","Lthrworking","Lth", 0, 0, "is used for creating leather items"),
-            new Skill("Crafting","Tailoring","Tlr", 0, 0, "is used crafting cloth gear"),
-            new Skill("Crafting","Smithing","Smt",0 , 0, "is used crafting plate gear and weapons"),
+            new Skill("Crafting","Cooking","Coo", "is for cooking food that could heal you out of combat"),
+            new Skill("Crafting","Alchemy","Alc", "is about making potions"),
+            new Skill("Crafting","Lthrworking","Lth", "is used for creating leather items"),
+            new Skill("Crafting","Tailoring","Tlr", "is used crafting cloth gear"),
+            new Skill("Crafting","Smithing","Smt", "is used crafting plate gear and weapons"),
                 
-            new Skill("Gathering","Fishing","Fsh", 0, 0, "is pretty self explanatory, you can also cook the fish"),
-            new Skill("Gathering","Herbalism","Hrb", 0,0, "is about gathering plants and flowers for alchemy"),
-            new Skill("Gathering","Mining","Mng", 0, 0, "is used for getting resources"),
-            new Skill("Gathering","Skinning","Skn", 0, 0, "is used for getting leather from animals for leatherworking"),
-            new Skill("Gathering","Slayer","Slr", 0, 0, "is about being a mercenary slaying monsters "),
+            new Skill("Gathering","Fishing","Fsh", "is pretty self explanatory, you can also cook the fish"),
+            new Skill("Gathering","Herbalism","Hrb", "is about gathering plants and flowers for alchemy"),
+            new Skill("Gathering","Mining","Mng", "is used for getting resources"),
+            new Skill("Gathering","Skinning","Skn", "is used for getting leather from animals for leatherworking"),
+            new Skill("Gathering","Slayer","Slr", "is about being a mercenary slaying monsters "),
                 
-            new Skill("Misc","Bartering","Brt", 0, 0, "is about trading with money"),
-            new Skill("Misc","Seduction","Sdc", 0, 0, "is about seducing people for profit"),
-            new Skill("Misc","Traveling","Trv", 0, 0, "is about increasing travel speed"),
+            new Skill("Misc","Bartering","Brt", "is about trading with money"),
+            new Skill("Misc","Seduction","Sdc", "is about seducing people for profit"),
+            new Skill("Misc","Traveling","Trv", "is about increasing travel speed"),
         };
 
         public Skill Lookup(string name)

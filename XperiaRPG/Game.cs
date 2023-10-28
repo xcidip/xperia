@@ -70,8 +70,6 @@ namespace XperiaRPG
             // create player
             var player = new Player(characterInfo);
 
-
-
             //Cutscenes.Intro();
 
 
@@ -149,14 +147,16 @@ namespace XperiaRPG
 
             //Console.WriteLine(rat.Name + rat.Race.Name + rat.Profession.Name);
 
-            //FightingStyles.TypeAttack();
-            //FightingStyles.SliderAttack(100);
-            //FightingStyles.MemoryAttack(2, 3000);
-            //FightingStyles.DiceAttack();
-            //Cutscenes.FightWon();
+
             //Cutscenes.NewLevel("Fishing", 99);
 
-            Fight.Start(player, enemy3);
+            //Fight.Start(player, enemy3);
+            //Fight.Start(player, enemy1);
+            //Fight.Start(player, enemy2);
+
+
+
+            player.Action();
 
 
             Console.WriteLine("End of program!");

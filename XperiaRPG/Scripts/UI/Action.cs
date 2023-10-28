@@ -52,6 +52,7 @@ namespace XperiaRPG.Scripts.UI
             var gear = player.Gear;
             var statList = player.Stats;
             var skillList = player.Skills;
+            var combatStatList = player.CombatStats;
             var questLog = player.QuestLog;
 
             while (true)
@@ -60,6 +61,8 @@ namespace XperiaRPG.Scripts.UI
 
                 gear.Print(skillList, statList);
                 statList.Print();
+                combatStatList.ResetAfterCombat();
+                combatStatList.Print();
                 skillList.Print();
                 inventory.Print();
 

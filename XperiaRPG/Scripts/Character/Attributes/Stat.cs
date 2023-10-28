@@ -60,13 +60,13 @@ namespace XperiaRPG.Scripts.Character.Attributes
                 Console.WriteLine($"{stat.ShortName} - {stat.Name} - {stat.Description}");
             }
         }
-        public int CombatLevel()
+        public double CombatLevel()
         {
             var combatLevel = 0;
 
             foreach (var stat in List)
             {
-                combatLevel += stat.Level;
+                combatLevel += stat.Points;
             }
 
             combatLevel /= List.Count;

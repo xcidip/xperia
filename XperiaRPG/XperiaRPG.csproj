@@ -76,11 +76,12 @@
     <Compile Include="Scripts\Misc\Checks.cs" />
     <Compile Include="Scripts\Misc\GlobalVariables.cs" />
     <Compile Include="Scripts\Misc\QuestsMisc.cs" />
-    <Compile Include="Scripts\Skills\Crafting\Crafting.cs" />
-    <Compile Include="Scripts\Skills\Crafting\CraftingSkills.cs" />
-    <Compile Include="Scripts\Skills\Crafting\RecipeLists.cs" />
-    <Compile Include="Scripts\Skills\Gathering\Fishing.cs" />
-    <Compile Include="Scripts\Skills\SkillUtility.cs" />
+    <Compile Include="Scripts\Character\Attributes\Skills\Crafting\Crafting.cs" />
+    <Compile Include="Scripts\Character\Attributes\Skills\Crafting\CraftingSkills.cs" />
+    <Compile Include="Scripts\Character\Attributes\Skills\Crafting\RecipeLists.cs" />
+    <Compile Include="Scripts\Character\Attributes\Skills\Gathering\Fishing.cs" />
+    <Compile Include="Scripts\Character\Attributes\Skills\SkillUtility.cs" />
+    <Compile Include="Scripts\Misc\World.cs" />
     <Compile Include="Scripts\UI\Action.cs" />
     <Compile Include="Scripts\Misc\Choice.cs" />
     <Compile Include="Scripts\UI\Cutscenes.cs" />

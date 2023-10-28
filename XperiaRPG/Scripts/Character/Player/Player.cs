@@ -195,7 +195,11 @@ namespace XperiaRPG.Scripts.Character.Player
         {
             ActionUtility.Action(this);
         }
-
+        public void Die()
+        {
+            CombatStats.ResetAll(Stats);
+            //todo respawn
+        }
 
         public bool CheckRequirements(List<Requirement> requirements)
         {
