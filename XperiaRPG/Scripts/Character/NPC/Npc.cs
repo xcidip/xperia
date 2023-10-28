@@ -129,9 +129,12 @@ namespace XperiaRPG.Scripts.Character.NPC
                         {
                             ("Lets start!", (Player.Player player) =>
                             {
-                                Console.WriteLine("delagate test is working");
+                                Console.WriteLine("'n' + Enter to start ");
                             }),
-                            ("Goodbye!",(Player.Player player) => {})
+                            ("Goodbye!",(Player.Player player) => 
+                            {
+                                Console.WriteLine("Not so quickly dude!");
+                            })
                         }
 
                         

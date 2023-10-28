@@ -25,7 +25,7 @@ namespace XperiaRPG
             Console.WriteLine("US keyboard layout recommended");
             Console.WriteLine("Windows terminal heavily recommended (less stuttering)");
             Console.WriteLine("\n\nDISCLAIMER:\nALL CHARACTERS AND\r\nEVENTS IN THIS SHOW--\r\nEVEN THOSE BASED ON REAL\r\nPEOPLE--ARE ENTIRELY FICTIONAL.\r\nALL CELEBRITY VOICES ARE\r\nIMPERSONATED…...POORLY. THE\r\nFOLLOWING PROGRAM CONTAINS\r\nCOARSE LANGUAGE AND DUE TO\r\nITS CONTENT IT SHOULD NOT BE\r\nVIEWED BY ANYONE");
-            Console.WriteLine("\n\nhow many columns? 4-1080p 7-2160p");
+            Console.WriteLine("\n\nhow many columns? (2-minimized window) (4-1080p fulscreen) (7-2160p fulscreen)");
             //GlobalVariables.Columns = Choice.NumberRangeValidation(1, 7);
             GlobalVariables.Columns = 4;
             Choice.PressEnter();
@@ -76,22 +76,17 @@ namespace XperiaRPG
             var npcList = new NpcList();
             Tutorial.Start(npcList, player);
 
+
+
+
             #endregion
 
-            #region Fishing
-            /*
-            var fishItemList = new FishItemList();
 
-            var pond = new Pond(0, new List<Fish>
-            {
-                (Fish)fishItemList.Lookup("Shrimp"),
-                (Fish)fishItemList.Lookup("Trout")
-            });
-
-            Fishing.Start(pond, player.Inventory, player.Skills);
-            */
-            #endregion
-
+            /* skill level scaling
+             * lvl 1 - any xp
+             * lvl 2 - 83 xp
+             * 
+             */
 
 
 

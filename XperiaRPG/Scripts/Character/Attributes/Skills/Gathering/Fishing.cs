@@ -11,7 +11,7 @@ namespace XperiaRPG.Scripts.Skills.Gathering
 {
     public static class Fishing
     {
-        public static void Start(Pond pond, Inventory inventory, Character.Attributes.Skills skillList)
+        public static void Start(Pond pond,int chanceToCatchOneIn, Inventory inventory, Character.Attributes.Skills skillList)
         {
             while (true)
             {
@@ -40,7 +40,9 @@ namespace XperiaRPG.Scripts.Skills.Gathering
 
                 // if the fish was under the hook
                 if (i <= 24 || i >= 27) continue;
-                if (random.Next(1,3) == 1) // 33% chance to catch a fish
+
+
+                if (random.Next(0,chanceToCatchOneIn) == 0) // chance to catch a fish
                 {
                     var caughtFish = pond.List[random.Next(pond.List.Count)];
                     Console.WriteLine($"Good job, you caught {caughtFish.Name}");
@@ -52,7 +54,7 @@ namespace XperiaRPG.Scripts.Skills.Gathering
                 {
                     Console.WriteLine("Fish escaped :(");
                 }
-                Console.Write("Continue?: ");
+                Console.Write("Again?: ");
                 if (Choice.YesNoValidation() == 'n') return;
 
             }
