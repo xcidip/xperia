@@ -81,10 +81,11 @@
     <Compile Include="Scripts\Character\Attributes\Skills\Crafting\RecipeLists.cs" />
     <Compile Include="Scripts\Character\Attributes\Skills\Gathering\Fishing.cs" />
     <Compile Include="Scripts\Character\Attributes\Skills\SkillUtility.cs" />
+    <Compile Include="Scripts\Misc\Tutorial.cs" />
     <Compile Include="Scripts\Misc\World.cs" />
     <Compile Include="Scripts\UI\Action.cs" />
     <Compile Include="Scripts\Misc\Choice.cs" />
-    <Compile Include="Scripts\UI\Cutscenes.cs" />
+    <Compile Include="Assets\Sprites\Cutscenes.cs" />
     <Compile Include="Scripts\UI\InventoryUtils.cs" />
     <Compile Include="Scripts\UI\MainMenu.cs" />
     <Compile Include="Scripts\UI\Utility.cs" />

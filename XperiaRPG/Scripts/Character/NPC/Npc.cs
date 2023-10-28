@@ -17,7 +17,6 @@ namespace XperiaRPG.Scripts.Character.NPC
     public class DialogNode
     {
         public string Text { get; set; }
-        public List<Requirement> Requirements { get; set; } // skill requirements for selecting that option
         public List<(string, ActionDelegate)> ActionResponses { get; set; } // Text + Quest giving for example
         public List<(string, DialogNode)> DialogResponses { get; set; } // Text + new dialog
     }

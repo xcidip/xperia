@@ -11,9 +11,9 @@ namespace XperiaRPG.Scripts.UI
         public static void Intro()
         {
             Console.WriteLine("    ___ __ \r\n   (_  ( . ) )__                  '.    \\   :   /    .'\r\n     '(___(_____)      __           '.   \\  :  /   .'\r\n                     /. _\\            '.  \\ : /  .'\r\n                .--.|/_/__      -----____   _  _____-----\r\n_______________''.--o/___  \\_______________(_)___________\r\n       ~        /.'o|_o  '.|  ~                   ~   ~\r\n  ~            |/    |_|  ~'         ~\r\n               '  ~  |_|        ~       ~     ~     ~\r\n      ~    ~          |_|O  ~                       ~\r\n             ~     ___|_||_____     ~       ~    ~\r\n   ~    ~      .'':. .|_|A:. ..::''.\r\n             /:.  .:::|_|.\\ .:.  :.:\\   ~\r\n  ~         :..:. .:. .::..:  .:  ..:.       ~   ~    ~\r\n             \\.: .:  :. .: ..:: . ../\r\n    ~      ~      ~    ~    ~         ~\r\n               ~           ~    ~   ~             ~\r\n        ~         ~            ~   ~                 ~\r\n   ~                  ~    ~ ~                 ~");
-            Console.WriteLine("You just woke up on a deserted island");
+            Console.WriteLine("You just woke up on an uknown island");
             Console.WriteLine("A man is approaching you");
-            Console.WriteLine("he says: \"Hey, I am norwyn\" ");
+            Console.WriteLine("he says: \"Hey, I am Norwyn...\" ");
             Choice.PressEnter();
         }
 

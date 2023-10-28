@@ -70,12 +70,14 @@ namespace XperiaRPG
             // create player
             var player = new Player(characterInfo);
 
-            //Cutscenes.Intro();
 
+            #region Tutorial
 
-            #region Travel test
-            //Traveling.Travel(10);
+            var npcList = new NpcList();
+            Tutorial.Start(npcList, player);
+
             #endregion
+
             #region Fishing
             /*
             var fishItemList = new FishItemList();
@@ -89,75 +91,37 @@ namespace XperiaRPG
             Fishing.Start(pond, player.Inventory, player.Skills);
             */
             #endregion
-            #region NPC test
-            /*
-            var npcList = new NpcList();
-            var npc = npcList.Lookup("Norwyn");
-            npc.Talk(player);
-            */
-
-            #endregion
-            #region crafting test
-            /*
-            // tailoring crafting test
-            var materialItemList = new MaterialItemList();
-            player.Inventory.AddItemStack(new ItemStack(4, materialItemList.Lookup("Linen cloth")));
-
-
-            #endregion
-            #region Inventory item management test
-            var armorDatabase = new ArmorItemList();
-            player.Inventory.AddItem(armorDatabase.Lookup("Wizard's Coat"));
-
-            var weaponDatabase = new WeaponItemList();
-            var toolDatabase = new ToolItemList();
-            player.Inventory.AddItem(weaponDatabase.Lookup("Arnold's Sword"));
-            player.Inventory.AddItem(weaponDatabase.Lookup("Arnold's Iron Shield"));
-            player.Inventory.AddItem(weaponDatabase.Lookup("Arnold's Staff"));
-            player.Inventory.AddItem(weaponDatabase.Lookup("Arnold's Tome"));
-            player.Inventory.AddItem(toolDatabase.Lookup("Arnold's Pickaxe"));
-            player.Inventory.AddItem(toolDatabase.Lookup("Arnold's FishingRod"));
-            player.Inventory.AddItem(toolDatabase.Lookup("Arnold's Horse"));
-            player.Inventory.AddItem(armorDatabase.Lookup("Arnold's test"));
-            */
-            #endregion
 
 
 
 
-            //GuessNumber.Play();
 
 
-            #region Quest testing
-            /*
-            player.QuestLog.StartQuestByID(1,player);
-            player.QuestLog.StartQuestByID(2, player);
-            */
+            var world = new World(new Zone("World: Xperia", "world")
+            {
+                ZoneTeleports = new List<Zone>
+                {
+                    new Zone("Turorial island", "Area")
+                    {
+                        Description = "Tutorial zone to learn how the game works",
+                        ZoneTeleports = new List<Zone>
+                        {
+                            new Zone("Village", "Village")
+                            {
+                                Distance = 2,
+                                Description = "The only village on the island",
+                            }
+                        }
+                    }
+                },
+                Actions = new List<(string, MoveDelegate)>
+                {
+                    ("Some action!?!", (Player person) => Console.Write("nějaká akce"))
 
-            #endregion
+                }
+            });
 
-            //player.Action();
-
-            var enemyList = new EnemyList();
-            var enemy1 = enemyList.Lookup("Rat");
-            var enemy2 = enemyList.Lookup("Skeleton mage");
-            var enemy3 = enemyList.Lookup("Small goblin");
-
-
-
-            //Console.WriteLine(rat.Name + rat.Race.Name + rat.Profession.Name);
-
-
-            //Cutscenes.NewLevel("Fishing", 99);
-
-            //Fight.Start(player, enemy3);
-            //Fight.Start(player, enemy1);
-            //Fight.Start(player, enemy2);
-
-
-
-            player.Action();
-
+            //world.Move(player);
 
             Console.WriteLine("End of program!");
             Console.ReadLine();
