@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using XperiaRPG.Assets.Sprites;
 using XperiaRPG.Scripts.Character.NPC;
 using XperiaRPG.Scripts.Character.Player;
 using XperiaRPG.Scripts.Character.Player.CharacterCreation;
-using XperiaRPG.Scripts.Characters;
-using XperiaRPG.Scripts.Fighting;
-using XperiaRPG.Scripts.Items;
 using XperiaRPG.Scripts.Misc;
-using XperiaRPG.Scripts.Skills;
-using XperiaRPG.Scripts.Skills.Gathering;
 using XperiaRPG.Scripts.UI;
 
 namespace XperiaRPG
@@ -38,7 +31,7 @@ namespace XperiaRPG
 
             #region MainMenu
             
-            /* for final build
+            ///* for final build
             MainMenu.Welcome(200); // Welcoming animation
             var choice = Choice.NumberRangeValidation(1, 3);
             switch (choice)
@@ -51,7 +44,7 @@ namespace XperiaRPG
                 default:
                     break;
             }
-            */
+            //*/
 
             #endregion
 
